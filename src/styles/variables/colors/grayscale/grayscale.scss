@@ -1,0 +1,30 @@
+@import 'dark/dark-grayscale';
+@import 'light/light-grayscale';
+
+:root {
+  --grayscale-00: #{$light-grayscale-00};
+  --grayscale-50: #{$light-grayscale-50};
+  --grayscale-100: #{$light-grayscale-100};
+  --grayscale-150: #{$light-grayscale-150};
+  --grayscale-200: #{$light-grayscale-200};
+  --grayscale-250: #{$light-grayscale-250};
+  --grayscale-300: #{$light-grayscale-300};
+  --grayscale-350: #{$light-grayscale-350};
+  --grayscale-400: #{$light-grayscale-400};
+  --grayscale-450: #{$light-grayscale-450};
+  --grayscale-500: #{$light-grayscale-500};
+}
+
+.dark {
+  --grayscale-00: #{$dark-grayscale-00};
+  --grayscale-50: #{$dark-grayscale-50};
+  --grayscale-100: #{$dark-grayscale-100};
+  --grayscale-150: #{$dark-grayscale-150};
+  --grayscale-200: #{$dark-grayscale-200};
+  --grayscale-250: #{$dark-grayscale-250};
+  --grayscale-300: #{$dark-grayscale-300};
+  --grayscale-350: #{$dark-grayscale-350};
+  --grayscale-400: #{$dark-grayscale-400};
+  --grayscale-450: #{$dark-grayscale-450};
+  --grayscale-500: #{$dark-grayscale-500};
+}

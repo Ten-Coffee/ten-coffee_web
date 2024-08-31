@@ -1,0 +1,30 @@
+@import 'dark/dark-orange';
+@import 'light/light-orange';
+
+:root {
+  --orange-00: #{$light-orange-00};
+  --orange-50: #{$light-orange-50};
+  --orange-100: #{$light-orange-100};
+  --orange-150: #{$light-orange-150};
+  --orange-200: #{$light-orange-200};
+  --orange-250: #{$light-orange-250};
+  --orange-300: #{$light-orange-300};
+  --orange-350: #{$light-orange-350};
+  --orange-400: #{$light-orange-400};
+  --orange-450: #{$light-orange-450};
+  --orange-500: #{$light-orange-500};
+}
+
+.dark {
+  --orange-00: #{$dark-orange-00};
+  --orange-50: #{$dark-orange-50};
+  --orange-100: #{$dark-orange-100};
+  --orange-150: #{$dark-orange-150};
+  --orange-200: #{$dark-orange-200};
+  --orange-250: #{$dark-orange-250};
+  --orange-300: #{$dark-orange-300};
+  --orange-350: #{$dark-orange-350};
+  --orange-400: #{$dark-orange-400};
+  --orange-450: #{$dark-orange-450};
+  --orange-500: #{$dark-orange-500};
+}

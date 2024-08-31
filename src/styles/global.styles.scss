@@ -1,0 +1,17 @@
+@import 'variables/fonts/font';
+@import 'variables/colors/colors';
+@import 'breakpoint/breakpoint';
+
+* {
+  padding: 0;
+  margin: 0;
+
+  box-sizing: border-box;
+
+  font-size: 62.5%;
+  font-family: $main-font;
+
+  background-color: var(--background-00);
+
+  color: var(--grayscale-00);
+}

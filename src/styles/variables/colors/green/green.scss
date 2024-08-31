@@ -1,0 +1,30 @@
+@import 'dark/dark-green';
+@import 'light/light-green';
+
+:root {
+  --green-00: #{$light-green-00};
+  --green-50: #{$light-green-50};
+  --green-100: #{$light-green-100};
+  --green-150: #{$light-green-150};
+  --green-200: #{$light-green-200};
+  --green-250: #{$light-green-250};
+  --green-300: #{$light-green-300};
+  --green-350: #{$light-green-350};
+  --green-400: #{$light-green-400};
+  --green-450: #{$light-green-450};
+  --green-500: #{$light-green-500};
+}
+
+.dark {
+  --green-00: #{$dark-green-00};
+  --green-50: #{$dark-green-50};
+  --green-100: #{$dark-green-100};
+  --green-150: #{$dark-green-150};
+  --green-200: #{$dark-green-200};
+  --green-250: #{$dark-green-250};
+  --green-300: #{$dark-green-300};
+  --green-350: #{$dark-green-350};
+  --green-400: #{$dark-green-400};
+  --green-450: #{$dark-green-450};
+  --green-500: #{$dark-green-500};
+}
