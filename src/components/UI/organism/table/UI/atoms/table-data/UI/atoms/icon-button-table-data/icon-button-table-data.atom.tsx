@@ -8,8 +8,7 @@ interface IconButtonTableDataAtomProps {
 }
 
 export const IconButtonTableDataAtom = ({
-  icon,
-  id
+  icon
 }: IconButtonTableDataAtomProps) => {
   return (
     <th className={'table-data'}>

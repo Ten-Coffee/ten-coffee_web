@@ -1,5 +1,3 @@
-import styles from './button-wrapper.module.scss';
-
 import { ButtonHierarchy } from '@/components/UI/atoms/button/types/button-hierarchy.type';
 import { ComponentProps, ReactNode } from 'react';
 
@@ -14,7 +12,7 @@ export const ButtonWrapperAtom = ({
   ...props
 }: ButtonWrapperAtomPRops) => {
   return (
-    <button className={styles[hierarchy]} {...props}>
+    <button className={hierarchy} {...props}>
       {children}
     </button>
   );

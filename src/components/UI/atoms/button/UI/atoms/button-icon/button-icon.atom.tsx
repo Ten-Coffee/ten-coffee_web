@@ -1,11 +1,10 @@
-import styles from './button-icon.module.scss';
-
 import { ElementType } from 'react';
+import './button-icon.style.scss';
 
 interface ButtonIconAtomProps {
   icon: ElementType;
 }
 
 export const ButtonIconAtom = ({ icon: Icon }: ButtonIconAtomProps) => {
-  return <Icon class={styles.icon} />;
+  return <Icon class={'button-icon'} />;
 };

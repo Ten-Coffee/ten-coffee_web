@@ -10,7 +10,7 @@ export const BuildingBlockTextAtom = ({
 }: BuildingBlockTextAtomProps) => {
   return (
     <span className={'building-block-text'}>
-      <LabelAtom value={value} />
+      <LabelAtom size={'large'} value={value} />
     </span>
   );
 };

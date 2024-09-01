@@ -16,7 +16,7 @@ export const StepMolecule = ({ step, value }: StepMoleculeProps) => {
   return (
     <div className={style}>
       <NodeAtom number={step} state={state} />
-      <LabelAtom value={value} />
+      <LabelAtom size={'small'} value={value} />
     </div>
   );
 };

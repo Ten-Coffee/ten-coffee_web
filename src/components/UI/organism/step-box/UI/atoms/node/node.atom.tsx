@@ -13,7 +13,7 @@ export const NodeAtom = ({ number, state }: NodeAtomProps) => {
 
   return (
     <div className={className}>
-      <LabelAtom value={number} />
+      <LabelAtom size={'medium'} value={number} />
     </div>
   );
 };

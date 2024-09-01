@@ -8,7 +8,7 @@ interface DefaultTableDataAtomProps {
 export const DefaultTableDataAtom = ({ value }: DefaultTableDataAtomProps) => {
   return (
     <td className={'table-data'}>
-      <BodyAtom value={value} />
+      <BodyAtom size={'medium'} value={value} />
     </td>
   );
 };

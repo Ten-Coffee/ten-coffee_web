@@ -12,7 +12,7 @@ export const StatusTableDataAtom = ({ value }: StatusTableDataAtomProps) => {
   return (
     <td className={`${className} status-table-data`}>
       <div className={'status-table-data__ellipse'}></div>
-      <BodyAtom value={status} />
+      <BodyAtom size={'small'} value={status} />
     </td>
   );
 };

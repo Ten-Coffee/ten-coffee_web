@@ -8,7 +8,7 @@ interface HeaderCellAtomProps {
 export const HeaderCellAtom = ({ value }: HeaderCellAtomProps) => {
   return (
     <th className={'header-cell'}>
-      <LabelAtom value={value} />
+      <LabelAtom size={'medium'} value={value} />
     </th>
   );
 };

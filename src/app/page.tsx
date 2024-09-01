@@ -29,7 +29,7 @@ export default function Home() {
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         hierarchy={'enabled'}
       >
-        <LabelAtom value={'Trocar tema'} />
+        <LabelAtom size={'large'} value={'Trocar tema'} />
         <ButtonAtom.Icon icon={icons.Add} />
       </ButtonAtom.Wrapper>
 
