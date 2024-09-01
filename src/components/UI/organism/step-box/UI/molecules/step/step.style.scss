@@ -1,0 +1,30 @@
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  padding: 0.4rem;
+
+  border-radius: var(--border-radius-xs);
+
+  transition: var(--transition-default);
+
+  z-index: 1;
+}
+
+.step__default {
+  @extend .step;
+
+  * {
+    color: var(--grayscale-250) !important;
+  }
+}
+
+.step__checked,
+.step__current {
+  @extend .step;
+
+  * {
+    color: var(--grayscale-00) !important;
+  }
+}
