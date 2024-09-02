@@ -1,0 +1,29 @@
+.body-base {
+  color: var(--grayscale-00);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.body__small {
+  @extend .body-base;
+
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.04rem;
+}
+
+.body__medium {
+  @extend .body-base;
+
+  font-size: 1.4rem;
+  line-height: 2rem;
+  letter-spacing: 0.08rem;
+}
+
+.body__large {
+  @extend .body-base;
+
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.12rem;
+}

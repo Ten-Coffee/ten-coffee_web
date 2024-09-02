@@ -1,0 +1,35 @@
+.building-block {
+  display: flex;
+  align-items: center;
+
+  background-color: transparent;
+
+  border: none;
+  border-radius: var(--border-radius-md);
+
+  transition: var(--transition-default);
+
+  cursor: pointer;
+
+  * {
+    cursor: pointer;
+  }
+
+  &:hover {
+    background-color: var(--green-opacity-00);
+  }
+}
+
+.building-block__active {
+  @extend .building-block;
+
+  background-color: var(--green-250);
+
+  * {
+    color: var(--grayscale-00) !important;
+  }
+
+  &:hover {
+    background-color: var(--green-300);
+  }
+}

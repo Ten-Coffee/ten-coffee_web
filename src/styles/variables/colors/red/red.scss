@@ -1,0 +1,30 @@
+@import 'dark/dark-red';
+@import 'light/light-red';
+
+:root {
+  --red-00: #{$light-red-00};
+  --red-50: #{$light-red-50};
+  --red-100: #{$light-red-100};
+  --red-150: #{$light-red-150};
+  --red-200: #{$light-red-200};
+  --red-250: #{$light-red-250};
+  --red-300: #{$light-red-300};
+  --red-350: #{$light-red-350};
+  --red-400: #{$light-red-400};
+  --red-450: #{$light-red-450};
+  --red-500: #{$light-red-500};
+}
+
+.dark {
+  --red-00: #{$dark-red-00};
+  --red-50: #{$dark-red-50};
+  --red-100: #{$dark-red-100};
+  --red-150: #{$dark-red-150};
+  --red-200: #{$dark-red-200};
+  --red-250: #{$dark-red-250};
+  --red-300: #{$dark-red-300};
+  --red-350: #{$dark-red-350};
+  --red-400: #{$dark-red-400};
+  --red-450: #{$dark-red-450};
+  --red-500: #{$dark-red-500};
+}

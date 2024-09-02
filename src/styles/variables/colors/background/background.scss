@@ -1,0 +1,30 @@
+@import 'dark/dark-background';
+@import 'light/light-background';
+
+:root {
+  --background-00: #{$light-background-00};
+  --background-50: #{$light-background-50};
+  --background-100: #{$light-background-100};
+  --background-150: #{$light-background-150};
+  --background-200: #{$light-background-200};
+  --background-250: #{$light-background-250};
+  --background-300: #{$light-background-300};
+  --background-350: #{$light-background-350};
+  --background-400: #{$light-background-400};
+  --background-450: #{$light-background-450};
+  --background-500: #{$light-background-500};
+}
+
+.dark {
+  --background-00: #{$dark-background-00};
+  --background-50: #{$dark-background-50};
+  --background-100: #{$dark-background-100};
+  --background-150: #{$dark-background-150};
+  --background-200: #{$dark-background-200};
+  --background-250: #{$dark-background-250};
+  --background-300: #{$dark-background-300};
+  --background-350: #{$dark-background-350};
+  --background-400: #{$dark-background-400};
+  --background-450: #{$dark-background-450};
+  --background-500: #{$dark-background-500};
+}
