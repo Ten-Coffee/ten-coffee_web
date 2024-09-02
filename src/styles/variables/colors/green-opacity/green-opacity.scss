@@ -1,0 +1,10 @@
+@import 'dark/dark-green-opacity';
+@import 'light/light-green-opacity';
+
+:root {
+  --green-opacity-00: #{$light-green-opacity-00};
+}
+
+.dark {
+  --green-opacity-00: #{$dark-green-opacity-00};
+}

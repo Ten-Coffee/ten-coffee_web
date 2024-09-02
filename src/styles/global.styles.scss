@@ -1,0 +1,20 @@
+@import 'variables/fonts/font';
+@import 'variables/colors/colors';
+@import 'variables/border-radius/border-radius';
+@import 'variables/transitions/transitions';
+
+:root {
+  background-color: var(--background-00);
+
+  --transition-default: #{$transition-default};
+}
+
+* {
+  padding: 0;
+  margin: 0;
+
+  box-sizing: border-box;
+
+  font-size: 62.5%;
+  font-family: $main-font;
+}

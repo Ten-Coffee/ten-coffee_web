@@ -1,0 +1,38 @@
+.status-table-data {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  vertical-align: middle;
+
+  padding: 1rem 1.2rem;
+
+  &__ellipse {
+    width: 0.8rem;
+    height: 0.8rem;
+
+    background-color: var(--green-250);
+
+    border-radius: var(--border-radius-xl);
+  }
+}
+
+.active {
+  * {
+    color: var(--green-250);
+  }
+
+  .status-table-data__ellipse {
+    background-color: var(--green-250);
+  }
+}
+
+.inactive {
+  * {
+    color: var(--red-250);
+  }
+
+  .status-table-data__ellipse {
+    background-color: var(--red-250);
+  }
+}

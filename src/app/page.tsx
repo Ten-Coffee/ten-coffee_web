@@ -1,95 +1,56 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+
+import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
+import { IconButtonAtom } from '@/components/UI/atoms/icon-button/icon-button.atom';
+import { LabelAtom } from '@/components/UI/atoms/typography/label/label.atom';
+import { InputMolecule } from '@/components/UI/molecules/input/input.molecule';
+import { StepBoxOrganism } from '@/components/UI/organism/step-box/step-box.organism';
+import { TableOrganism } from '@/components/UI/organism/table/table.organism';
+import { icons } from '@/icons/icons';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import './page.style.scss';
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <>
+      <ButtonAtom.Wrapper
+        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        hierarchy={'enabled'}
+      >
+        <LabelAtom size={'large'} value={'Trocar tema'} />
+        <ButtonAtom.Icon icon={icons.Add} />
+      </ButtonAtom.Wrapper>
+
+      <div className={'form-input-wrapper'}>
+        <InputMolecule.Password placeholder={'Digite sua senha'} />
+        <InputMolecule.Text icon={icons.Add} position={'left'} />
+        <InputMolecule.Text icon={icons.Add} position={'right'} />
+        <InputMolecule.Text />
+        <InputMolecule.Password />
+        <InputMolecule.Password />
+        <InputMolecule.Password />
+        <InputMolecule.Password />
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <IconButtonAtom size={'large'} icon={icons.Add} hierarchy={'variation'} />
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+      {/*<InputAtom.Text />*/}
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+      <StepBoxOrganism />
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <TableOrganism />
+    </>
   );
 }

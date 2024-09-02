@@ -1,0 +1,9 @@
+.header-cell {
+  display: table-cell;
+
+  padding: 0.8rem 1.2rem;
+
+  * {
+    color: var(--grayscale-250) !important;
+  }
+}
