@@ -1,1 +1,1 @@
-export type StepState = 'default' | 'current' | 'checked';
+export type StepState = 'default' | 'checked' | 'current';
