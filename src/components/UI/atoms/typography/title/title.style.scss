@@ -1,0 +1,24 @@
+.title-base {
+  color: var(--grayscale-50);
+  text-align: center;
+  font-style: normal;
+  font-weight: 500;  
+}
+
+.title__small{
+  line-height: 2.0rem;
+  letter-spacing: 0.01rem;
+  font-size: 1.4rem;
+}
+
+.title__medium {
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.015rem;
+}
+
+.title__large{
+  font-size: 2.2rem;
+  line-height: 2.8rem;
+  letter-spacing: 0rem;
+}
