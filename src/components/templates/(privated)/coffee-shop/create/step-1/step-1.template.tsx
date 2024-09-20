@@ -1,5 +1,3 @@
-'use client'; // Marcar como Client Component
-
 import './step-1.styles.scss';
 
 import { CoffeeShopFormOrganism } from '../../components/UI/organism/coffee-shop-form/coffee-shop-form.organism';

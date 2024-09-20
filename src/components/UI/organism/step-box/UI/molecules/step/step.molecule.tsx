@@ -1,7 +1,10 @@
+'use client';
+
 import './step.style.scss';
+
 import { LabelAtom } from '@/components/UI/atoms/typography/label/label.atom';
 import { NodeAtom } from '@/components/UI/organism/step-box/UI/atoms/node/node.atom';
-import { useStepHook } from '@/components/UI/organism/step-box/UI/molecules/step/use-step.hook';
+import {useStepHook} from "@/components/UI/organism/step-box/UI/molecules/step/use-step.hook";
 
 interface StepMoleculeProps {
   step: number;
