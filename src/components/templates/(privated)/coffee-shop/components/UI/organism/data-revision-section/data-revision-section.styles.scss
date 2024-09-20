@@ -1,0 +1,40 @@
+.data-revision-section {
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+  
+  flex: 1 0 0;
+}
+
+.data-revision-section__data {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 24px;
+  flex: 1 0 0;
+  width: 100%;
+}
+
+.data-revision-section__data__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 24px;
+
+  align-self: stretch;
+}
+
+.data-revision-section__data__buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px 12px;
+  gap: 12px;
+
+  border-radius: 12px;
+  font-size: medium;
+}
