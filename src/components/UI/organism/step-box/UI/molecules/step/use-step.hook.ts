@@ -1,3 +1,5 @@
+'use client';
+
 import { StepState } from '@/components/UI/organism/step-box/types/step-state.type';
 import { usePathname } from 'next/navigation';
 

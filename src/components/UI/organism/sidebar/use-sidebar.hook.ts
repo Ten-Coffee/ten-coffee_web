@@ -1,3 +1,5 @@
+'use client';
+
 import { icons } from '@/icons/icons';
 
 export const useSidebarHook = () => {
