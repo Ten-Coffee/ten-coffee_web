@@ -1,4 +1,4 @@
-import '../styles/global.styles.scss';
+import '../../styles/global.styles.scss';
 import { WrapperAtom } from '@/components/UI/atoms/wrapper/wrapper.atom';
 import { ThemeProvider } from 'next-themes';
 import { ReactNode } from 'react';
