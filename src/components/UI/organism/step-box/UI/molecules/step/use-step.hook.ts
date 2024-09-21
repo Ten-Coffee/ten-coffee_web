@@ -1,26 +1,33 @@
-import { StepState } from '@/components/UI/organism/step-box/types/step-state.type';
+'use client';
 
-interface useStepHookProps {
+import { StepState } from '@/components/UI/organism/step-box/types/step-state.type';
+import { usePathname } from 'next/navigation';
+
+interface UseStepHookProps {
   step: number;
 }
 
-export const useStepHook = ({ step }: useStepHookProps) => {
-  const classNameMap: { [key: number]: { state: StepState; style: string } } = {
-    '1': {
-      state: 'default',
-      style: 'step__default'
-    },
-    '2': {
-      state: 'checked',
-      style: 'step__checked'
-    },
-    '3': {
-      state: 'current',
-      style: 'step__current'
-    }
+export const useStepHook = ({ step }: UseStepHookProps) => {
+  const pathname = usePathname();
+
+  const extractPathStep = (pathname: string): number => {
+    const match = pathname.match(/step-(\d+)/);
+    return match ? parseInt(match[1], 10) : 0;
   };
 
+  const determineStepState = (step: number, pathStep: number): StepState => {
+    if (step === pathStep) return 'current';
+
+    return step < pathStep ? 'checked' : 'default';
+  };
+
+  const pathStep = extractPathStep(pathname);
+  const state = determineStepState(step, pathStep);
+
   return {
-    className: classNameMap[step]
+    className: {
+      state,
+      style: `step__${state}`
+    }
   };
 };

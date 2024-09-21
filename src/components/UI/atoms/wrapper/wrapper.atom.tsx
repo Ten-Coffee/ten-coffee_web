@@ -1,7 +1,7 @@
 'use client';
 
+import { useWrapperHook } from '@/components/UI/atoms/wrapper/use-wrapper.hook';
 import { SidebarOrganism } from '@/components/UI/organism/sidebar/sidebar.organism';
-import { sidebarStore } from '@/store/sidebar.store';
 import { ReactNode } from 'react';
 import './wrapper.style.scss';
 
@@ -10,10 +10,7 @@ interface WrapperAtomProps {
 }
 
 export const WrapperAtom = ({ children }: WrapperAtomProps) => {
-  const { isOpen } = sidebarStore();
-  const wrapperChildrenClass = isOpen
-    ? 'wrapper__children-is-open'
-    : 'wrapper__children';
+  const { wrapperChildrenClass } = useWrapperHook();
 
   return (
     <main className={'wrapper'}>
