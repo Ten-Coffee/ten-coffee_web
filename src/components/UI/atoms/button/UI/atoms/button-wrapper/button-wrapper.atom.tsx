@@ -1,3 +1,4 @@
+import './button-wrapper.style.scss';
 import { ButtonHierarchy } from '@/components/UI/atoms/button/types/button-hierarchy.type';
 import { ComponentProps, ReactNode } from 'react';
 

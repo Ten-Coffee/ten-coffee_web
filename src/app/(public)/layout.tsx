@@ -9,7 +9,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={'en'} suppressHydrationWarning>
       <body>
         <ThemeProvider attribute={'class'}>
           <WrapperAtom>{children}</WrapperAtom>

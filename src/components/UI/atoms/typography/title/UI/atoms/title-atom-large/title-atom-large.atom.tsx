@@ -5,5 +5,5 @@ interface TitleAtomLargeProps {
 }
 
 export const TitleAtomLarge = ({ value }: TitleAtomLargeProps) => {
-  return <h4 className="title__large">{value}</h4>;
+  return <h4 className={'title__large'}>{value}</h4>;
 };

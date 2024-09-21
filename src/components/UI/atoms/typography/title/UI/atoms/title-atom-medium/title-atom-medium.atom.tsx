@@ -5,5 +5,5 @@ interface TitleAtomMediumProps {
 }
 
 export const TitleAtomMedium = ({ value }: TitleAtomMediumProps) => {
-  return <h5 className="title__medium">{value}</h5>;
+  return <h5 className={'title__medium'}>{value}</h5>;
 };

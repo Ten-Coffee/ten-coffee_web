@@ -1,28 +1,19 @@
+import { DataItem } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/interfaces/data-item.interface';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { DataReviewMolecule } from '@/components/UI/molecules/data-review/data-review.molecule';
 import './data-revision.styles.scss';
 
-interface DataItem {
-  label: string;
-  value: string;
-}
-
 interface DataRevisionProps {
-  coffeeShopData: DataItem[];
-  addressData: DataItem[];
-  representativeData: DataItem[];
+  title: string;
+  data: DataItem[];
 }
 
-export const DataRevisionOrganism = ({
-  coffeeShopData,
-  addressData,
-  representativeData
-}: DataRevisionProps) => (
-  <div className="data-revision">
-    <div className="data-revision__section">
-      <TitleAtom.Large value="Unidade" />
-      <div className="data-revision__section__fields">
-        {coffeeShopData.map((item, index) => (
+export const DataRevisionOrganism = ({ title, data }: DataRevisionProps) => {
+  return (
+    <div className={'data-revision'}>
+      <TitleAtom.Large value={title} />
+      <div className={'data-revision__fields'}>
+        {data.map((item, index) => (
           <DataReviewMolecule
             key={index}
             label={item.label}
@@ -31,31 +22,5 @@ export const DataRevisionOrganism = ({
         ))}
       </div>
     </div>
-
-    <div className="data-revision__section">
-      <TitleAtom.Large value="Endereço" />
-      <div className="data-revision__section__fields">
-        {addressData.map((item, index) => (
-          <DataReviewMolecule
-            key={index}
-            label={item.label}
-            value={item.value}
-          />
-        ))}
-      </div>
-    </div>
-
-    <div className="data-revision__section">
-      <TitleAtom.Large value="Representante" />
-      <div className="data-revision__section__fields">
-        {representativeData.map((item, index) => (
-          <DataReviewMolecule
-            key={index}
-            label={item.label}
-            value={item.value}
-          />
-        ))}
-      </div>
-    </div>
-  </div>
-);
+  );
+};

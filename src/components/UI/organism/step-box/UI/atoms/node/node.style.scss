@@ -28,3 +28,14 @@
 
   border: 0.1rem solid var(--grayscale-00);
 }
+
+.checked__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  * {
+    height: 1.6rem;
+    width: auto;
+  }
+}

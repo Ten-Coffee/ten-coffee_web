@@ -1,11 +1,7 @@
 .data-review-molecule {
   display: flex;
   flex-direction: column;
+  gap: 0.4rem;
 
   width: 100%;
-
-  align-items: flex-start;
-  
-  gap: 4px;
 }
-

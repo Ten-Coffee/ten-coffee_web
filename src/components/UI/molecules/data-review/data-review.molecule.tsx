@@ -8,9 +8,9 @@ interface DataReviewProps {
 
 export const DataReviewMolecule = ({ label, value }: DataReviewProps) => {
   return (
-    <div className="data-review-molecule">
-      <LabelAtom value={label} size="small" />
-      <LabelAtom value={value} size="large" />
+    <div className={'data-review-molecule'}>
+      <LabelAtom value={label} size={'small'} />
+      <LabelAtom value={value} size={'large'} />
     </div>
   );
 };

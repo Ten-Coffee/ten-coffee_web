@@ -2,13 +2,13 @@
   color: var(--grayscale-50);
   text-align: center;
   font-style: normal;
-  font-weight: 500;  
+  font-weight: 500;
 }
 
-.title__small{
-  line-height: 2.0rem;
-  letter-spacing: 0.01rem;
+.title__small {
   font-size: 1.4rem;
+  line-height: 2rem;
+  letter-spacing: 0.01rem;
 }
 
 .title__medium {
@@ -17,8 +17,8 @@
   letter-spacing: 0.015rem;
 }
 
-.title__large{
+.title__large {
   font-size: 2.2rem;
   line-height: 2.8rem;
-  letter-spacing: 0rem;
+  letter-spacing: 0;
 }

@@ -5,5 +5,5 @@ interface TitleAtomSmallProps {
 }
 
 export const TitleAtomSmall = ({ value }: TitleAtomSmallProps) => {
-  return <h6 className="title__small">{value}</h6>;
+  return <h6 className={'title__small'}>{value}</h6>;
 };

@@ -1,12 +1,14 @@
 import { LabelAtom } from '@/components/UI/atoms/typography/label/label.atom';
 import { InputMolecule } from '@/components/UI/molecules/input/input.molecule';
+import { Position } from '@/type/position.type';
+import { Size } from '@/type/size.type';
 import { ComponentProps, ElementType, forwardRef } from 'react';
 
 export interface TextFieldProps extends ComponentProps<'div'> {
   label: string;
   icon?: ElementType;
-  position?: 'left' | 'right';
-  labelSize?: 'small' | 'medium' | 'large';
+  position?: Position;
+  labelSize?: Size;
 }
 
 export const TextFieldMolecule = forwardRef<HTMLInputElement, TextFieldProps>(

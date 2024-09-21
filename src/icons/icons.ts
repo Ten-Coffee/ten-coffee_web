@@ -1,5 +1,6 @@
 import {
   Building,
+  Check,
   ChevronsLeft,
   ChevronsRight,
   EllipsisVertical,
@@ -25,5 +26,6 @@ export const icons = {
   Eye: {
     On: Eye,
     Off: EyeOff
-  }
+  },
+  Check
 };

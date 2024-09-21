@@ -1,31 +1,13 @@
 .data-revision {
-  width: 100%;
-  padding: 1.5rem;
-  gap: 2rem;
-
-  background: var(--background-50);
-
-  border-radius: 0.75rem;
-}
-
-.data-revision__section {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-
-  gap: 1.5rem;
-  width: 100%;
-
-  align-self: stretch;
+  gap: 2.4rem;
 }
 
-.data-revision__section__fields {
+.data-revision__fields {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 3.2rem;
 
   width: 100%;
-
-  gap: 1.5rem;
-
-
 }
