@@ -1,6 +1,6 @@
 'use client';
 
-import useWrapperHook from '@/components/UI/atoms/wrapper/use-wrapper.hook';
+import { useWrapperHook } from '@/components/UI/atoms/wrapper/use-wrapper.hook';
 import { SidebarOrganism } from '@/components/UI/organism/sidebar/sidebar.organism';
 import { ReactNode } from 'react';
 import './wrapper.style.scss';

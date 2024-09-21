@@ -1,6 +1,6 @@
 import { sidebarStore } from '@/store/sidebar.store';
 
-const useWrapperHook = () => {
+export const useWrapperHook = () => {
   const { isOpen } = sidebarStore();
   const wrapperChildrenClass = isOpen
     ? 'wrapper__children-is-open'
@@ -10,5 +10,3 @@ const useWrapperHook = () => {
     wrapperChildrenClass
   };
 };
-
-export default useWrapperHook;
