@@ -1,11 +1,24 @@
+'use client';
+
 import { useRouter } from 'next/navigation';
 
-export const useCoffeeShopForm = () => {
+export const useCoffeeShopFormHook = () => {
   const router = useRouter();
 
   const navigateTo = (path: string) => {
     router.push(path);
   };
 
-  return { navigateTo };
+  const handleCancel = () => {
+    navigateTo('/');
+  };
+
+  const handleContinue = () => {
+    navigateTo('/coffee-shop/create/step-2');
+  };
+
+  return {
+    handleCancel,
+    handleContinue
+  };
 };

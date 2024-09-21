@@ -1,4 +1,4 @@
-'use client'; // Marcar como Client Component
+'use client';
 
 import './step-3.styles.scss';
 

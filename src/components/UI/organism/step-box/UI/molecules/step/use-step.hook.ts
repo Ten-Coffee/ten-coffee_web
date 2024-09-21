@@ -7,19 +7,18 @@ interface UseStepHookProps {
   step: number;
 }
 
-const determineStepState = (step: number, pathStep: number): StepState => {
-  return step === pathStep
-    ? 'current'
-    : step < pathStep
-      ? 'checked'
-      : 'default';
-};
-
 export const useStepHook = ({ step }: UseStepHookProps) => {
   const pathname = usePathname();
 
   const match = pathname.match(/step-(\d+)/);
-  const pathStep = match ? parseInt(match[1]) : 0;
+  const pathStep = match ? parseInt(match[1], 10) : 0;
+
+  const determineStepState = (step: number, pathStep: number): StepState => {
+    if (step === pathStep) {
+      return 'current';
+    }
+    return step < pathStep ? 'checked' : 'default';
+  };
 
   const state = determineStepState(step, pathStep);
 

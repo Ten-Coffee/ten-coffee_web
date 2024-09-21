@@ -1,10 +1,13 @@
-import { TextFieldProps } from './interfaces/text-field-props.interface';
-
 import { LabelAtom } from '@/components/UI/atoms/typography/label/label.atom';
 import { InputMolecule } from '@/components/UI/molecules/input/input.molecule';
-import { forwardRef } from 'react';
+import { ComponentProps, ElementType, forwardRef } from 'react';
 
-import './text-field.style.scss';
+export interface TextFieldProps extends ComponentProps<'div'> {
+  label: string;
+  icon?: ElementType;
+  position?: 'left' | 'right';
+  labelSize?: 'small' | 'medium' | 'large';
+}
 
 export const TextFieldMolecule = forwardRef<HTMLInputElement, TextFieldProps>(
   function TextField(
@@ -12,7 +15,7 @@ export const TextFieldMolecule = forwardRef<HTMLInputElement, TextFieldProps>(
     ref
   ) {
     return (
-      <div className="text-field-molecule">
+      <div>
         <LabelAtom value={label} size={labelSize} />
         <InputMolecule.Text icon={Icon} position={position} ref={ref} />
       </div>

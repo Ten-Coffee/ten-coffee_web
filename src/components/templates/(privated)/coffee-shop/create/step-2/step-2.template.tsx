@@ -1,5 +1,3 @@
-'use client'; // Marcar como Client Component
-
 import './step-2.styles.scss';
 
 import { AddressFormOrganism } from '../../components/UI/organism/address-form/address-form.organism';

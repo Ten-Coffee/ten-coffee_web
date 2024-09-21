@@ -1,28 +1,21 @@
 'use client';
 
-import { DataRevision } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/data-revision.organism';
+import { DataRevisionOrganism } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/data-revision.organism';
 import addressData from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/data/address.data';
 import unidadeData from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/data/coffee-shop.data';
 import representativeData from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/data/representative.data';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 
 import './data-revision-section.styles.scss';
-import { useDataRevisionSection } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision-section/use-data-revision-section.hook';
+import { useDataRevisionSectionHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision-section/use-data-revision-section.hook';
 
-export const DataRevisionSection = () => {
-  const { navigateTo } = useDataRevisionSection();
+export const DataRevisionSectionOrganism = () => {
+  const { handleBack, handleCreate } = useDataRevisionSectionHook();
 
-  const handleBack = () => {
-    navigateTo('/coffee-shop/create/step-3');
-  };
-
-  const handleCreate = () => {
-    navigateTo('/');
-  };
   return (
     <div className="data-revision-section">
       <div className="data-revison-section__data">
-        <DataRevision
+        <DataRevisionOrganism
           coffeeShopData={unidadeData}
           addressData={addressData}
           representativeData={representativeData}

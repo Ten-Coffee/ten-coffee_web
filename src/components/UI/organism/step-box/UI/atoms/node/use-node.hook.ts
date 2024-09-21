@@ -1,4 +1,3 @@
-
 import { StepState } from '@/components/UI/organism/step-box/types/step-state.type';
 
 interface useNodeHookProps {

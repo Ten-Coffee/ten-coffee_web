@@ -1,19 +1,14 @@
+'use client';
+
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
 
 import './address-form.styles.scss';
-import { useAddressForm } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/address-form/use-address-form.hook';
+import { useAddressFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/address-form/use-address-form.hook';
 
 export const AddressFormOrganism = () => {
-  const { navigateTo } = useAddressForm();
+  const { handleBack, handleContinue } = useAddressFormHook();
 
-  const handleBack = () => {
-    navigateTo('/coffee-shop/create/step-1');
-  };
-
-  const handleContinue = () => {
-    navigateTo('/coffee-shop/create/step-3');
-  };
   return (
     <form className="address-form">
       <div className="address-form__fields">

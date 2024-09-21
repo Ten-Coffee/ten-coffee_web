@@ -1,11 +1,24 @@
+'use client';
+
 import { useRouter } from 'next/navigation';
 
-export const useDataRevisionSection = () => {
+export const useDataRevisionSectionHook = () => {
   const router = useRouter();
 
   const navigateTo = (path: string) => {
     router.push(path);
   };
 
-  return { navigateTo };
+  const handleBack = () => {
+    navigateTo('/coffee-shop/create/step-3');
+  };
+
+  const handleCreate = () => {
+    navigateTo('/');
+  };
+
+  return {
+    handleBack,
+    handleCreate
+  };
 };

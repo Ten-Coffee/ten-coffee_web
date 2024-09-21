@@ -1,16 +1,11 @@
 .data-revision {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  align-self: stretch;
-
   width: 100%;
-  padding: 24px;
-  gap: 32px;
+  padding: 1.5rem;
+  gap: 2rem;
 
-  background: var(--background-50, #0F172A);
+  background: var(--background-50);
 
-  border-radius: 12px;
+  border-radius: 0.75rem;
 }
 
 .data-revision__section {
@@ -18,7 +13,7 @@
   flex-direction: column;
   align-items: flex-start;
 
-  gap: 24px;
+  gap: 1.5rem;
   width: 100%;
 
   align-self: stretch;
@@ -30,7 +25,7 @@
 
   width: 100%;
 
-  gap: 24px;
+  gap: 1.5rem;
 
 
 }

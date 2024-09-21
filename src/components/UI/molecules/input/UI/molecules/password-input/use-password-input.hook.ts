@@ -1,5 +1,3 @@
-'use client';
-
 import { icons } from '@/icons/icons';
 import { ElementType, useState } from 'react';
 

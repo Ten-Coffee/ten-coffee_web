@@ -1,4 +1,3 @@
-
 import { usePathname, useRouter } from 'next/navigation';
 
 export const useBuildingBlockHook = () => {

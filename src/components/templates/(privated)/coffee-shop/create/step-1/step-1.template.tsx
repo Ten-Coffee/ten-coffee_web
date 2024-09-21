@@ -7,12 +7,12 @@ import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 
 export default function Step1Template() {
   return (
-    <div>
+    <>
       <TitleAtom.Large value="Cadastrar Unidade" />
       <div className="step1__stepform">
         <CoffeeShopStepBoxOrganism />
         <CoffeeShopFormOrganism />
       </div>
-    </div>
+    </>
   );
 }
