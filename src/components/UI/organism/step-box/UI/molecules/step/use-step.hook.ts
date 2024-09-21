@@ -10,16 +10,18 @@ interface UseStepHookProps {
 export const useStepHook = ({ step }: UseStepHookProps) => {
   const pathname = usePathname();
 
-  const match = pathname.match(/step-(\d+)/);
-  const pathStep = match ? parseInt(match[1], 10) : 0;
+  const extractPathStep = (pathname: string): number => {
+    const match = pathname.match(/step-(\d+)/);
+    return match ? parseInt(match[1], 10) : 0;
+  };
 
   const determineStepState = (step: number, pathStep: number): StepState => {
-    if (step === pathStep) {
-      return 'current';
-    }
+    if (step === pathStep) return 'current';
+
     return step < pathStep ? 'checked' : 'default';
   };
 
+  const pathStep = extractPathStep(pathname);
   const state = determineStepState(step, pathStep);
 
   return {
