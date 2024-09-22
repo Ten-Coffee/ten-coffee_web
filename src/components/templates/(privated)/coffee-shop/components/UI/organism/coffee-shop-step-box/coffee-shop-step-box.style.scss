@@ -1,0 +1,16 @@
+.coffee-shop-step-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2rem;
+
+  width: fit-content;
+
+  padding: 2.4rem;
+
+  position: relative;
+
+  background-color: var(--background-50);
+
+  border-radius: var(--border-radius-md);
+}

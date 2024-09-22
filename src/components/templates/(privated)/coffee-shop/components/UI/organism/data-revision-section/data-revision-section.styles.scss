@@ -1,0 +1,27 @@
+.data-revision-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+
+  flex-grow: 1;
+}
+
+.data-revision-section__fields-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+
+  border-radius: var(--border-radius-md);
+
+  padding: 2.4rem;
+
+  background: var(--background-50);
+}
+
+.data-revision-section__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 2.4rem;
+}
