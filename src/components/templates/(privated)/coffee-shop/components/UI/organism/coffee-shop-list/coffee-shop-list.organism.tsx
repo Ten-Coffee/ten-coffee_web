@@ -3,6 +3,7 @@
 import './coffee-shop-list.organism.scss';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { useCoffeeShopListHook } from './use-coffee-shop-list.hook';
+import { TableOrganism } from '@/components/UI/organism/table/table.organism';
 
 export const CoffeeShopListOrganism = () => {
   const { handleAdicionar } = useCoffeeShopListHook();
@@ -20,12 +21,9 @@ export const CoffeeShopListOrganism = () => {
       </div>
 
       <div className={'coffee-shop-form__item'}>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident
-          eum adipisci dicta, ratione illum tenetur distinctio cumque. Officiis
-          reprehenderit, sunt qui voluptatum quis totam saepe aliquid quibusdam
-          praesentium voluptates provident.
-        </p>
+      <div>
+          <TableOrganism/>
+      </div>
       </div>
     </form>
   );
