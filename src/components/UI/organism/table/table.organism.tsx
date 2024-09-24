@@ -1,12 +1,15 @@
 import './table.style.scss';
-import { TableBodyMolecule } from '@/components/UI/organism/table/UI/molecules/table-body/table-body.molecule';
-import { TableHeaderMolecule } from '@/components/UI/organism/table/UI/molecules/table-header/table-header.molecule';
+
+import { columns } from '@/components/UI/organism/table/mock-data/columns.mock-data';
+import { TableHeaderMolecule } from './UI/molecules/table-header/table-header.molecule';
+import { TableBodyMolecule } from './UI/molecules/table-body/table-body.molecule';
+import { empresas } from './mock-data/table.mock-data.';
 
 export const TableOrganism = () => {
   return (
     <table className={'table'}>
-      <TableHeaderMolecule />
-      <TableBodyMolecule />
+      <TableHeaderMolecule columns={columns} />
+      <TableBodyMolecule data={empresas} />
     </table>
   );
 };

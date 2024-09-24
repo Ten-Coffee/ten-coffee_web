@@ -1,7 +1,7 @@
-import { CoffeeShopListOrganism } from '../components/UI/organism/coffee-shop-list/coffee-shop-list.organism';
-import '../list/styles/wrapper.styles.scss';
+import './styles/wrapper.styles.scss';
 
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
+import { CoffeeShopListOrganism } from './components/UI/organism/coffee-shop-list/coffee-shop-list.organism';
 
 export default function ListTemplate() {
   return (
