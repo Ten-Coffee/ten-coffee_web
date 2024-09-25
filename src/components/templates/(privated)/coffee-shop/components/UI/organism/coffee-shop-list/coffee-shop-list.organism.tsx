@@ -1,29 +1,15 @@
 'use client';
 
 import './coffee-shop-list.organism.scss';
-import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
-import { useCoffeeShopListHook } from './use-coffee-shop-list.hook';
 import { TableOrganism } from '@/components/UI/organism/table/table.organism';
+import { columns } from '@/components/UI/organism/table/mock-data/columns.mock-data';
+import { empresas } from '@/components/UI/organism/table/mock-data/table.mock-data.';
 
 export const CoffeeShopListOrganism = () => {
-  const { handleAdicionar } = useCoffeeShopListHook();
-
   return (
     <form className={'coffee-shop-list'}>
-      <div className={'coffee-shop-form__buttons'}>
-        <ButtonAtom.Wrapper
-          hierarchy={'outlined'}
-          type={'button'}
-          onClick={handleAdicionar}
-        >
-          Adicionar
-        </ButtonAtom.Wrapper>
-      </div>
-
       <div className={'coffee-shop-form__item'}>
-      <div>
-          <TableOrganism/>
-      </div>
+        <TableOrganism columns={columns} data={empresas} />
       </div>
     </form>
   );

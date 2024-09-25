@@ -2,14 +2,13 @@ import './header-cell.style.scss';
 import { LabelAtom } from '@/components/UI/atoms/typography/label/label.atom';
 
 interface HeaderCellAtomProps {
-  title: string;
-  key: string;
+  value: string;
 }
 
-export const HeaderCellAtom = ({ title, key }: HeaderCellAtomProps) => {
+export const HeaderCellAtom = ({ value }: HeaderCellAtomProps) => {
   return (
-    <th className={'header-cell'} key={key}>
-      <LabelAtom size={'medium'} value={title} />
+    <th className={'header-cell'}>
+      <LabelAtom size={'medium'} value={value} />
     </th>
   );
 };

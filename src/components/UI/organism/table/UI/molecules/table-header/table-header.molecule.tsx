@@ -1,5 +1,5 @@
-import { HeaderCellAtom } from '../../atoms/header-cell/header-cell.atom';
 import './table-header.style.scss';
+import { HeaderCellAtom } from '../../atoms/header-cell/header-cell.atom';
 
 interface TableHeaderMoleculeProps {
   columns: string[];
@@ -10,7 +10,7 @@ export const TableHeaderMolecule = ({ columns }: TableHeaderMoleculeProps) => {
     <thead className={'table-header'}>
       <tr>
         {columns.map((column, index) => (
-          <HeaderCellAtom title={column} key={index.toString()} />
+          <HeaderCellAtom key={index.toString()} value={column} />
         ))}
       </tr>
     </thead>

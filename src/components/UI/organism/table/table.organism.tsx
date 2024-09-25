@@ -1,15 +1,29 @@
 import './table.style.scss';
+import { TableBodyMolecule } from '@/components/UI/organism/table/UI/molecules/table-body/table-body.molecule';
+import { TableHeaderMolecule } from '@/components/UI/organism/table/UI/molecules/table-header/table-header.molecule';
 
-import { columns } from '@/components/UI/organism/table/mock-data/columns.mock-data';
-import { TableHeaderMolecule } from './UI/molecules/table-header/table-header.molecule';
-import { TableBodyMolecule } from './UI/molecules/table-body/table-body.molecule';
-import { empresas } from './mock-data/table.mock-data.';
+interface Column<T> {
+  Header: string;
+  accessor: keyof T;
+}
 
-export const TableOrganism = () => {
+interface TableOrganismProps<T> {
+  columns: Column<T>[];
+  data: T[];
+}
+
+export const TableOrganism = <T,>({ columns, data }: TableOrganismProps<T>) => {
+  if (!columns || !data) {
+    return <div>Dados não disponíveis</div>;
+  }
+
   return (
     <table className={'table'}>
-      <TableHeaderMolecule columns={columns} />
-      <TableBodyMolecule data={empresas} />
+      <TableHeaderMolecule columns={columns.map((column) => column.Header)} />
+      <TableBodyMolecule
+        data={data}
+        columns={columns.map((column) => ({ key: column.accessor }))}
+      />
     </table>
   );
 };

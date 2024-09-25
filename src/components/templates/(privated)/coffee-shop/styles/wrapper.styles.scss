@@ -1,6 +1,22 @@
+.coffee-shop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 2rem;
+}
+
 .step-wrapper {
   display: flex;
   align-items: flex-start;
 
   gap: 3.2rem;
+}
+
+.coffee-shop-form__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 2.4rem;
 }
