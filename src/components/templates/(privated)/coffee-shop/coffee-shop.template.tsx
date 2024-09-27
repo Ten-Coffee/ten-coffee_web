@@ -41,7 +41,7 @@ export const CoffeeShopTemplate = () => {
       <div>
         <TextFieldMolecule
           label=""
-          icon={icons.Edit}
+          icon={icons.Search}
           position="left"
           labelSize="medium"
           placeholder="Pesquisar unidade por nome ou por CNPJ"

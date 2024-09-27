@@ -8,7 +8,8 @@ import {
   EyeOff,
   Home,
   Pencil,
-  Plus
+  Plus,
+  Search
 } from 'lucide-react';
 
 export const icons = {
@@ -27,5 +28,6 @@ export const icons = {
     On: Eye,
     Off: EyeOff
   },
-  Check
+  Check,
+  Search
 };
