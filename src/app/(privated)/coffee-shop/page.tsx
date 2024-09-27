@@ -1,5 +1,5 @@
-import ListTemplate from '@/components/templates/(privated)/coffee-shop/list.template';
+import { CoffeeShopTemplate } from '@/components/templates/(privated)/coffee-shop/coffee-shop.template';
 
-export default function ListPage() {
-  return <ListTemplate />;
+export default function CoffeeShopPage() {
+  return <CoffeeShopTemplate />;
 }

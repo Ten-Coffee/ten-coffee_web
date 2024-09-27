@@ -9,17 +9,23 @@ export interface TextFieldProps extends ComponentProps<'div'> {
   icon?: ElementType;
   position?: Position;
   labelSize?: Size;
+  placeholder?: string;
 }
 
 export const TextFieldMolecule = forwardRef<HTMLInputElement, TextFieldProps>(
   function TextField(
-    { label, labelSize = 'medium', icon: Icon, position },
+    { label, labelSize = 'medium', icon: Icon, position, placeholder },
     ref
   ) {
     return (
       <div>
         <LabelAtom value={label} size={labelSize} />
-        <InputMolecule.Text icon={Icon} position={position} ref={ref} />
+        <InputMolecule.Text
+          icon={Icon}
+          position={position}
+          ref={ref}
+          placeholder={placeholder}
+        />
       </div>
     );
   }

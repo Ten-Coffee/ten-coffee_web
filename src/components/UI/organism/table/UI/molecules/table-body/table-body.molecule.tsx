@@ -1,4 +1,6 @@
 import { TableDataAtom } from '../../atoms/table-data/table-data.atom';
+import { StatusTableDataAtom } from '../../atoms/table-data/UI/atoms/status-table-data/status-table-data.atom';
+
 import './table-body.style.scss';
 
 import { icons } from '@/icons/icons';
@@ -23,18 +25,26 @@ export const TableBodyMolecule = <T,>({
       ) : (
         data.map((item, index) => (
           <tr key={index} className={'table-row'}>
-            {columns.map(({ key }) => (
-              <TableDataAtom.Default
-                key={String(key)}
-                value={
-                  render
-                    ? render(item)
-                    : item[key] !== undefined
-                      ? String(item[key])
-                      : ''
-                }
-              />
-            ))}
+            {columns.map(({ key }) => {
+              const value = item[key];
+
+              if (key === 'status' && typeof value === 'boolean') {
+                return <StatusTableDataAtom key={String(key)} value={value} />;
+              }
+
+              return (
+                <TableDataAtom.Default
+                  key={String(key)}
+                  value={
+                    render
+                      ? render(item)
+                      : value !== undefined
+                        ? String(value)
+                        : ''
+                  }
+                />
+              );
+            })}
             <TableDataAtom.Icon icon={icons.Edit} id={index} />
             <TableDataAtom.Icon icon={icons.Ellipsis.Vertical} id={index} />
           </tr>

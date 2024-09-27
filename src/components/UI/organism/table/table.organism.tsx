@@ -13,10 +13,6 @@ interface TableOrganismProps<T> {
 }
 
 export const TableOrganism = <T,>({ columns, data }: TableOrganismProps<T>) => {
-  if (!columns || !data) {
-    return <div>Dados não disponíveis</div>;
-  }
-
   return (
     <table className={'table'}>
       <TableHeaderMolecule columns={columns.map((column) => column.Header)} />
