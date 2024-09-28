@@ -4,7 +4,7 @@ import { Position } from '@/type/position.type';
 import { Size } from '@/type/size.type';
 import { ComponentProps, ElementType, forwardRef } from 'react';
 
-export interface TextFieldProps extends ComponentProps<'div'> {
+export interface TextFieldProps extends ComponentProps<'input'> {
   label: string;
   icon?: ElementType;
   position?: Position;
@@ -13,13 +13,18 @@ export interface TextFieldProps extends ComponentProps<'div'> {
 
 export const TextFieldMolecule = forwardRef<HTMLInputElement, TextFieldProps>(
   function TextField(
-    { label, labelSize = 'medium', icon: Icon, position },
+    { label, labelSize = 'medium', icon: Icon, position, ...otherProps },
     ref
   ) {
     return (
       <div>
         <LabelAtom value={label} size={labelSize} />
-        <InputMolecule.Text icon={Icon} position={position} ref={ref} />
+        <InputMolecule.Text
+          icon={Icon}
+          position={position}
+          ref={ref}
+          {...otherProps}
+        />
       </div>
     );
   }

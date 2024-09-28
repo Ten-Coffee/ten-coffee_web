@@ -6,5 +6,5 @@ interface ButtonIconAtomProps {
 }
 
 export const ButtonIconAtom = ({ icon: Icon }: ButtonIconAtomProps) => {
-  return <Icon class={'button-icon'} />;
+  return <Icon className={'button-icon'} />;
 };
