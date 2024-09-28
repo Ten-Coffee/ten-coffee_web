@@ -1,29 +1,17 @@
 'use client';
 
 import './styles/wrapper.styles.scss';
-import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
+import { useCoffeeShopListHook } from '@/components/templates/(privated)/coffee-shop/use-coffee-shop.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
-import { useRouter } from 'next/navigation';
-import { icons } from '@/icons/icons';
+import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
+import { InputMolecule } from '@/components/UI/molecules/input/input.molecule';
 import { TableOrganism } from '@/components/UI/organism/table/table.organism';
-import { columns } from '@/components/UI/organism/table/mock-data/columns.mock-data';
-import { empresas } from '@/components/UI/organism/table/mock-data/table.mock-data.';
-import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
-
-export const useCoffeeShopListHook = () => {
-  const router = useRouter();
-
-  const handleAdicionar = () => {
-    router.push('/coffee-shop/create/step-1');
-  };
-
-  return {
-    handleAdicionar
-  };
-};
+import { icons } from '@/icons/icons';
 
 export const CoffeeShopTemplate = () => {
-  const { handleAdicionar } = useCoffeeShopListHook();
+  const { handleAdicionar, columns, empresas, rowActions } =
+    useCoffeeShopListHook();
+
   return (
     <>
       <div className={'coffee-shop-header'}>
@@ -38,16 +26,18 @@ export const CoffeeShopTemplate = () => {
           Adicionar unidade
         </ButtonAtom.Wrapper>
       </div>
-      <div>
-        <TextFieldMolecule
-          label=""
-          icon={icons.Search}
-          position="left"
-          labelSize="medium"
-          placeholder="Pesquisar unidade por nome ou por CNPJ"
-        />
-      </div>
-      <TableOrganism columns={columns} data={empresas} />
+
+      <InputMolecule.Text
+        icon={icons.Search}
+        position={'left'}
+        placeholder={'Pesquisar unidade por nome ou por CNPJ'}
+      />
+
+      <TableOrganism
+        columns={columns}
+        data={empresas}
+        rowActions={rowActions}
+      />
     </>
   );
 };

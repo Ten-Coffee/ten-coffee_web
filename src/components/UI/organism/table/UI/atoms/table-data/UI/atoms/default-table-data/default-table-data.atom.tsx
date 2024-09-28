@@ -1,14 +1,10 @@
 import '../../../table-data.style.scss';
-import { BodyAtom } from '@/components/UI/atoms/typography/body/body.atom';
+import { ReactNode } from 'react';
 
 interface DefaultTableDataAtomProps {
-  value: string | number;
+  value: ReactNode;
 }
 
 export const DefaultTableDataAtom = ({ value }: DefaultTableDataAtomProps) => {
-  return (
-    <td className={'table-data'}>
-      <BodyAtom size={'medium'} value={value} />
-    </td>
-  );
+  return <td className={'table-data'}>{value}</td>;
 };

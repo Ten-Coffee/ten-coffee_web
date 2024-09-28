@@ -4,17 +4,16 @@ import { Position } from '@/type/position.type';
 import { Size } from '@/type/size.type';
 import { ComponentProps, ElementType, forwardRef } from 'react';
 
-export interface TextFieldProps extends ComponentProps<'div'> {
+export interface TextFieldProps extends ComponentProps<'input'> {
   label: string;
   icon?: ElementType;
   position?: Position;
   labelSize?: Size;
-  placeholder?: string;
 }
 
 export const TextFieldMolecule = forwardRef<HTMLInputElement, TextFieldProps>(
   function TextField(
-    { label, labelSize = 'medium', icon: Icon, position, placeholder },
+    { label, labelSize = 'medium', icon: Icon, position, ...otherProps },
     ref
   ) {
     return (
@@ -24,7 +23,7 @@ export const TextFieldMolecule = forwardRef<HTMLInputElement, TextFieldProps>(
           icon={Icon}
           position={position}
           ref={ref}
-          placeholder={placeholder}
+          {...otherProps}
         />
       </div>
     );
