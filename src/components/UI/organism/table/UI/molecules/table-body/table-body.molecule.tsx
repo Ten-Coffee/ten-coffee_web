@@ -1,21 +1,50 @@
 import './table-body.style.scss';
-import { empresas } from '@/components/UI/organism/table/mock-data/table.mock-data.';
-import { TableDataAtom } from '@/components/UI/organism/table/UI/atoms/table-data/table-data.atom';
-import { icons } from '@/icons/icons';
 
-export const TableBodyMolecule = () => {
+import { ColumnInterface } from '@/components/UI/organism/table/interfaces/column.interface';
+import { RowActionsInterface } from '@/components/UI/organism/table/interfaces/row-actions.interface';
+import { TableDataAtom } from '@/components/UI/organism/table/UI/atoms/table-data/table-data.atom';
+import { Fragment, ReactNode } from 'react';
+
+interface TableBodyMoleculeProps<T> {
+  data: T[];
+  columns: ColumnInterface<T>[];
+  rowActions?: RowActionsInterface<T>[];
+}
+
+export const TableBodyMolecule = <T,>({
+  data,
+  columns,
+  rowActions
+}: TableBodyMoleculeProps<T>) => {
   return (
     <tbody>
-      {empresas.map((empresa) => (
-        <tr key={empresa.cnpj} className={'table-row'}>
-          <TableDataAtom.Default value={empresa.id} />
-          <TableDataAtom.Default value={empresa.nomeEmpresa} />
-          <TableDataAtom.Default value={empresa.cnpj} />
-          <TableDataAtom.Default value={empresa.email} />
-          <TableDataAtom.Default value={empresa.nomeRepresentante} />
-          <TableDataAtom.Status value={empresa.status} />
-          <TableDataAtom.Icon icon={icons.Edit} id={empresa.id} />
-          <TableDataAtom.Icon icon={icons.Ellipsis.Vertical} id={empresa.id} />
+      {data?.length === 0 ||
+        (!data && (
+          <tr>
+            <td colSpan={columns.length}>Nenhum registro encontrado</td>
+          </tr>
+        ))}
+
+      {data.map((item, index) => (
+        <tr className="table-row" key={index}>
+          {columns.map(({ key, render }, columnIndex) => (
+            <Fragment key={columnIndex}>
+              {render ? (
+                render(item)
+              ) : (
+                <TableDataAtom.Default value={item[key] as ReactNode} />
+              )}
+            </Fragment>
+          ))}
+
+          {rowActions?.map(({ icon, onClick, condition }, index) => (
+            <TableDataAtom.Icon
+              icon={icon}
+              onClick={() => onClick(item)}
+              disabled={condition && !condition(item)}
+              key={index}
+            />
+          ))}
         </tr>
       ))}
     </tbody>

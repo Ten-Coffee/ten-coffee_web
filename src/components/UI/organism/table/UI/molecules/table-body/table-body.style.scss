@@ -1,4 +1,8 @@
 .table-row {
+  display: table-row;
+  vertical-align: center;
+  horiz-align: center;
+
   &:nth-child(odd) {
     background-color: var(--background-100);
   }
