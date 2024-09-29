@@ -9,7 +9,8 @@ import {
   Home,
   Pencil,
   Plus,
-  Search
+  Search,
+  Users
 } from 'lucide-react';
 
 export const icons = {
@@ -29,5 +30,6 @@ export const icons = {
     Off: EyeOff
   },
   Check,
-  Search
+  Search,
+  Users
 };
