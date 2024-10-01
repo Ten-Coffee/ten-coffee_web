@@ -3,21 +3,13 @@ import { RowActionsInterface } from '@/components/UI/organism/table/interfaces/r
 import { TableDataAtom } from '@/components/UI/organism/table/UI/atoms/table-data/table-data.atom';
 import { icons } from '@/icons/icons';
 import { useRouter } from 'next/navigation';
-
-interface User {
-  id: number;
-  nome: string;
-  permissionamento: string;
-  email: string;
-  unidade: string;
-  status: boolean;
-}
+import { User } from './interface/users.interface';
 
 export const useUserListHook = () => {
   const router = useRouter();
 
   const handleAdicionar = () => {
-    router.push(''); //adicionar caminho de criação de usuario
+    router.push('');
   };
 
   const columns: ColumnInterface<User>[] = [
@@ -79,7 +71,7 @@ export const useUserListHook = () => {
     {
       icon: icons.Edit,
       onClick: (item: User) => {
-        router.push(`adicione aqui o caminho ${item.id}`); // adicionar depois o caminho para editar usuario
+        router.push(`adicione aqui o caminho ${item.id}`);
       }
     },
     {
