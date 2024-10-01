@@ -3,15 +3,7 @@ import { RowActionsInterface } from '@/components/UI/organism/table/interfaces/r
 import { TableDataAtom } from '@/components/UI/organism/table/UI/atoms/table-data/table-data.atom';
 import { icons } from '@/icons/icons';
 import { useRouter } from 'next/navigation';
-
-interface CoffeeShop {
-  id: number;
-  nomeEmpresa: string;
-  cnpj: string;
-  email: string;
-  nomeRepresentante: string;
-  status: boolean;
-}
+import { CoffeeShop } from './interfaces/coffee-shop.interface';
 
 export const useCoffeeShopListHook = () => {
   const router = useRouter();
