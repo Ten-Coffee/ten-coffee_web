@@ -10,11 +10,11 @@ export const useCoffeeShopFormHook = () => {
   };
 
   const handleCancel = () => {
-    navigateTo('/');
+    navigateTo('/coffee-shops');
   };
 
   const handleContinue = () => {
-    navigateTo('/coffee-shop/create/step-2');
+    navigateTo('/coffee-shops/create/step-2');
   };
 
   return {

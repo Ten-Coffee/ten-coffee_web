@@ -8,11 +8,11 @@ export const useDataRevisionSectionHook = () => {
   };
 
   const handleBack = () => {
-    navigateTo('/coffee-shop/create/step-3');
+    navigateTo('/coffee-shops/create/step-3');
   };
 
   const handleCreate = () => {
-    navigateTo('/');
+    navigateTo('/coffee-shops');
   };
 
   return {
