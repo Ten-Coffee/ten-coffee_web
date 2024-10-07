@@ -9,7 +9,7 @@ export const useCoffeeShopListHook = () => {
   const router = useRouter();
 
   const handleAdicionar = () => {
-    router.push('/coffee-shop/create/step-1');
+    router.push('/coffee-shops/create/step-1');
   };
 
   const columns: ColumnInterface<CoffeeShop>[] = [
