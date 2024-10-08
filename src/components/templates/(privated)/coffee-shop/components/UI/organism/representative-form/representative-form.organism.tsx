@@ -4,21 +4,20 @@ import { useRepresentativeFormHook } from '@/components/templates/(privated)/cof
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
 import './representative-form.styles.scss';
-import { router } from 'next/client';
 
 export const RepresentativeFormOrganism = () => {
-  const { handleSubmit, register, errors, handleForm } =
+  const { handleSubmit, register, errors, handleForm, handleBack } =
     useRepresentativeFormHook();
 
   return (
     <form onSubmit={handleSubmit(handleForm)} className={'representative-form'}>
       <div className={'representative-form__fields'}>
         <TextFieldMolecule
-          {...register('name')}
+          {...register('representativeName')}
           label={'Nome'}
           placeholder={'Lorem Ipsum'}
-          error={!!errors.name}
-          helperText={errors.name?.message}
+          error={!!errors.representativeName}
+          helperText={errors.representativeName?.message}
         />
         <TextFieldMolecule
           {...register('representativeEmail')}
@@ -54,7 +53,7 @@ export const RepresentativeFormOrganism = () => {
         <ButtonAtom.Wrapper
           hierarchy={'outlined'}
           type={'button'}
-          onClick={() => router.back()}
+          onClick={handleBack}
         >
           Voltar
         </ButtonAtom.Wrapper>
