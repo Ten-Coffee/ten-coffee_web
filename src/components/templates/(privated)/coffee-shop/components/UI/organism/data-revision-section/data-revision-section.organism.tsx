@@ -1,65 +1,30 @@
 'use client';
 
-import { labelMapping } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision-section/utils/LabelMapping';
+import { useDataRevisionFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision-section/use-data-revision-section-form.hook';
 import { DataRevisionOrganism } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/data-revision.organism';
-import { DataItem } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/interfaces/data-item.interface';
-import { useFormStore } from '@/components/templates/(privated)/coffee-shop/create/store/coffee-shop-store';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { DiviserAtom } from '@/components/UI/atoms/diviser/diviser.atom';
-import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
+
 import './data-revision-section.styles.scss';
 
 export const DataRevisionSectionOrganism = () => {
-  const router = useRouter();
-  const { formData } = useFormStore();
-
-  const { coffeeShop, address, representative } = formData;
-
-  const mutation = useMutation({
-    mutationFn: async () => {
-      const response = await fetch('https://seu-backend.com/api/cadastrar', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-      if (!response.ok) {
-        throw new Error('Erro ao cadastrar');
-      }
-      return response.json();
-    },
-    onSuccess: () => {
-      router.push('/coffee-shop/');
-    },
-    onError: (error) => {
-      console.error('Erro ao cadastrar:', error);
-    }
-  });
-
-  const handleBack = () => {
-    router.back();
-  };
-
-  const handleCreate = () => {
-    mutation.mutate();
-  };
+  const {
+    coffeeShop,
+    address,
+    representative,
+    handleBack,
+    handleCreate,
+    mutation
+  } = useDataRevisionFormHook();
 
   return (
     <div className={'data-revision-section'}>
       <div className={'data-revision-section__fields-section'}>
-        <DataRevisionOrganism
-          title={'Cafeteria'}
-          data={extractData(coffeeShop)}
-        />
+        <DataRevisionOrganism title={'Cafeteria'} data={coffeeShop} />
         <DiviserAtom />
-        <DataRevisionOrganism title={'Endereço'} data={extractData(address)} />
+        <DataRevisionOrganism title={'Endereço'} data={address} />
         <DiviserAtom />
-        <DataRevisionOrganism
-          title={'Representante'}
-          data={extractData(representative)}
-        />
+        <DataRevisionOrganism title={'Representante'} data={representative} />
       </div>
 
       <div className={'data-revision-section__buttons'}>
@@ -84,15 +49,4 @@ export const DataRevisionSectionOrganism = () => {
       )}
     </div>
   );
-};
-
-const extractData = (data: Record<string, unknown>): DataItem[] => {
-  return Object.entries(data)
-    .filter(([, value]) => value !== undefined && value !== '')
-    .map(([key, value]) => {
-      return {
-        label: labelMapping[key] || key,
-        value: String(value)
-      };
-    });
 };
