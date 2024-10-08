@@ -6,7 +6,7 @@ import { ComponentProps, ElementType, forwardRef } from 'react';
 
 import './text-field.style.scss';
 
-export interface TextFieldProps extends ComponentProps<'input'> {
+interface TextFieldProps extends ComponentProps<'input'> {
   label: string;
   icon?: ElementType;
   position?: Position;
