@@ -31,5 +31,9 @@ export const useRepresentativeFormHook = () => {
     router.push('/coffee-shop/create/step-4');
   };
 
-  return { handleSubmit, register, errors, handleForm };
+  const handleBack = () => {
+    router.back();
+  };
+
+  return { handleSubmit, register, errors, handleForm, handleBack };
 };

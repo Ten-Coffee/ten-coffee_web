@@ -29,5 +29,9 @@ export const useCoffeeShopFormHook = () => {
     router.push('/coffee-shop/create/step-2');
   };
 
-  return { handleSubmit, register, errors, handleForm };
+  const handleBack = () => {
+    router.back();
+  };
+
+  return { handleSubmit, register, errors, handleForm, handleBack };
 };
