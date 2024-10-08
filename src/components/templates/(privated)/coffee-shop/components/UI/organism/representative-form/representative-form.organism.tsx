@@ -1,78 +1,52 @@
 'use client';
 
-import { useFormStore } from '@/components/templates/(privated)/coffee-shop/create/store/coffee-shop-store';
+import { useRepresentativeFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/representative-form/use-representative-form.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import './representative-form.styles.scss';
-
-const schema = z.object({
-  nome: z.string().min(2, 'Nome inválido'),
-  email: z.string().email('E-mail inválido'),
-  telefone: z.string().min(10, 'Telefone inválido'),
-  cpf: z.string().min(11, 'CPF inválido').max(14, 'CPF inválido'),
-  dataNascimento: z.string().refine((date) => {
-    const regex = /^\d{4}-\d{2}-\d{2}$/;
-    return regex.test(date);
-  }, 'Data de Nascimento inválida')
-});
-
-type RepresentativeFormProps = z.infer<typeof schema>;
+import { router } from 'next/client';
 
 export const RepresentativeFormOrganism = () => {
-  const { updateFormData } = useFormStore();
-  const router = useRouter();
-  const {
-    handleSubmit,
-    register,
-    formState: { errors }
-  } = useForm<RepresentativeFormProps>({
-    mode: 'all',
-    reValidateMode: 'onChange',
-    resolver: zodResolver(schema),
-    criteriaMode: 'all'
-  });
-
-  const handleForm = (data: RepresentativeFormProps) => {
-    updateFormData({ representante: data });
-    router.push('/coffee-shop/create/step-4');
-  };
+  const { handleSubmit, register, errors, handleForm } =
+    useRepresentativeFormHook();
 
   return (
     <form onSubmit={handleSubmit(handleForm)} className={'representative-form'}>
       <div className={'representative-form__fields'}>
         <TextFieldMolecule
-          {...register('nome')}
+          {...register('name')}
           label={'Nome'}
-          error={!!errors.nome}
-          helperText={errors.nome?.message}
+          placeholder={'Lorem Ipsum'}
+          error={!!errors.name}
+          helperText={errors.name?.message}
         />
         <TextFieldMolecule
-          {...register('email')}
+          {...register('representativeEmail')}
           label={'E-mail'}
-          error={!!errors.email}
-          helperText={errors.email?.message}
+          placeholder={'lorem-ipsum@mail.com'}
+          error={!!errors.representativeEmail}
+          helperText={errors.representativeEmail?.message}
         />
         <TextFieldMolecule
-          {...register('telefone')}
+          {...register('phone')}
           label={'Telefone'}
-          error={!!errors.telefone}
-          helperText={errors.telefone?.message}
+          placeholder={'44999999999'}
+          error={!!errors.phone}
+          helperText={errors.phone?.message}
         />
         <TextFieldMolecule
           {...register('cpf')}
           label={'CPF'}
+          placeholder={'00000000000'}
           error={!!errors.cpf}
           helperText={errors.cpf?.message}
         />
         <TextFieldMolecule
-          {...register('dataNascimento')}
+          {...register('birthDate')}
           label={'Data de Nascimento'}
-          error={!!errors.dataNascimento}
-          helperText={errors.dataNascimento?.message}
+          placeholder={'00/00/0000'}
+          error={!!errors.birthDate}
+          helperText={errors.birthDate?.message}
         />
       </div>
 

@@ -1,91 +1,74 @@
 'use client';
 
-import { useCoffeeShopFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/coffee-shop-form/use-coffee-shop-form.hook';
-import { useFormStore } from '@/components/templates/(privated)/coffee-shop/create/store/coffee-shop-store';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
-import { isValidCNPJ } from '@brazilian-utils/brazilian-utils';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
 import './coffee-shop-form.styles.scss';
-import { z } from 'zod';
-
-const schema = z.object({
-  razaoSocial: z.string(),
-  nomeFantasia: z.string(),
-  cnpj: z
-    .string()
-    .transform((value) => value.replace(/\D/g, ''))
-    .refine(isValidCNPJ, 'CNPJ inválido'),
-  email: z.string().email('E-mail inválido'),
-  telefone1: z.string(),
-  telefone2: z.string(),
-  periodoContrato: z.string()
-});
-
-type FormProps = z.infer<typeof schema>;
+import { router } from 'next/client';
+import { useCoffeeShopFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/coffee-shop-form/use-coffee-shop-form.hook';
 
 export const CoffeeShopFormOrganism = () => {
-  const { handleCancel } = useCoffeeShopFormHook();
-  const { updateFormData } = useFormStore();
-  const router = useRouter();
-  const {
-    handleSubmit,
-    register,
-    formState: { errors }
-  } = useForm<FormProps>({
-    mode: 'all',
-    reValidateMode: 'onChange',
-    resolver: zodResolver(schema),
-    criteriaMode: 'all'
-  });
-
-  const handleForm = (data: FormProps) => {
-    updateFormData({ unidade: data });
-    console.log(
-      'Dados atualizados no store:',
-      useFormStore.getState().formData.unidade
-    );
-
-    router.push('/coffee-shop/create/step-2');
-  };
+  const { handleSubmit, register, errors, handleForm } =
+    useCoffeeShopFormHook();
 
   return (
     <form onSubmit={handleSubmit(handleForm)} className={'coffee-shop-form'}>
       <div className={'coffee-shop-form__fields'}>
         <TextFieldMolecule
-          {...register('razaoSocial')}
-          label={'Razão Social'}
+          {...register('nameFantasy')}
+          label={'Nome Fantasia'}
+          placeholder={'Lorem Ipsum'}
+          error={!!errors.nameFantasy}
+          helperText={errors.nameFantasy?.message}
         />
         <TextFieldMolecule
-          {...register('nomeFantasia')}
-          label={'Nome Fantasia'}
+          {...register('name')}
+          label={'Razão Social'}
+          placeholder={'Lorem Ipsum'}
+          error={!!errors.name}
+          helperText={errors.name?.message}
         />
         <TextFieldMolecule
           {...register('cnpj')}
           label={'CNPJ'}
+          placeholder={'00.000.000/0001-00'}
           error={!!errors.cnpj}
           helperText={errors.cnpj?.message}
         />
         <TextFieldMolecule
           {...register('email')}
           label={'Email'}
+          placeholder={'lorem-ipsum@mail.com'}
           error={!!errors.email}
           helperText={errors.email?.message}
         />
-        <TextFieldMolecule {...register('telefone1')} label={'Telefone 1'} />
-        <TextFieldMolecule {...register('telefone2')} label={'Telefone 2'} />
         <TextFieldMolecule
-          {...register('periodoContrato')}
-          label={'Período Contrato'}
+          {...register('phoneNumber')}
+          label={'Telefone'}
+          placeholder={'44999999999'}
+          error={!!errors.phoneNumber}
+          helperText={errors.phoneNumber?.message}
+        />
+        <TextFieldMolecule
+          {...register('contractStart')}
+          label={'Data de Início do Contrato'}
+          placeholder={'00/00/0000'}
+          error={!!errors.contractStart}
+          helperText={errors.contractStart?.message}
+        />
+        <TextFieldMolecule
+          {...register('contractEnd')}
+          label={'Data de Fim do Contrato'}
+          placeholder={'00/00/0000'}
+          error={!!errors.contractEnd}
+          helperText={errors.contractEnd?.message}
         />
       </div>
+
       <div className={'coffee-shop-form__buttons'}>
         <ButtonAtom.Wrapper
           hierarchy={'outlined'}
           type={'button'}
-          onClick={handleCancel}
+          onClick={() => router.back()}
         >
           Cancelar
         </ButtonAtom.Wrapper>

@@ -1,94 +1,65 @@
 'use client';
 
-import { useFormStore } from '@/components/templates/(privated)/coffee-shop/create/store/coffee-shop-store';
+import { useAddressFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/address-form/use-address-form.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-
 import './address-form.styles.scss';
-
-const schema = z.object({
-  cep: z.string().min(8, 'CEP inválido'),
-  logradouro: z.string(),
-  numero: z.string(),
-  complemento: z.string().optional(),
-  bairro: z.string(),
-  cidade: z.string(),
-  estado: z.string().min(2, 'Estado inválido')
-});
-
-type AddressFormProps = z.infer<typeof schema>;
+import { router } from 'next/client';
 
 export const AddressFormOrganism = () => {
-  const { updateFormData } = useFormStore();
-  const router = useRouter();
-  const {
-    handleSubmit,
-    register,
-    formState: { errors }
-  } = useForm<AddressFormProps>({
-    mode: 'all',
-    reValidateMode: 'onChange',
-    resolver: zodResolver(schema),
-    criteriaMode: 'all'
-  });
-
-  const handleForm = (data: AddressFormProps) => {
-    updateFormData({ endereco: data });
-    console.log(
-      'Dados de endereço atualizados no store:',
-      useFormStore.getState().formData.endereco
-    );
-    router.push('/coffee-shop/create/step-3');
-  };
+  const { handleSubmit, register, errors, handleForm } = useAddressFormHook();
 
   return (
     <form onSubmit={handleSubmit(handleForm)} className={'address-form'}>
       <div className={'address-form__fields'}>
         <TextFieldMolecule
-          {...register('cep')}
+          {...register('zipCode')}
           label={'CEP'}
-          error={!!errors.cep}
-          helperText={errors.cep?.message}
+          placeholder={'99999-999'}
+          error={!!errors.zipCode}
+          helperText={errors.zipCode?.message}
         />
         <TextFieldMolecule
-          {...register('logradouro')}
+          {...register('street')}
           label={'Logradouro'}
-          error={!!errors.logradouro}
-          helperText={errors.logradouro?.message}
+          placeholder={'Av. Café da Catedral'}
+          error={!!errors.street}
+          helperText={errors.street?.message}
         />
         <TextFieldMolecule
-          {...register('numero')}
+          {...register('number')}
           label={'Número'}
-          error={!!errors.numero}
-          helperText={errors.numero?.message}
+          placeholder={'999'}
+          error={!!errors.number}
+          helperText={errors.number?.message}
         />
         <TextFieldMolecule
-          {...register('complemento')}
+          {...register('additionalInformation')}
           label={'Complemento'}
-          error={!!errors.complemento}
-          helperText={errors.complemento?.message}
+          placeholder={'Bloco 1 Ap 1'}
+          error={!!errors.additionalInformation}
+          helperText={errors.additionalInformation?.message}
         />
         <TextFieldMolecule
-          {...register('bairro')}
+          {...register('neighborhood')}
           label={'Bairro'}
-          error={!!errors.bairro}
-          helperText={errors.bairro?.message}
+          placeholder={'Pq. Resid. Café Claro'}
+          error={!!errors.neighborhood}
+          helperText={errors.neighborhood?.message}
         />
         <TextFieldMolecule
-          {...register('cidade')}
+          {...register('city')}
           label={'Cidade'}
-          error={!!errors.cidade}
-          helperText={errors.cidade?.message}
+          placeholder={'Vale do Café'}
+          error={!!errors.city}
+          helperText={errors.city?.message}
         />
         <TextFieldMolecule
-          {...register('estado')}
+          {...register('state')}
           label={'Estado'}
-          error={!!errors.estado}
-          helperText={errors.estado?.message}
+          placeholder={'Café Grosso do Sul'}
+          error={!!errors.state}
+          helperText={errors.state?.message}
         />
       </div>
 
