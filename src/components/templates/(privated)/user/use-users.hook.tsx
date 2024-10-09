@@ -9,7 +9,7 @@ export const useUserListHook = () => {
   const router = useRouter();
 
   const handleAdicionar = () => {
-    router.push('');
+    router.push('/users/create/step-1');
   };
 
   const columns: ColumnInterface<User>[] = [
