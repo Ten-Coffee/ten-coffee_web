@@ -5,17 +5,9 @@ import { useRouter } from 'next/navigation';
 export const useUserFormHook = () => {
   const router = useRouter();
 
-  const navigateTo = (path: string) => {
-    router.push(path);
-  };
+  const handleCancel = () => router.push('/users');
 
-  const handleCancel = () => {
-    navigateTo('/users');
-  };
-
-  const handleContinue = () => {
-    navigateTo('');
-  };
+  const handleContinue = () => router.push('');
 
   return {
     handleCancel,

@@ -1,9 +1,11 @@
 'use client';
 
+import './user-form.styles.scss';
+
+import { useUserFormHook } from './use-user-form.hook';
+
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
-import './user-form.styles.scss';
-import { useUserFormHook } from './use-user-form.hook';
 
 export const UserFormOrganism = () => {
   const { handleContinue, handleCancel } = useUserFormHook();
