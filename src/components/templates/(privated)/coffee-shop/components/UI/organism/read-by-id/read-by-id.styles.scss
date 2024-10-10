@@ -1,0 +1,26 @@
+.read-by-id-organism {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2.4rem;
+}
+
+.read-by-id-organism__title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.read-by-id-organism__fields {
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+
+  padding: 2.4rem;
+  gap: 3.2rem;
+
+  border-radius: 1.2rem;
+
+  background: var(--background-50, #0F172A);
+}
