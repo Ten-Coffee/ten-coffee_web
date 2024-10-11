@@ -3,17 +3,9 @@ import { useRouter } from 'next/navigation';
 export const useDataRevisionSectionHook = () => {
   const router = useRouter();
 
-  const navigateTo = (path: string) => {
-    router.push(path);
-  };
+  const handleBack = () => router.push('/coffee-shops/create/step-3');
 
-  const handleBack = () => {
-    navigateTo('/coffee-shops/create/step-3');
-  };
-
-  const handleCreate = () => {
-    navigateTo('/coffee-shops');
-  };
+  const handleCreate = () => router.push('/coffee-shops');
 
   return {
     handleBack,
