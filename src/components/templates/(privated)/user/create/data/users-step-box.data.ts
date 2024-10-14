@@ -1,1 +1,5 @@
-export const userStepBoxData: string[] = ['Cadastrar Usuário'];
+export const userStepBoxData: string[] = [
+    'Cadastrar Usuário',
+    'Cadastrar Credenciais',
+    'Revisão de Dados'
+];
