@@ -7,7 +7,7 @@ export const useUserFormHook = () => {
 
   const handleCancel = () => router.push('/users');
 
-  const handleContinue = () => router.push('');
+  const handleContinue = () => router.push('/users/create/step-2');
 
   return {
     handleCancel,
