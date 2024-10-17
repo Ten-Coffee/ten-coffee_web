@@ -1,9 +1,7 @@
 'use client';
 
-import {
-  representativeSchema,
-  useFormStore
-} from '@/components/templates/(privated)/coffee-shop/create/store/coffee-shop-store';
+import { representativeSchema } from '@/components/templates/(privated)/coffee-shop/create/schemas/representative.schema';
+import { useFormStore } from '@/components/templates/(privated)/coffee-shop/create/store/coffee-shop-store';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
