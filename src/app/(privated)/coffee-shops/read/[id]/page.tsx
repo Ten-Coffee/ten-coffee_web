@@ -1,5 +1,5 @@
-import ReadByIdTemplate from '@/components/templates/(privated)/coffee-shop/read/read-by-id.template';
+import CoffeeShopReadByIdTemplate from '@/components/templates/(privated)/coffee-shop/read/coffee-shop-read-by-id.template';
 
 export default function ReadByIdPage() {
-  return <ReadByIdTemplate />;
+  return <CoffeeShopReadByIdTemplate />;
 }

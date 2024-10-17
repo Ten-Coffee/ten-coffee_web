@@ -2,6 +2,7 @@ import {
   Building,
   Check,
   ChevronLeft,
+  ChevronRight,
   ChevronsLeft,
   ChevronsRight,
   EllipsisVertical,
@@ -20,7 +21,8 @@ export const icons = {
   Home: Home,
   Buildings: Building,
   Chevron: {
-    Left: ChevronLeft
+    Left: ChevronLeft,
+    Right: ChevronRight
   },
   Chevrons: {
     Right: ChevronsRight,

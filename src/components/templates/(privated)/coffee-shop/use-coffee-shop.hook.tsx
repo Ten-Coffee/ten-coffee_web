@@ -9,9 +9,7 @@ import { useRouter } from 'next/navigation';
 export const useCoffeeShopListHook = () => {
   const router = useRouter();
 
-  const handleAdicionar = () => {
-    router.push('/coffee-shops/create/step-1');
-  };
+  const handleAdicionar = () => router.push('/coffee-shops/create/step-1');
 
   const columns: ColumnInterface<CoffeeShop>[] = [
     {
@@ -220,7 +218,7 @@ export const useCoffeeShopListHook = () => {
       }
     },
     {
-      icon: icons.Chevrons.Right,
+      icon: icons.Chevron.Right,
       onClick: (item: CoffeeShop) => {
         router.push(`/coffee-shops/read/${item.id}`);
       }

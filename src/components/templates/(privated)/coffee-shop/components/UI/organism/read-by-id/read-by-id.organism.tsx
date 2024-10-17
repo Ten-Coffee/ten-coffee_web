@@ -1,6 +1,6 @@
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
-import { ReadByIdMolecule } from '@/components/UI/molecules/read-by-id/read-by-id.molecule';
+import { CoffeeShopReadByIdMolecule } from '@/components/UI/molecules/read-by-id/coffee-shop-read-by-id.molecule';
 import { icons } from '@/icons/icons';
 
 import './read-by-id.styles.scss';
@@ -20,7 +20,7 @@ export const ReadByIdOrganism = ({ title }: ReadByIdOrganismProps) => {
         </ButtonAtom.Wrapper>
       </div>
       <div className={'read-by-id-organism__fields'}>
-        <ReadByIdMolecule label={'teste'} value={'teste'} />
+        <CoffeeShopReadByIdMolecule label={'teste'} value={'teste'} />
       </div>
     </div>
   );

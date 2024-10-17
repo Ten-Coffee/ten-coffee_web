@@ -1,10 +1,3 @@
-.read-by-id {
-  display: flex;
-  flex-direction: column;
-
-  gap: 3.2rem;
-}
-
 .read-by-id__header {
   display: flex;
   justify-content: space-between;
@@ -16,12 +9,12 @@
   flex-direction: row;
   align-items: center;
 
-  gap: 1.6rem
+  gap: 1.6rem;
 }
 
 .read-by-id__organism {
   display: flex;
   flex-direction: column;
-  
+
   gap: 3.2rem;
 }
