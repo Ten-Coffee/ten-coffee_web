@@ -22,42 +22,42 @@ export const AddressFormOrganism = () => {
         <TextFieldMolecule
           {...register('street')}
           label={'Logradouro'}
-          placeholder={'Av. Café da Catedral'}
+          placeholder={'Av.'}
           error={!!errors.street}
           helperText={errors.street?.message}
         />
         <TextFieldMolecule
           {...register('number')}
           label={'Número'}
-          placeholder={'999'}
+          placeholder={'01'}
           error={!!errors.number}
           helperText={errors.number?.message}
         />
         <TextFieldMolecule
           {...register('additionalInformation')}
           label={'Complemento'}
-          placeholder={'Bloco 1 Ap 1'}
+          placeholder={'Apto | Casa A'}
           error={!!errors.additionalInformation}
           helperText={errors.additionalInformation?.message}
         />
         <TextFieldMolecule
           {...register('neighborhood')}
           label={'Bairro'}
-          placeholder={'Pq. Resid. Café Claro'}
+          placeholder={'Bairro'}
           error={!!errors.neighborhood}
           helperText={errors.neighborhood?.message}
         />
         <TextFieldMolecule
           {...register('city')}
           label={'Cidade'}
-          placeholder={'Vale do Café'}
+          placeholder={'Maringá'}
           error={!!errors.city}
           helperText={errors.city?.message}
         />
         <TextFieldMolecule
           {...register('state')}
           label={'Estado'}
-          placeholder={'Café Grosso do Sul'}
+          placeholder={'PR'}
           error={!!errors.state}
           helperText={errors.state?.message}
         />

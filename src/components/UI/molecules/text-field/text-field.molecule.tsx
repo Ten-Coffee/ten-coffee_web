@@ -12,7 +12,7 @@ interface TextFieldProps extends ComponentProps<'input'> {
   position?: Position;
   labelSize?: Size;
   helperText?: string;
-  error?: boolean;
+  error: boolean;
 }
 
 export const TextFieldMolecule = forwardRef<HTMLInputElement, TextFieldProps>(
