@@ -1,16 +1,15 @@
+import { CoffeeShop } from './interfaces/coffee-shop.interface';
+
 import { ColumnInterface } from '@/components/UI/organism/table/interfaces/column.interface';
 import { RowActionsInterface } from '@/components/UI/organism/table/interfaces/row-actions.interface';
 import { TableDataAtom } from '@/components/UI/organism/table/UI/atoms/table-data/table-data.atom';
 import { icons } from '@/icons/icons';
 import { useRouter } from 'next/navigation';
-import { CoffeeShop } from './interfaces/coffee-shop.interface';
 
 export const useCoffeeShopListHook = () => {
   const router = useRouter();
 
-  const handleAdicionar = () => {
-    router.push('/coffee-shops/create/step-1');
-  };
+  const handleAdicionar = () => router.push('/coffee-shops/create/step-1');
 
   const columns: ColumnInterface<CoffeeShop>[] = [
     {
@@ -209,13 +208,19 @@ export const useCoffeeShopListHook = () => {
     {
       icon: icons.Edit,
       onClick: (item: CoffeeShop) => {
-        router.push(`/coffee-shop/edit/${item.id}`);
+        router.push(`/coffee-shops/edit/${item.id}`);
       }
     },
     {
       icon: icons.Ellipsis.Vertical,
       onClick: (item: CoffeeShop) => {
         console.log('More options', item);
+      }
+    },
+    {
+      icon: icons.Chevron.Right,
+      onClick: (item: CoffeeShop) => {
+        router.push(`/coffee-shops/read/${item.id}`);
       }
     }
   ];
