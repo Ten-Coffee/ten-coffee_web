@@ -1,0 +1,20 @@
+.read-by-id__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.read-by-id__header__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 1.6rem;
+}
+
+.read-by-id__organism {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3.2rem;
+}

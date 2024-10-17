@@ -1,6 +1,8 @@
 import {
   Building,
   Check,
+  ChevronLeft,
+  ChevronRight,
   ChevronsLeft,
   ChevronsRight,
   EllipsisVertical,
@@ -10,6 +12,7 @@ import {
   Pencil,
   Plus,
   Search,
+  Trash,
   Users
 } from 'lucide-react';
 
@@ -17,6 +20,10 @@ export const icons = {
   Add: Plus,
   Home: Home,
   Buildings: Building,
+  Chevron: {
+    Left: ChevronLeft,
+    Right: ChevronRight
+  },
   Chevrons: {
     Right: ChevronsRight,
     Left: ChevronsLeft
@@ -31,5 +38,6 @@ export const icons = {
   },
   Check,
   Search,
-  Users
+  Users,
+  Trash
 };
