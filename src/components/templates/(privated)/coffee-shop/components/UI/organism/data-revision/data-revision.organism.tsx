@@ -13,13 +13,16 @@ export const DataRevisionOrganism = ({ title, data }: DataRevisionProps) => {
     <div className={'data-revision'}>
       <TitleAtom.Large value={title} />
       <div className={'data-revision__fields'}>
-        {data.map((item, index) => (
-          <DataReviewMolecule
-            key={index}
-            label={item.label}
-            value={item.value}
-          />
-        ))}
+        {data.map(
+          (item, index) =>
+            item.value !== undefined && (
+              <DataReviewMolecule
+                key={index}
+                label={item.label}
+                value={item.value}
+              />
+            )
+        )}
       </div>
     </div>
   );

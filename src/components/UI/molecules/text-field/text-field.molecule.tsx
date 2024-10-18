@@ -4,16 +4,28 @@ import { Position } from '@/type/position.type';
 import { Size } from '@/type/size.type';
 import { ComponentProps, ElementType, forwardRef } from 'react';
 
-export interface TextFieldProps extends ComponentProps<'input'> {
+import './text-field.style.scss';
+
+interface TextFieldProps extends ComponentProps<'input'> {
   label: string;
   icon?: ElementType;
   position?: Position;
   labelSize?: Size;
+  helperText?: string;
+  error?: boolean;
 }
 
 export const TextFieldMolecule = forwardRef<HTMLInputElement, TextFieldProps>(
   function TextField(
-    { label, labelSize = 'medium', icon: Icon, position, ...otherProps },
+    {
+      label,
+      labelSize = 'medium',
+      icon: Icon,
+      position,
+      helperText,
+      error,
+      ...rest
+    },
     ref
   ) {
     return (
@@ -23,8 +35,14 @@ export const TextFieldMolecule = forwardRef<HTMLInputElement, TextFieldProps>(
           icon={Icon}
           position={position}
           ref={ref}
-          {...otherProps}
+          aria-invalid={error}
+          {...rest}
         />
+        {helperText && (
+          <span className={error ? 'error-text' : 'helper-text'}>
+            {helperText}
+          </span>
+        )}
       </div>
     );
   }

@@ -1,9 +1,10 @@
+import { User } from './interface/users.interface';
+
 import { ColumnInterface } from '@/components/UI/organism/table/interfaces/column.interface';
 import { RowActionsInterface } from '@/components/UI/organism/table/interfaces/row-actions.interface';
 import { TableDataAtom } from '@/components/UI/organism/table/UI/atoms/table-data/table-data.atom';
 import { icons } from '@/icons/icons';
 import { useRouter } from 'next/navigation';
-import { User } from './interface/users.interface';
 
 export const useUserListHook = () => {
   const router = useRouter();

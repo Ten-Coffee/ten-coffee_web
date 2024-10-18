@@ -6,18 +6,61 @@ import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-fie
 import './address-form.styles.scss';
 
 export const AddressFormOrganism = () => {
-  const { handleBack, handleContinue } = useAddressFormHook();
+  const { handleSubmit, register, errors, handleForm, handleBack } =
+    useAddressFormHook();
 
   return (
-    <form className={'address-form'}>
+    <form onSubmit={handleSubmit(handleForm)} className={'address-form'}>
       <div className={'address-form__fields'}>
-        <TextFieldMolecule label={'CEP'} />
-        <TextFieldMolecule label={'Logradouro'} />
-        <TextFieldMolecule label={'Número'} />
-        <TextFieldMolecule label={'Complemento'} />
-        <TextFieldMolecule label={'Bairro'} />
-        <TextFieldMolecule label={'Cidade'} />
-        <TextFieldMolecule label={'Estado'} />
+        <TextFieldMolecule
+          {...register('zipCode')}
+          label={'CEP'}
+          placeholder={'99999-999'}
+          error={!!errors.zipCode}
+          helperText={errors.zipCode?.message}
+        />
+        <TextFieldMolecule
+          {...register('street')}
+          label={'Logradouro'}
+          placeholder={'Av.'}
+          error={!!errors.street}
+          helperText={errors.street?.message}
+        />
+        <TextFieldMolecule
+          {...register('number')}
+          label={'Número'}
+          placeholder={'01'}
+          error={!!errors.number}
+          helperText={errors.number?.message}
+        />
+        <TextFieldMolecule
+          {...register('additionalInformation')}
+          label={'Complemento'}
+          placeholder={'Apto | Casa A'}
+          error={!!errors.additionalInformation}
+          helperText={errors.additionalInformation?.message}
+        />
+        <TextFieldMolecule
+          {...register('neighborhood')}
+          label={'Bairro'}
+          placeholder={'Bairro'}
+          error={!!errors.neighborhood}
+          helperText={errors.neighborhood?.message}
+        />
+        <TextFieldMolecule
+          {...register('city')}
+          label={'Cidade'}
+          placeholder={'Maringá'}
+          error={!!errors.city}
+          helperText={errors.city?.message}
+        />
+        <TextFieldMolecule
+          {...register('state')}
+          label={'Estado'}
+          placeholder={'PR'}
+          error={!!errors.state}
+          helperText={errors.state?.message}
+        />
       </div>
 
       <div className={'address-form__buttons'}>
@@ -29,11 +72,7 @@ export const AddressFormOrganism = () => {
           Voltar
         </ButtonAtom.Wrapper>
 
-        <ButtonAtom.Wrapper
-          hierarchy={'enabled'}
-          type={'button'}
-          onClick={handleContinue}
-        >
+        <ButtonAtom.Wrapper hierarchy={'enabled'} type={'submit'}>
           Continuar
         </ButtonAtom.Wrapper>
       </div>

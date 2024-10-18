@@ -1,29 +1,30 @@
 'use client';
 
-import './data-revision-section.styles.scss';
-import addressData from './data/address.data';
-import unidadeData from './data/coffee-shop.data';
-import representativeData from './data/representative.data';
-
-import { useDataRevisionSectionHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision-section/use-data-revision-section.hook';
+import { useDataRevisionFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision-section/use-data-revision-section-form.hook';
 import { DataRevisionOrganism } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/data-revision.organism';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { DiviserAtom } from '@/components/UI/atoms/diviser/diviser.atom';
 
+import './data-revision-section.styles.scss';
+
 export const DataRevisionSectionOrganism = () => {
-  const { handleBack, handleCreate } = useDataRevisionSectionHook();
+  const {
+    coffeeShop,
+    address,
+    representative,
+    handleBack,
+    handleCreate,
+    mutation
+  } = useDataRevisionFormHook();
 
   return (
     <div className={'data-revision-section'}>
       <div className={'data-revision-section__fields-section'}>
-        <DataRevisionOrganism title={'Cafeteria'} data={unidadeData} />
+        <DataRevisionOrganism title={'Cafeteria'} data={coffeeShop} />
         <DiviserAtom />
-        <DataRevisionOrganism title={'Endereço'} data={addressData} />
+        <DataRevisionOrganism title={'Endereço'} data={address} />
         <DiviserAtom />
-        <DataRevisionOrganism
-          title={'Representante'}
-          data={representativeData}
-        />
+        <DataRevisionOrganism title={'Representante'} data={representative} />
       </div>
 
       <div className={'data-revision-section__buttons'}>
@@ -36,12 +37,16 @@ export const DataRevisionSectionOrganism = () => {
         </ButtonAtom.Wrapper>
         <ButtonAtom.Wrapper
           hierarchy={'enabled'}
-          type={'submit'}
+          type={'button'}
           onClick={handleCreate}
         >
           Cadastrar
         </ButtonAtom.Wrapper>
       </div>
+
+      {mutation.isError && (
+        <div className="error-message">Erro ao cadastrar. Tente novamente.</div>
+      )}
     </div>
   );
 };
