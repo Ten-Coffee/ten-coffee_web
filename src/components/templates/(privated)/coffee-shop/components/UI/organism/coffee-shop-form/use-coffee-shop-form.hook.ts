@@ -24,7 +24,7 @@ export const useCoffeeShopFormHook = () => {
     data
   ) => {
     updateFormData({ coffeeShop: data });
-    router.push('/coffee-shop/create/step-2');
+    router.push('/coffee-shops/create/step-2');
   };
 
   const handleBack = () => {

@@ -1,13 +1,28 @@
 import './table-header.style.scss';
-import { columns } from '@/components/UI/organism/table/mock-data/columns.mock-data';
-import { HeaderCellAtom } from '@/components/UI/organism/table/UI/atoms/header-cell/header-cell.atom';
+import { HeaderCellAtom } from '../../atoms/header-cell/header-cell.atom';
 
-export const TableHeaderMolecule = () => {
+import { ColumnInterface } from '@/components/UI/organism/table/interfaces/column.interface';
+import { RowActionsInterface } from '@/components/UI/organism/table/interfaces/row-actions.interface';
+
+interface TableHeaderMoleculeProps<T> {
+  columns: ColumnInterface<T>[];
+  rowActions?: RowActionsInterface<T>[];
+}
+
+export const TableHeaderMolecule = <T,>({
+  columns,
+  rowActions
+}: TableHeaderMoleculeProps<T>) => {
   return (
     <thead className={'table-header'}>
-      {columns.map((column, index) => (
-        <HeaderCellAtom value={column} key={index} />
-      ))}
+      <tr>
+        {columns.map(({ value }, index) => (
+          <HeaderCellAtom key={index} value={value} />
+        ))}
+        {rowActions?.map((_, index) => (
+          <HeaderCellAtom key={index} value={''} />
+        ))}
+      </tr>
     </thead>
   );
 };

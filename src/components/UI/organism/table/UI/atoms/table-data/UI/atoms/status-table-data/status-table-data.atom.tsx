@@ -1,5 +1,4 @@
 import './status.table-data.style.scss';
-import { BodyAtom } from '@/components/UI/atoms/typography/body/body.atom';
 
 interface StatusTableDataAtomProps {
   value: boolean;
@@ -10,9 +9,11 @@ export const StatusTableDataAtom = ({ value }: StatusTableDataAtomProps) => {
   const className = value ? 'active' : 'inactive';
 
   return (
-    <td className={`${className} status-table-data`}>
-      <div className={'status-table-data__ellipse'}></div>
-      <BodyAtom size={'small'} value={status} />
+    <td className={'status-table-data'}>
+      <div className={`${className} status-table-data__status-wrapper`}>
+        <div className={'status-wrapper__ellipse'}></div>
+        {status}
+      </div>
     </td>
   );
 };

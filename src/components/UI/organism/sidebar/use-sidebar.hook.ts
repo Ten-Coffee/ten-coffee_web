@@ -15,7 +15,12 @@ export const useSidebarHook = () => {
       {
         icon: icons.Buildings,
         value: 'Unidades',
-        path: '/unidades'
+        path: '/coffee-shops'
+      },
+      {
+        icon: icons.Users,
+        value: 'Usuários',
+        path: '/users'
       }
     ]
   };

@@ -26,7 +26,7 @@ export const useRepresentativeFormHook = () => {
     data
   ) => {
     updateFormData({ representative: data });
-    router.push('/coffee-shop/create/step-4');
+    router.push('/coffee-shops/create/step-4');
   };
 
   const handleBack = () => {
