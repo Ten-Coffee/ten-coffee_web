@@ -15,14 +15,12 @@ export const CoffeeShopFormOrganism = () => {
         <TextFieldMolecule
           {...register('nameFantasy')}
           label={'Nome Fantasia'}
-          placeholder={'Lorem Ipsum'}
           error={!!errors.nameFantasy}
           helperText={errors.nameFantasy?.message}
         />
         <TextFieldMolecule
           {...register('name')}
           label={'Razão Social'}
-          placeholder={'Lorem Ipsum'}
           error={!!errors.name}
           helperText={errors.name?.message}
         />
@@ -43,21 +41,19 @@ export const CoffeeShopFormOrganism = () => {
         <TextFieldMolecule
           {...register('phoneNumber')}
           label={'Telefone'}
-          placeholder={'44999999999'}
+          placeholder={'(44) 9 9999-9999'}
           error={!!errors.phoneNumber}
           helperText={errors.phoneNumber?.message}
         />
         <TextFieldMolecule
           {...register('contractStart')}
           label={'Data de Início do Contrato'}
-          placeholder={'00/00/0000'}
           error={!!errors.contractStart}
           helperText={errors.contractStart?.message}
         />
         <TextFieldMolecule
           {...register('contractEnd')}
           label={'Data de Fim do Contrato'}
-          placeholder={'00/00/0000'}
           error={!!errors.contractEnd}
           helperText={errors.contractEnd?.message}
         />

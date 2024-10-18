@@ -1,7 +1,5 @@
-import {
-  coffeeShopSchema,
-  useFormStore
-} from '@/components/templates/(privated)/coffee-shop/create/store/coffee-shop-store';
+import { coffeeShopSchema } from '@/components/templates/(privated)/coffee-shop/create/schemas/coffee-shop.schema';
+import { useFormStore } from '@/components/templates/(privated)/coffee-shop/create/store/coffee-shop-store';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -26,7 +24,7 @@ export const useCoffeeShopFormHook = () => {
     data
   ) => {
     updateFormData({ coffeeShop: data });
-    router.push('/coffee-shop/create/step-2');
+    router.push('/coffee-shops/create/step-2');
   };
 
   const handleBack = () => {

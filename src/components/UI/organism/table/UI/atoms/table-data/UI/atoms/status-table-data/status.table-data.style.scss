@@ -1,38 +1,37 @@
 .status-table-data {
+  padding: 1.2rem;
+}
+
+.status-table-data__status-wrapper {
   display: flex;
   align-items: center;
   gap: 0.8rem;
 
-  vertical-align: middle;
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
 
-  padding: 1rem 1.2rem;
+.status-wrapper__ellipse {
+  width: 0.8rem;
+  height: 0.8rem;
 
-  &__ellipse {
-    width: 0.8rem;
-    height: 0.8rem;
+  background-color: var(--green-250);
 
-    background-color: var(--green-250);
-
-    border-radius: var(--border-radius-xl);
-  }
+  border-radius: var(--border-radius-xl);
 }
 
 .active {
-  * {
-    color: var(--green-250);
-  }
+  color: var(--green-250);
 
-  .status-table-data__ellipse {
+  .status-wrapper__ellipse {
     background-color: var(--green-250);
   }
 }
 
 .inactive {
-  * {
-    color: var(--red-250);
-  }
+  color: var(--red-250);
 
-  .status-table-data__ellipse {
+  .status-wrapper__ellipse {
     background-color: var(--red-250);
   }
 }

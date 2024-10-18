@@ -1,9 +1,7 @@
 'use client';
 
-import {
-  addressSchema,
-  useFormStore
-} from '@/components/templates/(privated)/coffee-shop/create/store/coffee-shop-store';
+import { addressSchema } from '@/components/templates/(privated)/coffee-shop/create/schemas/address.schema';
+import { useFormStore } from '@/components/templates/(privated)/coffee-shop/create/store/coffee-shop-store';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -29,9 +27,7 @@ export const useAddressFormHook = () => {
     router.push('/coffee-shop/create/step-3');
   };
 
-  const handleBack = () => {
-    router.back();
-  };
+  const handleBack = () => router.back();
 
   return { handleSubmit, register, errors, handleForm, handleBack };
 };
