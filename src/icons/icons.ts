@@ -9,6 +9,7 @@ import {
   Eye,
   EyeOff,
   Home,
+  LoaderCircle,
   Pencil,
   Plus,
   Search,
@@ -39,5 +40,6 @@ export const icons = {
   Check,
   Search,
   Users,
-  Trash
+  Trash,
+  Loading: LoaderCircle
 };

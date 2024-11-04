@@ -1,0 +1,29 @@
+.loading-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 15dvh;
+  height: 100%;
+  width: 100%;
+
+  column-span: 4;
+}
+
+.loading-wrapper__icon {
+  width: 4rem;
+  height: 4rem;
+
+  color: var(--green-200);
+
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
