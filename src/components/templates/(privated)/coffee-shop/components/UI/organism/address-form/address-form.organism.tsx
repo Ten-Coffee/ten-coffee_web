@@ -18,6 +18,7 @@ export const AddressFormOrganism = () => {
           placeholder={'99999-999'}
           error={!!errors.zipCode}
           helperText={errors.zipCode?.message}
+          mask={'cep'}
         />
         <TextFieldMolecule
           {...register('street')}
@@ -34,11 +35,11 @@ export const AddressFormOrganism = () => {
           helperText={errors.number?.message}
         />
         <TextFieldMolecule
-          {...register('additionalInformation')}
+          {...register('complement')}
           label={'Complemento'}
           placeholder={'Apto | Casa A'}
-          error={!!errors.additionalInformation}
-          helperText={errors.additionalInformation?.message}
+          error={!!errors.complement}
+          helperText={errors.complement?.message}
         />
         <TextFieldMolecule
           {...register('neighborhood')}

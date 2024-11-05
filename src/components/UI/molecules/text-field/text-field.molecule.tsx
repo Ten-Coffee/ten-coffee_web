@@ -1,9 +1,9 @@
 import { LabelAtom } from '@/components/UI/atoms/typography/label/label.atom';
 import { InputMolecule } from '@/components/UI/molecules/input/input.molecule';
+import { MaskType } from '@/components/UI/molecules/input/UI/atoms/input/input.atom';
 import { Position } from '@/type/position.type';
 import { Size } from '@/type/size.type';
 import { ComponentProps, ElementType, forwardRef } from 'react';
-
 import './text-field.style.scss';
 
 interface TextFieldProps extends ComponentProps<'input'> {
@@ -13,6 +13,7 @@ interface TextFieldProps extends ComponentProps<'input'> {
   labelSize?: Size;
   helperText?: string;
   error?: boolean;
+  mask?: MaskType;
 }
 
 export const TextFieldMolecule = forwardRef<HTMLInputElement, TextFieldProps>(
@@ -24,6 +25,7 @@ export const TextFieldMolecule = forwardRef<HTMLInputElement, TextFieldProps>(
       position,
       helperText,
       error,
+      mask,
       ...rest
     },
     ref
@@ -35,6 +37,7 @@ export const TextFieldMolecule = forwardRef<HTMLInputElement, TextFieldProps>(
           icon={Icon}
           position={position}
           ref={ref}
+          mask={mask}
           aria-invalid={error}
           {...rest}
         />
