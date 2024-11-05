@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+/** @types {import('next').NextConfig} */
 
 import path from 'path';
 import { fileURLToPath } from 'url';

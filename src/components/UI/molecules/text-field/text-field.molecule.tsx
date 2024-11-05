@@ -1,7 +1,7 @@
 import { LabelAtom } from '@/components/UI/atoms/typography/label/label.atom';
 import { InputMolecule } from '@/components/UI/molecules/input/input.molecule';
-import { Position } from '@/type/position.type';
-import { Size } from '@/type/size.type';
+import { Position } from '@/types/position.type';
+import { Size } from '@/types/size.type';
 import { ComponentProps, ElementType, forwardRef } from 'react';
 
 import './text-field.style.scss';
