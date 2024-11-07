@@ -2,9 +2,8 @@ import { z } from 'zod';
 
 export const representativeSchema = z.object({
   name: z.string().min(2, 'O nome deve ter pelo menos 2 caracteres'),
-  login: z.string().min(2, 'LOGIN ZUADO'),
-  password: z.string().min(2, 'SENHA ZUADO'),
   email: z.string().email('E-mail inválido'),
+  password: z.string().min(2, 'Insira uma senha'),
   phone: z
     .string()
     .transform((value) => value.replace(/\D/g, ''))

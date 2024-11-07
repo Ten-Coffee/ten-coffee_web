@@ -22,17 +22,10 @@ export const RepresentativeFormOrganism = () => {
         />
         <TextFieldMolecule
           {...register('email')}
-          label={'E-mail'}
-          placeholder={'lorem-ipsum@mail.com'}
+          label={'Email'}
+          placeholder={'loremipsum@gmail.com'}
           error={!!errors.email}
           helperText={errors.email?.message}
-        />
-        <TextFieldMolecule
-          {...register('login')}
-          label={'Usuário'}
-          placeholder={'lorem.ipsum'}
-          error={!!errors.login}
-          helperText={errors.login?.message}
         />
 
         <PasswordTextFieldMolecule
