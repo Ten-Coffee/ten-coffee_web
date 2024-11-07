@@ -2,8 +2,8 @@ import { ReadByIdType } from '@/components/templates/(privated)/coffee-shop/read
 import { CoffeeShopService } from '@/services/coffee-shop/coffee-shop.service';
 import { PathParamsType } from '@/type/path-params.type';
 import { phoneMask } from '@/utils/mask.utils';
+import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
-import { useQuery } from 'react-query';
 
 export const useCoffeeShopReadByIdHook = () => {
   const { id } = useParams<PathParamsType>();
