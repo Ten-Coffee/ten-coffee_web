@@ -1,8 +1,8 @@
-import { labelMapping } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision-section/utils/LabelMapping';
 import { DataItem } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/interfaces/data-item.interface';
 import { addressSchema } from '@/components/templates/(privated)/coffee-shop/create/schemas/address.schema';
 import { coffeeShopSchema } from '@/components/templates/(privated)/coffee-shop/create/schemas/coffee-shop.schema';
 import { representativeSchema } from '@/components/templates/(privated)/coffee-shop/create/schemas/representative.schema';
+import { extractData } from '@/utils/extract-data.utils';
 import { z } from 'zod';
 import { create } from 'zustand';
 
@@ -41,7 +41,7 @@ type FormStore = {
       zipCode: string;
     };
   };
-  extractData: (data: Record<string, unknown>) => DataItem[]; // Adiciona a função extractData ao tipo
+  extractData: (data: Record<string, unknown>) => DataItem[];
 };
 
 export const useFormStore = create<FormStore>((set, get) => ({
@@ -66,7 +66,6 @@ export const useFormStore = create<FormStore>((set, get) => ({
     },
     representative: {
       name: '',
-      login: '',
       email: '',
       password: '',
       phone: '',
@@ -82,19 +81,10 @@ export const useFormStore = create<FormStore>((set, get) => ({
   formatData: () => {
     const { coffeeShop, representative, address } = get().formData;
 
-    const convertToISOFormat = (dateString: string) => {
-      const day = dateString.slice(0, 2);
-      const month = dateString.slice(2, 4);
-      const year = dateString.slice(4, 8);
-      return `${year}-${month}-${day}`;
-    };
-
     const removeMaskFromZipCode = (zipCode: string) => {
       return zipCode.replace(/\D/g, '');
     };
 
-    const formattedContractStart = convertToISOFormat(coffeeShop.contractStart);
-    const formattedContractEnd = convertToISOFormat(coffeeShop.contractEnd);
     const unmaskedZipCode = removeMaskFromZipCode(address.zipCode);
 
     return {
@@ -103,11 +93,11 @@ export const useFormStore = create<FormStore>((set, get) => ({
       cnpj: coffeeShop.cnpj,
       email: coffeeShop.email,
       phoneNumber: coffeeShop.phoneNumber,
-      contractStart: formattedContractStart,
-      contractEnd: formattedContractEnd,
+      contractStart: coffeeShop.contractStart,
+      contractEnd: coffeeShop.contractEnd,
       user: {
         name: representative.name,
-        login: representative.login,
+        login: representative.email,
         userPermissionEnum: 'REPRESENTATIVE',
         password: representative.password,
         phone: representative.phone,
@@ -126,17 +116,6 @@ export const useFormStore = create<FormStore>((set, get) => ({
   },
 
   extractData: (data: Record<string, unknown>): DataItem[] => {
-    return Object.entries(data)
-      .filter(
-        ([key]) =>
-          key !== 'userPermissionEnum' &&
-          key !== 'password' &&
-          data[key] !== undefined &&
-          data[key] !== ''
-      )
-      .map(([key, value]) => ({
-        label: labelMapping[key] || key,
-        value: String(value)
-      }));
+    return extractData(data);
   }
 }));

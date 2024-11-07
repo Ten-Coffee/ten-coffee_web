@@ -5,7 +5,7 @@ import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
 import './coffee-shop-form.styles.scss';
 
-const CoffeeShopFormOrganism = () => {
+export const CoffeeShopFormOrganism = () => {
   const { handleSubmit, register, errors, handleForm, handleBack } =
     useCoffeeShopFormHook();
 
@@ -14,12 +14,14 @@ const CoffeeShopFormOrganism = () => {
       <div className="coffee-shop-form__fields">
         <TextFieldMolecule
           {...register('nameFantasy')}
+          placeholder="Lorem Ipsum"
           label="Nome Fantasia"
           error={!!errors.nameFantasy}
           helperText={errors.nameFantasy?.message}
         />
         <TextFieldMolecule
           {...register('name')}
+          placeholder="Lorem Cafeteria"
           label="Razão Social"
           error={!!errors.name}
           helperText={errors.name?.message}
@@ -50,18 +52,18 @@ const CoffeeShopFormOrganism = () => {
         <TextFieldMolecule
           {...register('contractStart')}
           label="Data de Início do Contrato"
+          type="date"
           placeholder="dd/mm/aaaa"
           error={!!errors.contractStart}
           helperText={errors.contractStart?.message}
-          mask="date"
         />
         <TextFieldMolecule
           {...register('contractEnd')}
           label="Data de Fim do Contrato"
+          type="date"
           placeholder="dd/mm/aaaa"
           error={!!errors.contractEnd}
           helperText={errors.contractEnd?.message}
-          mask="date"
         />
       </div>
       <div className="coffee-shop-form__buttons">
@@ -79,5 +81,3 @@ const CoffeeShopFormOrganism = () => {
     </form>
   );
 };
-
-export default CoffeeShopFormOrganism;

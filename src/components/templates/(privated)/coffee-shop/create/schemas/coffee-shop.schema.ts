@@ -4,7 +4,7 @@ import { z } from 'zod';
 export const coffeeShopSchema = z.object({
   nameFantasy: z
     .string()
-    .min(2, 'O nome da empresa deve ter pelo menos 2 caracteres'),
+    .min(2, 'O nome fantasia deve ter pelo menos 2 caracteres'),
   name: z.string().min(2, 'A razão social deve ter pelo menos 2 caracteres'),
   cnpj: z
     .string()
@@ -20,16 +20,14 @@ export const coffeeShopSchema = z.object({
     ),
   contractStart: z
     .string()
-    .transform((value) => value.replace(/\D/g, ''))
     .refine(
-      (date) => /^\d{8}$/.test(date),
-      'Data de início inválida. Use o formato DD/MM/AAAA.'
+      (date) => /^\d{4}-\d{2}-\d{2}$/.test(date),
+      'Data de início inválida. Use o formato YYYY-MM-DD.'
     ),
   contractEnd: z
     .string()
-    .transform((value) => value.replace(/\D/g, ''))
     .refine(
-      (date) => /^\d{8}$/.test(date),
-      'Data de fim inválida. Use o formato DD/MM/AAAA.'
+      (date) => /^\d{4}-\d{2}-\d{2}$/.test(date),
+      'Data de fim inválida. Use o formato YYYY-MM-DD.'
     )
 });
