@@ -21,10 +21,7 @@ export const useDataRevisionFormHook = () => {
         },
         body: JSON.stringify(formData)
       });
-      if (!response.ok) {
-        throw new Error('Erro ao cadastrar');
-      }
-      return response.json();
+      return await response.json();
     },
     onSuccess: () => {
       router.push('/coffee-shop/');
