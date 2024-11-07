@@ -17,9 +17,6 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.56.2
         version: 5.56.2(react@18.3.1)
-      '@types/react-text-mask':
-        specifier: ^5.4.14
-        version: 5.4.14
       install:
         specifier: ^0.13.0
         version: 0.13.0
@@ -41,9 +38,6 @@ importers:
       react-hook-form:
         specifier: ^7.53.0
         version: 7.53.0(react@18.3.1)
-      react-imask:
-        specifier: ^7.6.1
-        version: 7.6.1(react@18.3.1)
       react-input-mask:
         specifier: ^2.0.4
         version: 2.0.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -119,10 +113,6 @@ importers:
         version: 7.18.0(eslint@8.57.0)(typescript@5.5.4)
 
 packages:
-
-  '@babel/runtime-corejs3@7.26.0':
-    resolution: {integrity: sha512-YXHu5lN8kJCb1LOb9PgV6pvak43X2h4HvRApcN5SdWeaItQOzfn1hgP6jasD6KWQyJDBxrVmA9o9OivlnNJK/w==}
-    engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.25.6':
     resolution: {integrity: sha512-VBj9MYyDb9tuLq7yzqjgzt6Q+IBQLrGZfdjOekyEirZPHxXWoTSGUTMrpsfi58Up73d13NfYLv8HT9vmznjzhQ==}
@@ -290,9 +280,6 @@ packages:
 
   '@types/react-input-mask@3.0.5':
     resolution: {integrity: sha512-vQ1x6ykwjDrDrJZq1zw5/uQ+nqGHUV6bWscsVZJ/qsNwNXWxZm7KRBHLJ5k6TQt3MHjhpoYHzPH6FwjVSZODHA==}
-
-  '@types/react-text-mask@5.4.14':
-    resolution: {integrity: sha512-VkQuH+7Ol+ue/EFe9EFqJAmDe3ay5VML29l3aJkdzAriMhiprJOmdAFjZ3jOT6p3+nBgEUHxaQtUgg8k8Sk5wA==}
 
   '@types/react@18.3.5':
     resolution: {integrity: sha512-WeqMfGJLGuLCqHGYRGHxnKrXcTitc6L/nBUWfWPcTarG3t9PsquqUMuVeXZeca+mglY4Vo5GZjCi0A3Or2lnxA==}
@@ -541,9 +528,6 @@ packages:
 
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
-
-  core-js-pure@3.38.1:
-    resolution: {integrity: sha512-BY8Etc1FZqdw1glX0XNOq2FDwfrg/VGqoZOZCdaL+UmdaqDwQwYXkMJT4t6In+zfEfOJDcM9T0KdbBeJg8KKCQ==}
 
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
@@ -947,10 +931,6 @@ packages:
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
-
-  imask@7.6.1:
-    resolution: {integrity: sha512-sJlIFM7eathUEMChTh9Mrfw/IgiWgJqBKq2VNbyXvBZ7ev/IlO6/KQTKlV/Fm+viQMLrFLG/zCuudrLIwgK2dg==}
-    engines: {npm: '>=4.0.0'}
 
   immutable@4.3.7:
     resolution: {integrity: sha512-1hqclzwYwjRDFLjcFxOM5AYkkG0rpFPpr1RLPMEuGczoS7YA8gLhy8SWXYRAA/XwfEHpfo3cw5JGioS32fnMRw==}
@@ -1380,12 +1360,6 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
 
-  react-imask@7.6.1:
-    resolution: {integrity: sha512-vLNfzcCz62Yzx/GRGh5tiCph9Gbh2cZu+Tz8OiO5it2eNuuhpA0DWhhSlOtVtSJ80+Bx+vFK5De8eQ9AmbkXzA==}
-    engines: {npm: '>=4.0.0'}
-    peerDependencies:
-      react: '>=0.14.0'
-
   react-input-mask@2.0.4:
     resolution: {integrity: sha512-1hwzMr/aO9tXfiroiVCx5EtKohKwLk/NT8QlJXHQ4N+yJJFyUuMT+zfTpLBwX/lK3PkuMlievIffncpMZ3HGRQ==}
     peerDependencies:
@@ -1759,11 +1733,6 @@ packages:
 
 snapshots:
 
-  '@babel/runtime-corejs3@7.26.0':
-    dependencies:
-      core-js-pure: 3.38.1
-      regenerator-runtime: 0.14.1
-
   '@babel/runtime@7.25.6':
     dependencies:
       regenerator-runtime: 0.14.1
@@ -1901,10 +1870,6 @@ snapshots:
       '@types/react': 18.3.5
 
   '@types/react-input-mask@3.0.5':
-    dependencies:
-      '@types/react': 18.3.5
-
-  '@types/react-text-mask@5.4.14':
     dependencies:
       '@types/react': 18.3.5
 
@@ -2223,8 +2188,6 @@ snapshots:
   color-name@1.1.4: {}
 
   concat-map@0.0.1: {}
-
-  core-js-pure@3.38.1: {}
 
   cross-spawn@7.0.3:
     dependencies:
@@ -2804,10 +2767,6 @@ snapshots:
 
   ignore@5.3.2: {}
 
-  imask@7.6.1:
-    dependencies:
-      '@babel/runtime-corejs3': 7.26.0
-
   immutable@4.3.7: {}
 
   import-fresh@3.3.0:
@@ -3217,12 +3176,6 @@ snapshots:
 
   react-hook-form@7.53.0(react@18.3.1):
     dependencies:
-      react: 18.3.1
-
-  react-imask@7.6.1(react@18.3.1):
-    dependencies:
-      imask: 7.6.1
-      prop-types: 15.8.1
       react: 18.3.1
 
   react-input-mask@2.0.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
