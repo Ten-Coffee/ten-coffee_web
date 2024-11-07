@@ -6,7 +6,6 @@ import { DataRevisionOrganism } from '@/components/templates/(privated)/coffee-s
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { DiviserAtom } from '@/components/UI/atoms/diviser/diviser.atom';
 import './data-revision-section.styles.scss';
-import { ToastMolecule } from '@/components/UI/molecules/toast/toast.molecule';
 
 export const DataRevisionSectionOrganism = () => {
   const { coffeeShop, address, representative, handleBack, handleCreate } =
@@ -38,8 +37,6 @@ export const DataRevisionSectionOrganism = () => {
           Cadastrar
         </ButtonAtom.Wrapper>
       </div>
-
-      <ToastMolecule />
     </div>
   );
 };
