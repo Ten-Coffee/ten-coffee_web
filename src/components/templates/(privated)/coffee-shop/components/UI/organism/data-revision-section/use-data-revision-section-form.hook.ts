@@ -1,4 +1,5 @@
 import { useFormStore } from '@/components/templates/(privated)/coffee-shop/create/store/coffee-shop-store';
+import { CoffeeShopService } from '@/services/coffee-shop/coffee-shop.service';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
@@ -11,20 +12,7 @@ export const useDataRevisionFormHook = () => {
 
   const mutation = useMutation({
     mutationFn: async () => {
-      const response = await fetch('http://localhost:8080/coffeeShops', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestData)
-      });
-
-      if (!response.ok) {
-        const errorMessage = await response.text();
-        throw new Error(errorMessage);
-      }
-
-      const data = response.status !== 204 && (await response.json());
+      const data = await CoffeeShopService.createCoffeeShop(requestData);
 
       toast.success('Cadastro realizado com sucesso!');
       return data;
