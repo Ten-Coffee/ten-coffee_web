@@ -1,4 +1,4 @@
-import { MaskType } from '@/components/UI/molecules/input/UI/atoms/input/input.atom';
+import { MaskType } from '@/type/input-mask.type';
 import { Position } from '@/type/position.type';
 import { ComponentProps, ElementType } from 'react';
 

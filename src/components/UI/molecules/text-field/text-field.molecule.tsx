@@ -1,6 +1,6 @@
 import { LabelAtom } from '@/components/UI/atoms/typography/label/label.atom';
 import { InputMolecule } from '@/components/UI/molecules/input/input.molecule';
-import { MaskType } from '@/components/UI/molecules/input/UI/atoms/input/input.atom';
+import { MaskType } from '@/type/input-mask.type';
 import { Position } from '@/type/position.type';
 import { Size } from '@/type/size.type';
 import { ComponentProps, ElementType, forwardRef } from 'react';
