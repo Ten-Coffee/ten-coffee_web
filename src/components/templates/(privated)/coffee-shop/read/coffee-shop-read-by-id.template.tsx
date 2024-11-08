@@ -9,7 +9,7 @@ import { icons } from '@/icons/icons';
 import './coffee-shop-read-by-id.styles.scss';
 
 export default function CoffeeShopReadByIdTemplate() {
-  const { goBackPage, address } = useCoffeeShopReadByIdHook();
+  const { goBackPage, coffeeShop, address } = useCoffeeShopReadByIdHook();
 
   return (
     <>
@@ -29,7 +29,11 @@ export default function CoffeeShopReadByIdTemplate() {
         </ButtonAtom.Wrapper>
       </div>
       <div className={'read-by-id__organism'}>
-        {/*<ReadByIdOrganism title={'Unidade'} />*/}
+        <ReadByIdOrganism
+          title={'Unidade'}
+          data={coffeeShop.data}
+          isLoading={coffeeShop.isLoading}
+        />
         <ReadByIdOrganism
           title={'Endereço'}
           data={address.data}

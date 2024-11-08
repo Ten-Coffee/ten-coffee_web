@@ -4,7 +4,7 @@ import { Size } from '@/types/size.type';
 import { ComponentProps } from 'react';
 
 interface LabelAtomProps extends ComponentProps<'label'> {
-  value: string | number;
+  value: string | number | undefined;
   size: Size;
 }
 

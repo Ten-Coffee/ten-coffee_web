@@ -1,7 +1,8 @@
 import { AddressService } from '@/services/address.service';
+import { CoffeeShopService } from '@/services/coffee-shop/coffee-shop.service';
 import { PathParamsType } from '@/types/path-params.type';
 import { ReadByIdType } from '@/types/read-by-id.type';
-import { zipCodeMask } from '@/utils/mask.utils';
+import { phoneMask, zipCodeMask } from '@/utils/mask.utils';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 
@@ -9,8 +10,13 @@ export const useCoffeeShopReadByIdHook = () => {
   const { id } = useParams<PathParamsType>();
 
   const { data: addressData, isLoading: addressIsLoading } = useQuery({
-    queryKey: ['coffeeShop'],
+    queryKey: ['address'],
     queryFn: () => AddressService.findById(id)
+  });
+
+  const { data: coffeeShopData, isLoading: coffeeShopIsLoading } = useQuery({
+    queryKey: ['coffeeShop'],
+    queryFn: () => CoffeeShopService.findById(id)
   });
 
   const router = useRouter();
@@ -27,11 +33,47 @@ export const useCoffeeShopReadByIdHook = () => {
     { label: 'Estado', value: addressData?.state }
   ];
 
+  const coffeeShop: ReadByIdType[] = [
+    {
+      label: 'Razão Social',
+      value: coffeeShopData?.name
+    },
+    {
+      label: 'Nome Fantasia',
+      value: coffeeShopData?.nameFantasy
+    },
+    {
+      label: 'CNPJ',
+      value: coffeeShopData?.cnpj
+    },
+    {
+      label: 'E-mail',
+      value: coffeeShopData?.email
+    },
+    {
+      label: 'Telefone',
+      value: phoneMask(coffeeShopData?.phoneNumber)
+    },
+    {
+      label: 'Período de Contrato',
+      value: `${coffeeShopData?.contractStart} - ${coffeeShopData?.contractEnd}`
+    },
+    {
+      label: 'Status',
+      value: coffeeShopData?.status,
+      isStatus: true
+    }
+  ];
+
   return {
     goBackPage,
     address: {
       data: address,
       isLoading: addressIsLoading
+    },
+    coffeeShop: {
+      data: coffeeShop,
+      isLoading: coffeeShopIsLoading
     }
   };
 };
