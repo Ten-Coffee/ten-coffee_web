@@ -1,10 +1,10 @@
+import { ReadByIdType } from '@/components/templates/(privated)/coffee-shop/read/types/read-by-id.type';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { LoadingAtom } from '@/components/UI/atoms/loading/loading.atom';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { CoffeeShopReadByIdMolecule } from '@/components/UI/molecules/read-by-id/coffee-shop-read-by-id.molecule';
 import { icons } from '@/icons/icons';
 import './read-by-id.styles.scss';
-import { ReadByIdType } from '@/types/read-by-id.type';
 
 interface ReadByIdOrganismProps {
   title: string;

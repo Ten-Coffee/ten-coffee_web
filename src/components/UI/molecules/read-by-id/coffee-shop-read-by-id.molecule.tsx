@@ -1,4 +1,4 @@
-import './read-by-id.styles.scss';
+import './coffee-shop-read-by-id.styles.scss';
 
 interface CoffeeShopReadByIdMoleculeProps {
   label: string;
