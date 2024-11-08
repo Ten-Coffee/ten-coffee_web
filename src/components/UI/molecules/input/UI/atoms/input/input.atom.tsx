@@ -1,11 +1,26 @@
 import { InputProps } from '@/components/UI/molecules/input/interfaces/input-props.interface';
+import { MASK_PATTERN } from '@/constants/input-mask-pattern.constant';
+import { MaskType } from '@/type/input-mask.type';
 import { forwardRef } from 'react';
+import InputMask from 'react-input-mask';
 import './input.style.scss';
 
-export const InputAtom = forwardRef<HTMLInputElement, InputProps>(
-  function Input({ position, ...props }, ref) {
-    const className = `input-atom${position === 'left' ? '__icon-left' : ''}`;
+interface MaskedInputProps extends InputProps {
+  mask?: MaskType;
+}
 
-    return <input className={className} ref={ref} {...props} />;
+export const InputAtom = forwardRef<HTMLInputElement, MaskedInputProps>(
+  function Input({ position, mask, ...props }, ref) {
+    const className = `input-atom${position === 'left' ? '__icon-left' : ''}`;
+    const maskPattern = mask ? MASK_PATTERN[mask] : '';
+
+    return (
+      <InputMask
+        mask={maskPattern}
+        className={className}
+        inputRef={ref}
+        {...props}
+      />
+    );
   }
 );

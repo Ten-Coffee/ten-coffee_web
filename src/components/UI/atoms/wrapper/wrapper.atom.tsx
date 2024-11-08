@@ -1,6 +1,7 @@
 'use client';
 
 import { useWrapperHook } from '@/components/UI/atoms/wrapper/use-wrapper.hook';
+import { ToastMolecule } from '@/components/UI/molecules/toast/toast.molecule';
 import { SidebarOrganism } from '@/components/UI/organism/sidebar/sidebar.organism';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
@@ -20,6 +21,7 @@ export const WrapperAtom = ({ children }: WrapperAtomProps) => {
       <main className={'wrapper'}>
         <SidebarOrganism />
         <section className={wrapperChildrenClass}>{children}</section>
+        <ToastMolecule />
       </main>
     </QueryClientProvider>
   );

@@ -1,21 +1,15 @@
 'use client';
 
+import 'react-toastify/dist/ReactToastify.css';
 import { useDataRevisionFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision-section/use-data-revision-section-form.hook';
 import { DataRevisionOrganism } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/data-revision.organism';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { DiviserAtom } from '@/components/UI/atoms/diviser/diviser.atom';
-
 import './data-revision-section.styles.scss';
 
 export const DataRevisionSectionOrganism = () => {
-  const {
-    coffeeShop,
-    address,
-    representative,
-    handleBack,
-    handleCreate,
-    mutation
-  } = useDataRevisionFormHook();
+  const { coffeeShop, address, representative, handleBack, handleCreate } =
+    useDataRevisionFormHook();
 
   return (
     <div className={'data-revision-section'}>
@@ -43,10 +37,6 @@ export const DataRevisionSectionOrganism = () => {
           Cadastrar
         </ButtonAtom.Wrapper>
       </div>
-
-      {mutation.isError && (
-        <div className="error-message">Erro ao cadastrar. Tente novamente.</div>
-      )}
     </div>
   );
 };
