@@ -9,14 +9,13 @@ import { TableOrganism } from '@/components/UI/organism/table/table.organism';
 import { icons } from '@/icons/icons';
 
 export const CoffeeShopTemplate = () => {
-  const { handleAdicionar, columns, empresas, rowActions } =
+  const { handleAdicionar, columns, coffeeShopsData, rowActions } =
     useCoffeeShopListHook();
 
   return (
     <>
       <div className={'coffee-shop-header'}>
         <TitleAtom.Large value={'Unidades'} />
-
         <ButtonAtom.Wrapper
           hierarchy={'outlined'}
           type={'button'}
@@ -35,8 +34,10 @@ export const CoffeeShopTemplate = () => {
 
       <TableOrganism
         columns={columns}
-        data={empresas}
+        data={coffeeShopsData?.content}
         rowActions={rowActions}
+        totalPages={coffeeShopsData?.totalPages}
+        number={coffeeShopsData?.number ?? 0}
       />
     </>
   );
