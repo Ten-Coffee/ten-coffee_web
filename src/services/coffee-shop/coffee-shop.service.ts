@@ -16,11 +16,13 @@ const findById = async (id: string): Promise<CoffeeShopInterface> => {
 
 const findAll = async ({
   page = 0,
-  size = 10
+  size = 10,
+  search = ''
 }: PageParamsInterface): Promise<PageableInterface<CoffeeShopPage>> => {
   const urlParams = new URLSearchParams({
     page: page.toString(),
-    size: size.toString()
+    size: size.toString(),
+    search
   });
 
   const response = await fetch(resourceUrl + '?' + urlParams.toString());

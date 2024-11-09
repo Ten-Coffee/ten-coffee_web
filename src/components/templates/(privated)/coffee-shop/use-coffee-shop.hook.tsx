@@ -4,6 +4,7 @@ import { ColumnInterface } from '@/components/UI/organism/table/interfaces/colum
 import { RowActionsInterface } from '@/components/UI/organism/table/interfaces/row-actions.interface';
 import { TableDataAtom } from '@/components/UI/organism/table/UI/atoms/table-data/table-data.atom';
 import { usePageSearchHook } from '@/hooks/use-page-search.hook';
+import { useSearchDebounceHook } from '@/hooks/use-search-debounce.hook';
 import { icons } from '@/icons/icons';
 import { CoffeeShopPage } from '@/interfaces/coffee-shop/coffee-shop-page.interface';
 import { CoffeeShopService } from '@/services/coffee-shop/coffee-shop.service';
@@ -11,20 +12,22 @@ import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
 export const useCoffeeShopListHook = () => {
-  const [{ page }, setPageableTables] = usePageSearchHook();
+  const [{ page, search }, setPageSearch] = usePageSearchHook();
+  const debouncedSearch = useSearchDebounceHook({ value: search, delay: 500 }); // 500ms de atraso
 
   const router = useRouter();
 
   const handleAdicionar = () => router.push('/coffee-shops/create/step-1');
 
   const { data: coffeeShopsData } = useQuery({
-    queryKey: ['coffeeShops', page],
+    queryKey: ['coffeeShops', page, debouncedSearch],
     queryFn: () =>
       CoffeeShopService.findAll({
         page,
-        size: 5
+        size: 5,
+        search
       }).then((data) => {
-        setPageableTables({ page: data.number });
+        setPageSearch({ page: data.number });
         return data;
       })
   });
@@ -84,6 +87,8 @@ export const useCoffeeShopListHook = () => {
     handleAdicionar,
     columns,
     rowActions,
-    coffeeShopsData
+    coffeeShopsData,
+    setPageSearch,
+    search
   };
 };
