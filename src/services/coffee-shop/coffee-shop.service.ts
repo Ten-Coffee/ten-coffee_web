@@ -11,6 +11,13 @@ const findById = async (id: string): Promise<CoffeeShopInterface> => {
   return await response.json();
 };
 
+const deleteById = async (id: number): Promise<void> => {
+  await fetch(resourceUrl + `/${id}`, {
+    method: 'DELETE'
+  });
+};
+
 export const CoffeeShopService = {
-  findById
+  findById,
+  deleteById
 };

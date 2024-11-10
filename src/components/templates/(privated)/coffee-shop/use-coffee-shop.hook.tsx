@@ -1,5 +1,6 @@
 import { CoffeeShop } from './interfaces/coffee-shop.interface';
 
+import { useDeleteModalHook } from '@/components/templates/(privated)/coffee-shop/hooks/use-delete-modal.hook';
 import { ColumnInterface } from '@/components/UI/organism/table/interfaces/column.interface';
 import { RowActionsInterface } from '@/components/UI/organism/table/interfaces/row-actions.interface';
 import { TableDataAtom } from '@/components/UI/organism/table/UI/atoms/table-data/table-data.atom';
@@ -8,6 +9,7 @@ import { useRouter } from 'next/navigation';
 
 export const useCoffeeShopListHook = () => {
   const router = useRouter();
+  const modal = useDeleteModalHook();
 
   const handleAdicionar = () => router.push('/coffee-shops/create/step-1');
 
@@ -212,10 +214,8 @@ export const useCoffeeShopListHook = () => {
       }
     },
     {
-      icon: icons.Ellipsis.Vertical,
-      onClick: (item: CoffeeShop) => {
-        console.log('More options', item);
-      }
+      icon: icons.Trash,
+      onClick: (item: CoffeeShop) => modal.onClickModal(item)
     },
     {
       icon: icons.Chevron.Right,
@@ -229,6 +229,13 @@ export const useCoffeeShopListHook = () => {
     handleAdicionar,
     columns,
     empresas,
-    rowActions
+    rowActions,
+    modal: {
+      title: modal.title,
+      isOpen: modal.isOpen,
+      toggle: modal.toggle,
+      description: modal.description,
+      mainButton: modal.mainButton
+    }
   };
 };

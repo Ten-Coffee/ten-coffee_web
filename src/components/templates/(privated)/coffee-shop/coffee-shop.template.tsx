@@ -5,11 +5,12 @@ import { useCoffeeShopListHook } from '@/components/templates/(privated)/coffee-
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { InputMolecule } from '@/components/UI/molecules/input/input.molecule';
+import { ModalOrganism } from '@/components/UI/organism/modal/modal.organism';
 import { TableOrganism } from '@/components/UI/organism/table/table.organism';
 import { icons } from '@/icons/icons';
 
 export const CoffeeShopTemplate = () => {
-  const { handleAdicionar, columns, empresas, rowActions } =
+  const { handleAdicionar, columns, empresas, rowActions, modal } =
     useCoffeeShopListHook();
 
   return (
@@ -38,6 +39,8 @@ export const CoffeeShopTemplate = () => {
         data={empresas}
         rowActions={rowActions}
       />
+
+      <ModalOrganism {...modal} />
     </>
   );
 };
