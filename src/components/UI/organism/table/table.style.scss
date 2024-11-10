@@ -1,13 +1,16 @@
-.table {
+.table-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.table-wrapper__table {
   width: auto;
   min-width: 100%;
 
   text-align: left;
-
   border-radius: var(--border-radius-md);
-
   overflow: hidden;
-
   border: none;
   border-spacing: 0;
 }
