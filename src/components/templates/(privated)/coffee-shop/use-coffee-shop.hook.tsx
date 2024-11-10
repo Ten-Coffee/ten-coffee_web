@@ -38,7 +38,7 @@ export const useCoffeeShopListHook = () => {
       key: 'id'
     },
     {
-      value: 'Nome Empresa',
+      value: 'Nome',
       key: 'name'
     },
     {
@@ -50,7 +50,7 @@ export const useCoffeeShopListHook = () => {
       key: 'email'
     },
     {
-      value: 'Nome Representante',
+      value: 'Representante',
       key: 'representativeName'
     },
     {
@@ -70,7 +70,7 @@ export const useCoffeeShopListHook = () => {
       }
     },
     {
-      icon: icons.Ellipsis.Vertical,
+      icon: icons.Trash,
       onClick: (item: CoffeeShopPage) => {
         console.log('More options', item);
       }
