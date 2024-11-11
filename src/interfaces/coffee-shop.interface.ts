@@ -1,6 +1,4 @@
-
-import { StatusType } from '@/type/status.type';
-
+import { StatusType } from '@/types/status.type';
 
 export interface CoffeeShopInterface {
   id: number;

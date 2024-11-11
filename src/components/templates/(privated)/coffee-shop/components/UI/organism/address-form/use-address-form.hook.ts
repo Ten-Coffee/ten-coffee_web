@@ -24,7 +24,7 @@ export const useAddressFormHook = () => {
 
   const handleForm: SubmitHandler<z.infer<typeof addressSchema>> = (data) => {
     updateFormData({ address: data });
-    router.push('/coffee-shops/create/step-3');
+    router.push('/coffee-shop/create/step-3');
   };
 
   const handleBack = () => router.back();
