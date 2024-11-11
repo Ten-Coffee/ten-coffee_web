@@ -1,6 +1,6 @@
 import './body.style.scss';
 
-import { Size } from '@/type/size.type';
+import { Size } from '@/types/size.type';
 import { ComponentProps } from 'react';
 
 interface BodyAtomProps extends ComponentProps<'p'> {

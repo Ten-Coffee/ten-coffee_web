@@ -6,11 +6,10 @@ import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { IconButtonAtom } from '@/components/UI/atoms/icon-button/icon-button.atom';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { icons } from '@/icons/icons';
-
 import './coffee-shop-read-by-id.styles.scss';
 
 export default function CoffeeShopReadByIdTemplate() {
-  const { goBackPage } = useCoffeeShopReadByIdHook();
+  const { goBackPage, coffeeShop, address } = useCoffeeShopReadByIdHook();
 
   return (
     <>
@@ -30,9 +29,17 @@ export default function CoffeeShopReadByIdTemplate() {
         </ButtonAtom.Wrapper>
       </div>
       <div className={'read-by-id__organism'}>
-        <ReadByIdOrganism title={'Unidade'} />
-        <ReadByIdOrganism title={'Endereço'} />
-        <ReadByIdOrganism title={'Representante'} />
+        <ReadByIdOrganism
+          title={'Unidade'}
+          data={coffeeShop.data}
+          isLoading={coffeeShop.isLoading}
+        />
+        <ReadByIdOrganism
+          title={'Endereço'}
+          data={address.data}
+          isLoading={address.isLoading}
+        />
+        {/*<ReadByIdOrganism title={'Representante'} />*/}
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import { InputMolecule } from '@/components/UI/molecules/input/input.molecule';
 import { MaskType } from '@/type/input-mask.type';
 import { Position } from '@/type/position.type';
 import { Size } from '@/type/size.type';
+
 import { ComponentProps, ElementType, forwardRef } from 'react';
 import './text-field.style.scss';
 

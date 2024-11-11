@@ -1,5 +1,6 @@
 import { BASE_URL } from '@/constants/base-url.constant';
 import { CoffeeShopInterface } from '@/interfaces/coffee-shop.interface';
+
 import { createCoffeeShopInterface } from '@/interfaces/create-coffee-shop.interface';
 
 const resourceUrl = BASE_URL + '/coffeeShops';
@@ -32,6 +33,7 @@ const findById = async (id: string): Promise<CoffeeShopInterface> => {
     const errorMessage = await response.text();
     throw new Error(errorMessage);
   }
+
 
   return await response.json();
 };

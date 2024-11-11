@@ -1,5 +1,5 @@
 import { IconButtonHierarchy } from '@/components/UI/atoms/icon-button/types/icon-button-hierarchy.type';
-import { Size } from '@/type/size.type';
+import { Size } from '@/types/size.type';
 import { ComponentProps, ElementType } from 'react';
 import './icon-button.style.scss';
 
