@@ -1,4 +1,4 @@
-import { MaskType } from '@/type/input-mask.type';
+import { MaskType } from '@/types/input-mask.type';
 
 export const MASK_PATTERN: Record<MaskType, string> = {
   cnpj: '99.999.999/9999-99',

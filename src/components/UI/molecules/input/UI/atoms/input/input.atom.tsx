@@ -1,6 +1,6 @@
 import { InputProps } from '@/components/UI/molecules/input/interfaces/input-props.interface';
 import { MASK_PATTERN } from '@/constants/input-mask-pattern.constant';
-import { MaskType } from '@/type/input-mask.type';
+import { MaskType } from '@/types/input-mask.type';
 import { forwardRef } from 'react';
 import InputMask from 'react-input-mask';
 import './input.style.scss';
