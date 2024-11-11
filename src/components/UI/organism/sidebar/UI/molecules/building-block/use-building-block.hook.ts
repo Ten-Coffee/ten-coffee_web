@@ -6,8 +6,12 @@ export const useBuildingBlockHook = () => {
 
   const navigateToLink = (path: string) => navigate.push(path);
 
-  const thisBuildingBlockIsActive = (buildingBlockPath: string) =>
-    buildingBlockPath === pathname;
+  const thisBuildingBlockIsActive = (buildingBlockPath: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [_, path] = pathname.split('/');
+
+    return buildingBlockPath === `/${path}`;
+  };
 
   return {
     navigateToLink,
