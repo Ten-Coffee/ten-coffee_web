@@ -38,6 +38,7 @@ export const UserTemplate = () => {
         columns={columns}
         data={usuarios}
         rowActions={rowActions}
+        number={0}
       />
     </>
   );
