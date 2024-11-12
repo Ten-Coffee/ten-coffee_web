@@ -1,12 +1,13 @@
 import './status.table-data.style.scss';
+import { StatusType } from '@/types/status.type';
 
 interface StatusTableDataAtomProps {
-  value: boolean;
+  value: StatusType;
 }
 
 export const StatusTableDataAtom = ({ value }: StatusTableDataAtomProps) => {
-  const status = value ? 'Ativo' : 'Inativo';
-  const className = value ? 'active' : 'inactive';
+  const status = value === 'ACTIVE' ? 'Ativo' : 'Inativo';
+  const className = value === 'ACTIVE' ? 'active' : 'inactive';
 
   return (
     <td className={'status-table-data'}>

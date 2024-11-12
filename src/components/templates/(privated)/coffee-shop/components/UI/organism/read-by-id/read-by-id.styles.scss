@@ -11,13 +11,17 @@
   justify-content: space-between;
 }
 
+.read-by-id-molecule__loading,
 .read-by-id-organism__fields {
-  display: flex;
-
   padding: 2.4rem;
-  gap: 3.2rem;
 
   border-radius: 1.2rem;
 
   background: var(--background-50, #0f172a);
+}
+
+.read-by-id-organism__fields {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 3.2rem;
 }

@@ -1,0 +1,35 @@
+.page-number-button,
+.page-number-button__selected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 3.2rem;
+  height: 3.2rem;
+
+  font-size: 1.4rem;
+  font-weight: 700;
+
+  border-radius: var(--border-radius-md);
+  border: none;
+
+  cursor: pointer;
+}
+
+.page-number-button {
+  background-color: transparent;
+
+  border: 0.1rem solid var(--green-250);
+
+  color: var(--green-250);
+
+  &:hover {
+    background-color: var(--green-opacity-00);
+  }
+}
+
+.page-number-button__selected {
+  background-color: var(--green-250);
+
+  color: var(--grayscale-00);
+}

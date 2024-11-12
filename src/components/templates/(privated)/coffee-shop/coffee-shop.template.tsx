@@ -9,14 +9,19 @@ import { TableOrganism } from '@/components/UI/organism/table/table.organism';
 import { icons } from '@/icons/icons';
 
 export const CoffeeShopTemplate = () => {
-  const { handleAdicionar, columns, empresas, rowActions } =
-    useCoffeeShopListHook();
+  const {
+    handleAdicionar,
+    columns,
+    coffeeShopsData,
+    rowActions,
+    setPageSearch,
+    search
+  } = useCoffeeShopListHook();
 
   return (
     <>
       <div className={'coffee-shop-header'}>
         <TitleAtom.Large value={'Unidades'} />
-
         <ButtonAtom.Wrapper
           hierarchy={'outlined'}
           type={'button'}
@@ -31,12 +36,16 @@ export const CoffeeShopTemplate = () => {
         icon={icons.Search}
         position={'left'}
         placeholder={'Pesquisar unidade por nome ou por CNPJ'}
+        onChange={(e) => setPageSearch({ search: e.target.value })}
+        value={search}
       />
 
       <TableOrganism
         columns={columns}
-        data={empresas}
+        data={coffeeShopsData?.content}
         rowActions={rowActions}
+        totalPages={coffeeShopsData?.totalPages}
+        number={coffeeShopsData?.number ?? 0}
       />
     </>
   );
