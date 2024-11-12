@@ -2,7 +2,7 @@
 
 import { useWrapperHook } from '@/components/UI/atoms/wrapper/use-wrapper.hook';
 import { SidebarOrganism } from '@/components/UI/organism/sidebar/sidebar.organism';
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import './wrapper.style.scss';
 
 interface WrapperAtomProps {
@@ -13,9 +13,11 @@ export const WrapperAtom = ({ children }: WrapperAtomProps) => {
   const { wrapperChildrenClass } = useWrapperHook();
 
   return (
-    <main className={'wrapper'}>
-      <SidebarOrganism />
-      <section className={wrapperChildrenClass}>{children}</section>
-    </main>
+    <Suspense>
+      <main className={'wrapper'}>
+        <SidebarOrganism />
+        <section className={wrapperChildrenClass}>{children}</section>
+      </main>
+    </Suspense>
   );
 };
