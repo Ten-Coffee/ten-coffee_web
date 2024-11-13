@@ -6,7 +6,7 @@ import { TableDataAtom } from '@/components/UI/organism/table/UI/atoms/table-dat
 import { Fragment, ReactNode } from 'react';
 
 interface TableBodyMoleculeProps<T> {
-  data: T[];
+  data: T[] | undefined;
   columns: ColumnInterface<T>[];
   rowActions?: RowActionsInterface<T>[];
 }
@@ -25,28 +25,29 @@ export const TableBodyMolecule = <T,>({
           </tr>
         ))}
 
-      {data.map((item, index) => (
-        <tr className="table-row" key={index}>
-          {columns.map(({ key, render }, columnIndex) => (
-            <Fragment key={columnIndex}>
-              {render ? (
-                render(item)
-              ) : (
-                <TableDataAtom.Default value={item[key] as ReactNode} />
-              )}
-            </Fragment>
-          ))}
+      {data &&
+        data.map((item, index) => (
+          <tr className="table-row" key={index}>
+            {columns.map(({ key, render }, columnIndex) => (
+              <Fragment key={columnIndex}>
+                {render ? (
+                  render(item)
+                ) : (
+                  <TableDataAtom.Default value={item[key] as ReactNode} />
+                )}
+              </Fragment>
+            ))}
 
-          {rowActions?.map(({ icon, onClick, condition }, index) => (
-            <TableDataAtom.Icon
-              icon={icon}
-              onClick={() => onClick(item)}
-              disabled={condition && !condition(item)}
-              key={index}
-            />
-          ))}
-        </tr>
-      ))}
+            {rowActions?.map(({ icon, onClick, condition }, index) => (
+              <TableDataAtom.Icon
+                icon={icon}
+                onClick={() => onClick(item)}
+                disabled={condition && !condition(item)}
+                key={index}
+              />
+            ))}
+          </tr>
+        ))}
     </tbody>
   );
 };

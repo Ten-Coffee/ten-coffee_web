@@ -1,0 +1,13 @@
+.tab-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+.tab-group__tabs-container {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+
+  border-bottom: 0.1rem solid var(--background-150);
+}

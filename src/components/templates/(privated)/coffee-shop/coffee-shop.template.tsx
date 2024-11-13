@@ -37,6 +37,7 @@ export const CoffeeShopTemplate = () => {
         columns={columns}
         data={empresas}
         rowActions={rowActions}
+        number={0}
       />
     </>
   );
