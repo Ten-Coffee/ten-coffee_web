@@ -1,51 +1,51 @@
-'use client';
-
 import { useRepresentativeFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/representative-form/use-representative-form.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
+import { PasswordTextFieldMolecule } from '@/components/UI/molecules/password-text-field/password-text-field.molecule';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
 import './representative-form.styles.scss';
 
 export const RepresentativeFormOrganism = () => {
   const { handleSubmit, register, errors, handleForm, handleBack } =
     useRepresentativeFormHook();
-
   return (
     <form onSubmit={handleSubmit(handleForm)} className={'representative-form'}>
       <div className={'representative-form__fields'}>
         <TextFieldMolecule
-          {...register('representativeName')}
+          {...register('name')}
           label={'Nome'}
           placeholder={'Lorem Ipsum'}
-          error={!!errors.representativeName}
-          helperText={errors.representativeName?.message}
+          error={!!errors.name}
+          helperText={errors.name?.message}
         />
         <TextFieldMolecule
-          {...register('representativeEmail')}
-          label={'E-mail'}
-          placeholder={'lorem-ipsum@mail.com'}
-          error={!!errors.representativeEmail}
-          helperText={errors.representativeEmail?.message}
+          {...register('email')}
+          label={'Email'}
+          placeholder={'loremipsum@gmail.com'}
+          error={!!errors.email}
+          helperText={errors.email?.message}
+        />
+
+        <PasswordTextFieldMolecule
+          {...register('password')}
+          label={'Senha do Usuário'}
+          error={!!errors.password}
+          helperText={errors.password?.message}
         />
         <TextFieldMolecule
           {...register('phone')}
           label={'Telefone'}
-          placeholder={'44999999999'}
+          placeholder={'(44)99999-9999'}
           error={!!errors.phone}
           helperText={errors.phone?.message}
+          mask={'phone'}
         />
         <TextFieldMolecule
           {...register('cpf')}
           label={'CPF'}
-          placeholder={'00000000000'}
+          placeholder={'000.000.000-00'}
           error={!!errors.cpf}
           helperText={errors.cpf?.message}
-        />
-        <TextFieldMolecule
-          {...register('birthDate')}
-          label={'Data de Nascimento'}
-          placeholder={'00/00/0000'}
-          error={!!errors.birthDate}
-          helperText={errors.birthDate?.message}
+          mask={'cpf'}
         />
       </div>
 
@@ -57,7 +57,6 @@ export const RepresentativeFormOrganism = () => {
         >
           Voltar
         </ButtonAtom.Wrapper>
-
         <ButtonAtom.Wrapper hierarchy={'enabled'} type={'submit'}>
           Continuar
         </ButtonAtom.Wrapper>
