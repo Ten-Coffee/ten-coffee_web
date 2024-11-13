@@ -1,5 +1,6 @@
 'use client';
 
+import { useDeleteModalHook } from '@/components/templates/(privated)/coffee-shop/hooks/use-delete-modal.hook';
 import { ColumnInterface } from '@/components/UI/organism/table/interfaces/column.interface';
 import { RowActionsInterface } from '@/components/UI/organism/table/interfaces/row-actions.interface';
 import { TableDataAtom } from '@/components/UI/organism/table/UI/atoms/table-data/table-data.atom';
@@ -16,6 +17,7 @@ export const useCoffeeShopListHook = () => {
   const debouncedSearch = useSearchDebounceHook({ value: search, delay: 500 }); // 500ms de atraso
 
   const router = useRouter();
+  const modal = useDeleteModalHook();
 
   const handleAdicionar = () => router.push('/coffee-shops/create/step-1');
 
@@ -71,9 +73,7 @@ export const useCoffeeShopListHook = () => {
     },
     {
       icon: icons.Trash,
-      onClick: (item: CoffeeShopPage) => {
-        console.log('More options', item);
-      }
+      onClick: (item: CoffeeShopPage) => modal.onClickModal(item)
     },
     {
       icon: icons.Chevron.Right,
@@ -89,6 +89,13 @@ export const useCoffeeShopListHook = () => {
     rowActions,
     coffeeShopsData,
     setPageSearch,
-    search
+    search,
+    modal: {
+      title: modal.title,
+      isOpen: modal.isOpen,
+      toggle: modal.toggle,
+      description: modal.description,
+      mainButton: modal.mainButton
+    }
   };
 };
