@@ -14,7 +14,8 @@ import {
   Plus,
   Search,
   Trash,
-  Users
+  Users,
+  X
 } from 'lucide-react';
 
 export const icons = {
@@ -41,5 +42,6 @@ export const icons = {
   Search,
   Users,
   Trash,
-  Loading: LoaderCircle
+  Loading: LoaderCircle,
+  X
 };
