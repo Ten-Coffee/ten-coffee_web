@@ -11,6 +11,7 @@ type CoffeeShopFormData = {
   address: z.infer<typeof addressSchema>;
   representative: z.infer<typeof representativeSchema>;
 };
+
 type FormStore = {
   formData: CoffeeShopFormData;
   updateFormData: (data: Partial<CoffeeShopFormData>) => void;
@@ -57,7 +58,7 @@ export const useFormStore = create<FormStore>((set, get) => ({
     address: {
       street: '',
       number: '',
-      additionalInformation: '',
+      complement: '',
       neighborhood: '',
       city: '',
       state: '',
@@ -65,7 +66,7 @@ export const useFormStore = create<FormStore>((set, get) => ({
     },
     representative: {
       name: '',
-      email: '',
+      login: '',
       password: '',
       phone: '',
       cpf: ''
@@ -96,7 +97,7 @@ export const useFormStore = create<FormStore>((set, get) => ({
       contractEnd: coffeeShop.contractEnd,
       user: {
         name: representative.name,
-        login: representative.email,
+        login: representative.login,
         userPermissionEnum: 'REPRESENTATIVE',
         password: representative.password,
         phone: representative.phone,

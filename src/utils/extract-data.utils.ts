@@ -1,13 +1,12 @@
+import { labelMapping } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision-section/utils/LabelMapping';
+import { DataItem } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/interfaces/data-item.interface';
 import {
   formatCEP,
   formatCNPJ,
   formatCPF,
   formatDate,
   formatPhone
-} from './formatters.utils';
-
-import { labelMapping } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision-section/utils/LabelMapping';
-import { DataItem } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/interfaces/data-item.interface';
+} from '@/utils/formatter.utils';
 
 export const extractData = (data: Record<string, unknown>): DataItem[] => {
   return Object.entries(data)

@@ -18,7 +18,6 @@ export const AddressFormOrganism = () => {
           placeholder={'99999-999'}
           error={!!errors.zipCode}
           helperText={errors.zipCode?.message}
-          mask={'cep'}
         />
         <TextFieldMolecule
           {...register('street')}

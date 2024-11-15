@@ -4,7 +4,6 @@ import { MaskType } from '@/types/input-mask.type';
 import { Position } from '@/types/position.type';
 import { Size } from '@/types/size.type';
 import { ComponentProps, ElementType, forwardRef } from 'react';
-
 import './text-field.style.scss';
 
 interface TextFieldProps extends ComponentProps<'input'> {
