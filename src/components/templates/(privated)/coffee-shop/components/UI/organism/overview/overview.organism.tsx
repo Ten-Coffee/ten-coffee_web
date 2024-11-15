@@ -1,7 +1,7 @@
 import './overview.styles.scss';
 
 import { useOverviewHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/overview/use-overview.hook';
-import { ReadByIdOrganism } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/read-by-id/read-by-id.organism';
+import { DetailsViewOrganism } from '@/components/UI/organism/details-view/details-view.organism';
 
 export const OverviewOrganism = () => {
   const { coffeeShop, address } = useOverviewHook();
@@ -9,12 +9,12 @@ export const OverviewOrganism = () => {
   return (
     <>
       <div className={'overview-organism'}>
-        <ReadByIdOrganism
+        <DetailsViewOrganism
           title={'Unidade'}
           data={coffeeShop.data}
           isLoading={coffeeShop.isLoading}
         />
-        <ReadByIdOrganism
+        <DetailsViewOrganism
           title={'Endereço'}
           data={address.data}
           isLoading={address.isLoading}

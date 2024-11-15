@@ -21,6 +21,13 @@ const findAll = async (
   return await response.json();
 };
 
+const findById = async (id: string): Promise<UsersInterface> => {
+  const response = await fetch(resourceUrl + '/' + id);
+
+  return await response.json();
+};
+
 export const UsersService = {
-  findAll
+  findAll,
+  findById
 };

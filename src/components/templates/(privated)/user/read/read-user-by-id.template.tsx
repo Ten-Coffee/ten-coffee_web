@@ -1,29 +1,16 @@
 'use client';
 
-import { OverviewOrganism } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/overview/overview.organism';
 import { useCoffeeShopReadByIdHook } from '@/components/templates/(privated)/coffee-shop/read/use-coffee-shop-read-by-id.hook';
-import { UserDataTableOrganism } from '@/components/templates/(privated)/user/components/UI/organism/user-data-table/user-data-table.organism';
+import { useReadUserByIdHook } from '@/components/templates/(privated)/user/read/use-read-user-by-id.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { IconButtonAtom } from '@/components/UI/atoms/icon-button/icon-button.atom';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
-import { TabGroupMolecule } from '@/components/UI/molecules/tab-group/tab-group.molecule';
+import { DetailsViewOrganism } from '@/components/UI/organism/details-view/details-view.organism';
 import { icons } from '@/icons/icons';
 
-export default function CoffeeShopReadByIdTemplate() {
+export const ReadUserByIdTemplate = () => {
   const { goBackPage } = useCoffeeShopReadByIdHook();
-
-  const tabs = [
-    {
-      name: 'Visão Geral',
-      value: 'overview',
-      children: <OverviewOrganism />
-    },
-    {
-      name: 'Usuários',
-      value: 'users',
-      children: <UserDataTableOrganism />
-    }
-  ];
+  const { data, isLoading } = useReadUserByIdHook();
 
   return (
     <>
@@ -35,15 +22,19 @@ export default function CoffeeShopReadByIdTemplate() {
             hierarchy={'ghosted'}
             size={'large'}
           />
-          <TitleAtom.Large value={'Cafeteria'} />
+          <TitleAtom.Large value={data[0].value ?? 'Carregando...'} />
         </div>
         <ButtonAtom.Wrapper hierarchy={'outlined'} type={'submit'}>
           <ButtonAtom.Icon icon={icons.Trash}></ButtonAtom.Icon>
-          Inativar Unidade
+          Inativar Usuário
         </ButtonAtom.Wrapper>
       </div>
 
-      <TabGroupMolecule tabs={tabs} />
+      <DetailsViewOrganism
+        title={'Usuário'}
+        data={data}
+        isLoading={isLoading}
+      />
     </>
   );
-}
+};

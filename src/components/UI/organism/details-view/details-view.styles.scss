@@ -1,18 +1,18 @@
-.read-by-id-organism {
+.details-view {
   display: flex;
   flex-direction: column;
 
   gap: 2.4rem;
 }
 
-.read-by-id-organism__title {
+.details-view__title {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.read-by-id-molecule__loading,
-.read-by-id-organism__fields {
+.details-view__loading,
+.details-view__fields {
   padding: 2.4rem;
 
   border-radius: 1.2rem;
@@ -20,7 +20,7 @@
   background: var(--background-50, #0f172a);
 }
 
-.read-by-id-organism__fields {
+.details-view__fields {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 3.2rem;
