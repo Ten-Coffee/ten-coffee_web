@@ -1,5 +1,4 @@
-import { User } from './interface/users.interface';
-
+import { User } from '@/components/templates/(privated)/user/interface/users.interface';
 import { ColumnInterface } from '@/components/UI/organism/table/interfaces/column.interface';
 import { RowActionsInterface } from '@/components/UI/organism/table/interfaces/row-actions.interface';
 import { TableDataAtom } from '@/components/UI/organism/table/UI/atoms/table-data/table-data.atom';
@@ -85,8 +84,8 @@ export const useUserListHook = () => {
 
   return {
     handleAdicionar,
-    columns,
+    rowActions,
     usuarios,
-    rowActions
+    columns
   };
 };

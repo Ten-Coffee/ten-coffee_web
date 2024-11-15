@@ -1,0 +1,34 @@
+.tab-wrapper,
+.tab-wrapper__active {
+  background-color: transparent;
+
+  padding: 0 0.8rem 0.8rem 0.8rem;
+
+  border: none;
+
+  font-size: 1.6rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  &:hover {
+    transition: var(--transition-default);
+  }
+}
+
+.tab-wrapper {
+  color: var(--grayscale-250);
+
+  &:hover {
+    color: var(--grayscale-250);
+  }
+}
+
+.tab-wrapper__active {
+  color: var(--green-200);
+  border-bottom: 0.1rem solid var(--green-250);
+
+  &:hover {
+    color: var(--green-300);
+  }
+}

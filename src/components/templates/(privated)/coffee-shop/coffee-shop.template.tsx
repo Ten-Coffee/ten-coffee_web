@@ -24,6 +24,7 @@ export const CoffeeShopTemplate = () => {
     <>
       <div className={'coffee-shop-header'}>
         <TitleAtom.Large value={'Unidades'} />
+
         <ButtonAtom.Wrapper
           hierarchy={'outlined'}
           type={'button'}
