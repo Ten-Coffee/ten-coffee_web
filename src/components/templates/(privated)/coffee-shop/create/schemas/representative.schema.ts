@@ -1,10 +1,9 @@
 import { z } from 'zod';
 
 export const representativeSchema = z.object({
-  representativeName: z
-    .string()
-    .min(2, 'O nome deve ter pelo menos 2 caracteres'),
-  representativeEmail: z.string().email('E-mail inválido'),
+  name: z.string().min(2, 'O nome deve ter pelo menos 2 caracteres'),
+  login: z.string().email('E-mail inválido'),
+  password: z.string().min(8).max(20),
   phone: z
     .string()
     .min(10, 'O telefone deve ter pelo menos 10 caracteres')
@@ -15,9 +14,5 @@ export const representativeSchema = z.object({
   cpf: z
     .string()
     .length(11, 'O CPF deve ter exatamente 11 dígitos')
-    .regex(/^\d{11}$/, 'Formato de CPF inválido'),
-  birthDate: z.string().refine((date) => {
-    const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
-    return regex.test(date);
-  }, 'Data de nascimento inválida. Use o formato DD/MM/AAAA.')
+    .regex(/^\d{11}$/, 'Formato de CPF inválido')
 });

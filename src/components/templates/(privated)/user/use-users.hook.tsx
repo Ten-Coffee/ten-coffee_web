@@ -1,5 +1,4 @@
-import { User } from './interface/users.interface';
-
+import { User } from '@/components/templates/(privated)/user/interface/users.interface';
 import { ColumnInterface } from '@/components/UI/organism/table/interfaces/column.interface';
 import { RowActionsInterface } from '@/components/UI/organism/table/interfaces/row-actions.interface';
 import { TableDataAtom } from '@/components/UI/organism/table/UI/atoms/table-data/table-data.atom';
@@ -48,7 +47,7 @@ export const useUserListHook = () => {
       permissionamento: 'Administrador',
       email: 'alice@empresa.com',
       unidade: 'Unidade Central',
-      status: true
+      status: 'ACTIVE'
     },
     {
       id: 2,
@@ -56,7 +55,7 @@ export const useUserListHook = () => {
       permissionamento: 'Bar',
       email: 'carlos@empresa.com',
       unidade: 'Unidade Oeste',
-      status: false
+      status: 'INACTIVE'
     },
     {
       id: 3,
@@ -64,7 +63,7 @@ export const useUserListHook = () => {
       permissionamento: 'Cozinha',
       email: 'Teste1000@empresa.com',
       unidade: 'TenCoffeee',
-      status: true
+      status: 'ACTIVE'
     }
   ];
 
@@ -85,8 +84,8 @@ export const useUserListHook = () => {
 
   return {
     handleAdicionar,
-    columns,
+    rowActions,
     usuarios,
-    rowActions
+    columns
   };
 };

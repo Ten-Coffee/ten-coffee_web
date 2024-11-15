@@ -1,5 +1,3 @@
-'use client';
-
 import { useRepresentativeFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/representative-form/use-representative-form.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
@@ -8,23 +6,22 @@ import './representative-form.styles.scss';
 export const RepresentativeFormOrganism = () => {
   const { handleSubmit, register, errors, handleForm, handleBack } =
     useRepresentativeFormHook();
-
   return (
     <form onSubmit={handleSubmit(handleForm)} className={'representative-form'}>
       <div className={'representative-form__fields'}>
         <TextFieldMolecule
-          {...register('representativeName')}
+          {...register('name')}
           label={'Nome'}
           placeholder={'Lorem Ipsum'}
-          error={!!errors.representativeName}
-          helperText={errors.representativeName?.message}
+          error={!!errors.name}
+          helperText={errors.name?.message}
         />
         <TextFieldMolecule
-          {...register('representativeEmail')}
+          {...register('login')}
           label={'E-mail'}
           placeholder={'lorem-ipsum@mail.com'}
-          error={!!errors.representativeEmail}
-          helperText={errors.representativeEmail?.message}
+          error={!!errors.login}
+          helperText={errors.login?.message}
         />
         <TextFieldMolecule
           {...register('phone')}
@@ -40,13 +37,6 @@ export const RepresentativeFormOrganism = () => {
           error={!!errors.cpf}
           helperText={errors.cpf?.message}
         />
-        <TextFieldMolecule
-          {...register('birthDate')}
-          label={'Data de Nascimento'}
-          placeholder={'00/00/0000'}
-          error={!!errors.birthDate}
-          helperText={errors.birthDate?.message}
-        />
       </div>
 
       <div className={'representative-form__buttons'}>
@@ -57,7 +47,6 @@ export const RepresentativeFormOrganism = () => {
         >
           Voltar
         </ButtonAtom.Wrapper>
-
         <ButtonAtom.Wrapper hierarchy={'enabled'} type={'submit'}>
           Continuar
         </ButtonAtom.Wrapper>
