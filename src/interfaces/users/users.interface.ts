@@ -8,4 +8,6 @@ export interface UsersInterface {
   login: string;
   coffeeShopName: string;
   status: StatusType;
+  phone?: string;
+  cpf?: string;
 }

@@ -1,25 +1,25 @@
-import { ReadByIdType } from '@/components/templates/(privated)/coffee-shop/read/types/read-by-id.type';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { LoadingAtom } from '@/components/UI/atoms/loading/loading.atom';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
-import { CoffeeShopReadByIdMolecule } from '@/components/UI/molecules/read-by-id/coffee-shop-read-by-id.molecule';
+import { DetailLabelValueMolecule } from '@/components/UI/molecules/detail-label-value/detail-label-value.molecule';
 import { icons } from '@/icons/icons';
-import './read-by-id.styles.scss';
+import { ReadByIdType } from '@/types/read-by-id.type';
+import './details-view.styles.scss';
 
-interface ReadByIdOrganismProps {
+interface DetailsViewOrganismProps {
   title: string;
   data: ReadByIdType[];
   isLoading: boolean;
 }
 
-export const ReadByIdOrganism = ({
+export const DetailsViewOrganism = ({
   title,
   data,
   isLoading
-}: ReadByIdOrganismProps) => {
+}: DetailsViewOrganismProps) => {
   return (
-    <div className={'read-by-id-organism'}>
-      <div className={'read-by-id-organism__title'}>
+    <div className={'details-view'}>
+      <div className={'details-view__title'}>
         <TitleAtom.Large value={title} />
         <ButtonAtom.Wrapper hierarchy={'outlined'}>
           <ButtonAtom.Icon icon={icons.Edit} />
@@ -27,13 +27,13 @@ export const ReadByIdOrganism = ({
         </ButtonAtom.Wrapper>
       </div>
       {isLoading ? (
-        <div className={'read-by-id-molecule__loading'}>
+        <div className={'details-view__loading'}>
           <LoadingAtom />
         </div>
       ) : (
-        <div className={'read-by-id-organism__fields'}>
+        <div className={'details-view__fields'}>
           {data.map((data, index) => (
-            <CoffeeShopReadByIdMolecule {...data} key={index} />
+            <DetailLabelValueMolecule {...data} key={index} />
           ))}
         </div>
       )}
