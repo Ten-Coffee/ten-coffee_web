@@ -26,16 +26,18 @@ export const RepresentativeFormOrganism = () => {
         <TextFieldMolecule
           {...register('phone')}
           label={'Telefone'}
-          placeholder={'44999999999'}
+          placeholder={'(44) 9 9999-9999'}
+          mask={'phone'}
           error={!!errors.phone}
           helperText={errors.phone?.message}
         />
         <TextFieldMolecule
           {...register('cpf')}
           label={'CPF'}
-          placeholder={'00000000000'}
+          placeholder={'000.000.000-00'}
           error={!!errors.cpf}
           helperText={errors.cpf?.message}
+          mask={'cpf'}
         />
       </div>
 

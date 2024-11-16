@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 export const useCoffeeShopFormHook = () => {
-  const { updateFormData } = useFormStore();
+  const { updateFormData, formData } = useFormStore();
   const router = useRouter();
 
   const {
@@ -17,7 +17,8 @@ export const useCoffeeShopFormHook = () => {
     resolver: zodResolver(coffeeShopSchema),
     mode: 'all',
     reValidateMode: 'onChange',
-    criteriaMode: 'all'
+    criteriaMode: 'all',
+    defaultValues: formData.coffeeShop
   });
 
   const handleForm: SubmitHandler<z.infer<typeof coffeeShopSchema>> = (

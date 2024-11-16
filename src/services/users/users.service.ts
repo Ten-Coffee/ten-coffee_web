@@ -8,14 +8,17 @@ const resourceUrl = BASE_URL + '/users';
 
 const findAll = async (
   { page = 0, size = 10, search = '' }: PageParamsInterface,
-  coffeeShopId: string
+  coffeeShopId?: string
 ): Promise<PageableInterface<UsersInterface>> => {
   const urlParams = new URLSearchParams({
     page: page.toString(),
     size: size.toString(),
-    coffeeShopId,
     search
   });
+
+  if (coffeeShopId) {
+    urlParams.append('coffeeShopId', coffeeShopId);
+  }
 
   const response = await fetch(resourceUrl + '?' + urlParams.toString());
 

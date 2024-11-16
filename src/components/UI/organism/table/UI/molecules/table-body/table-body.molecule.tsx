@@ -20,11 +20,10 @@ export const TableBodyMolecule = <T,>({
     <tbody>
       {data?.length === 0 ||
         (!data && (
-          <tr>
-            <td colSpan={columns.length}>Nenhum registro encontrado</td>
+          <tr className={'row-without-data'}>
+            <td colSpan={columns.length + 2}>Nenhum registro encontrado</td>
           </tr>
         ))}
-
       {data &&
         data.map((item, index) => (
           <tr className="table-row" key={index}>
@@ -37,7 +36,6 @@ export const TableBodyMolecule = <T,>({
                 )}
               </Fragment>
             ))}
-
             {rowActions?.map(({ icon, onClick, condition }, index) => (
               <TableDataAtom.Icon
                 icon={icon}

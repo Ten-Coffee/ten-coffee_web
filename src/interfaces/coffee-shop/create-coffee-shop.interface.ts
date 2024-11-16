@@ -10,7 +10,6 @@ export interface CreateCoffeeShopInterface {
     name: string;
     login: string;
     userPermissionEnum: string;
-    password: string;
     phone: string;
     cpf: string;
   };
