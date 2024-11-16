@@ -1,37 +1,25 @@
 'use client';
 
-import { labelMapping } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision-section/utils/LabelMapping';
-import { DataItem } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/interfaces/data-item.interface';
 import { useFormStore } from '@/components/templates/(privated)/coffee-shop/create/store/coffee-shop-store';
+import { CoffeeShopService } from '@/services/coffee-shop/coffee-shop.service';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 export const useDataRevisionFormHook = () => {
   const router = useRouter();
-  const { formData } = useFormStore();
-
-  const { coffeeShop, address, representative } = formData;
+  const { formatData, formData, extractData } = useFormStore();
+  const { coffeeShop, representative, address } = formData;
+  const requestData = formatData();
 
   const mutation = useMutation({
-    mutationFn: async () => {
-      const response = await fetch('https://seu-backend.com/api/cadastrar', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-      if (!response.ok) {
-        throw new Error('Erro ao cadastrar');
-      }
-      return response.json();
-    },
+    mutationFn: () => CoffeeShopService.create(requestData),
     onSuccess: () => {
-      router.push('/coffee-shop/');
+      toast.success('Cafeteria cadastrada com sucesso!');
+      router.push('/coffee-shops');
     },
-    onError: (error) => {
-      console.error('Erro ao cadastrar:', error);
-    }
+    onError: (error) =>
+      toast.error('Erro ao cadastrar cafeteria: ' + error.message)
   });
 
   const handleBack = () => {
@@ -40,17 +28,6 @@ export const useDataRevisionFormHook = () => {
 
   const handleCreate = () => {
     mutation.mutate();
-  };
-
-  const extractData = (data: Record<string, unknown>): DataItem[] => {
-    return Object.entries(data)
-      .filter(([, value]) => value !== undefined && value !== '')
-      .map(([key, value]) => {
-        return {
-          label: labelMapping[key] || key,
-          value: String(value)
-        };
-      });
   };
 
   return {
