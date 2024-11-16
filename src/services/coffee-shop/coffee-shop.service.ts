@@ -1,4 +1,3 @@
-import { BASE_URL } from '@/constants/base-url.constant';
 import { CoffeeShopPage } from '@/interfaces/coffee-shop/coffee-shop-page.interface';
 import { CoffeeShopSummaryInterface } from '@/interfaces/coffee-shop/coffee-shop-summary.interface';
 import { CoffeeShopInterface } from '@/interfaces/coffee-shop/coffee-shop.interface';
@@ -8,7 +7,7 @@ import { PageParamsInterface } from '@/interfaces/page-params.interface';
 import { PageableInterface } from '@/interfaces/pageable.interface';
 import { SelectOptionsInterface } from '@/interfaces/select-options.interface';
 
-const resourceUrl = BASE_URL + '/coffeeShops';
+const resourceUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/coffeeShops`;
 
 const create = async (data: CreateCoffeeShopInterface): Promise<void> => {
   const response = await fetch(resourceUrl, {
