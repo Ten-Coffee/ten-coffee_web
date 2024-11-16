@@ -1,32 +1,32 @@
 import { LabelAtom } from '@/components/UI/atoms/typography/label/label.atom';
 import { InputMolecule } from '@/components/UI/molecules/input/input.molecule';
-import { MaskType } from '@/types/input-mask.type';
-import { Position } from '@/types/position.type';
+import { SelectOptionsInterface } from '@/interfaces/select-options.interface';
 import { Size } from '@/types/size.type';
-import { ComponentProps, ElementType, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 
-interface TextFieldProps extends ComponentProps<'input'> {
+interface SelectFieldMoleculeProps
+  extends Omit<ComponentProps<'input'>, 'onChange' | 'value'> {
   label: string;
-  icon?: ElementType;
-  position?: Position;
   labelSize?: Size;
   helperText?: string;
   error?: boolean;
-  mask?: MaskType;
+  options: SelectOptionsInterface[];
+  value?: string | number;
+  onChange?: (value: string | number) => void;
 }
 
-export const PasswordTextFieldMolecule = forwardRef<
-  HTMLInputElement,
-  TextFieldProps
+export const SelectFieldMolecule = forwardRef<
+  HTMLDivElement,
+  SelectFieldMoleculeProps
 >(function TextField(
   {
     label,
     labelSize = 'medium',
-    icon: Icon,
-    position,
     helperText,
     error,
-    mask,
+    options,
+    value,
+    onChange,
     ...rest
   },
   ref
@@ -34,11 +34,11 @@ export const PasswordTextFieldMolecule = forwardRef<
   return (
     <div>
       <LabelAtom value={label} size={labelSize} />
-      <InputMolecule.Password
-        icon={Icon}
-        position={position}
+      <InputMolecule.Select
+        value={value}
+        onChange={onChange}
+        options={options}
         ref={ref}
-        mask={mask}
         aria-invalid={error}
         {...rest}
       />

@@ -19,6 +19,54 @@
   font-family: $main-font;
 }
 
+.error-text {
+  color: var(--red-300);
+
+  font-size: 1.25rem;
+}
+
+::-webkit-scrollbar {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-50);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--background-100);
+  border-radius: var(--border-radius-xs);
+}
+
+.data-revision-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+
+  flex-grow: 1;
+}
+
+.data-revision-section__fields-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+
+  border-radius: var(--border-radius-md);
+
+  padding: 2.4rem;
+
+  background: var(--background-50);
+}
+
+.data-revision-section__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 2.4rem;
+}
+
 .read-by-id__header {
   display: flex;
   justify-content: space-between;

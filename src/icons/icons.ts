@@ -1,10 +1,12 @@
 import {
   Building,
   Check,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  ChevronUp,
   EllipsisVertical,
   Eye,
   EyeOff,
@@ -23,8 +25,10 @@ export const icons = {
   Home: Home,
   Buildings: Building,
   Chevron: {
+    Up: ChevronUp,
     Left: ChevronLeft,
-    Right: ChevronRight
+    Right: ChevronRight,
+    Down: ChevronDown
   },
   Chevrons: {
     Right: ChevronsRight,
