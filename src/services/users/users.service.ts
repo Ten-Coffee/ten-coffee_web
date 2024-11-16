@@ -22,6 +22,12 @@ const findAll = async (
   return await response.json();
 };
 
+const findById = async (id: string): Promise<UsersInterface> => {
+  const response = await fetch(resourceUrl + '/' + id);
+
+  return await response.json();
+};
+
 const create = async (data: CreateUsersInterface): Promise<void> => {
   const response = await fetch(resourceUrl, {
     method: 'POST',
@@ -36,5 +42,6 @@ const create = async (data: CreateUsersInterface): Promise<void> => {
 
 export const UsersService = {
   findAll,
-  create
+  create,
+  findById
 };

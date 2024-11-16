@@ -75,10 +75,8 @@ export const useUserDataTableHook = () => {
       }
     },
     {
-      icon: icons.Ellipsis.Vertical,
-      onClick: (item: UsersInterface) => {
-        console.log('More options', item);
-      }
+      icon: icons.Chevron.Right,
+      onClick: (item: UsersInterface) => router.push(`/users/read/${item.id}`)
     }
   ];
 
