@@ -19,6 +19,11 @@
   &::placeholder {
     color: var(--grayscale-250);
   }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
 .input-atom__icon-left {

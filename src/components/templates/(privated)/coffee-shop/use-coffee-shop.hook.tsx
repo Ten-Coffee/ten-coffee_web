@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 
 export const useCoffeeShopListHook = () => {
   const [{ page, search }, setPageSearch] = usePageSearchHook();
-  const debouncedSearch = useSearchDebounceHook({ value: search, delay: 500 }); // 500ms de atraso
+  const debouncedSearch = useSearchDebounceHook({ value: search, delay: 500 });
 
   const router = useRouter();
   const modal = useDeleteModalHook();

@@ -8,26 +8,29 @@ import {
   formatPhone
 } from '@/utils/formatter.utils';
 
+const formatterMapping: Record<string, (value: string) => string> = {
+  cpf: formatCPF,
+  cnpj: formatCNPJ,
+  phone: formatPhone,
+  phoneNumber: formatPhone,
+  zipCode: formatCEP,
+  contractStart: formatDate,
+  contractEnd: formatDate
+};
+
 export const extractData = (data: Record<string, unknown>): DataItem[] => {
+  const keysToExclude = ['userPermissionEnum'];
+
   return Object.entries(data)
     .filter(
-      ([key]) =>
-        key !== 'userPermissionEnum' &&
-        key !== 'password' &&
-        data[key] !== undefined &&
-        data[key] !== ''
+      ([key, value]) =>
+        !keysToExclude.includes(key) && value !== undefined && value !== ''
     )
     .map(([key, value]) => {
-      let formattedValue = String(value);
-
-      if (key === 'cpf') formattedValue = formatCPF(formattedValue);
-      if (key === 'cnpj') formattedValue = formatCNPJ(formattedValue);
-      if (key === 'phone' || key === 'phoneNumber')
-        formattedValue = formatPhone(formattedValue);
-      if (key === 'zipCode') formattedValue = formatCEP(formattedValue);
-      if (key === 'contractStart' || key === 'contractEnd') {
-        formattedValue = formatDate(formattedValue);
-      }
+      const formatter = formatterMapping[key];
+      const formattedValue = formatter
+        ? formatter(String(value))
+        : String(value);
 
       return {
         label: labelMapping[key] || key,
