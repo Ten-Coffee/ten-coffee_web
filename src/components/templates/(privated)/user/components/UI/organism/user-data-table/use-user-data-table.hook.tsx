@@ -23,7 +23,7 @@ export const useUserDataTableHook = () => {
     queryFn: () =>
       UsersService.findAll(
         {
-          page: 0,
+          page,
           size: 10,
           search
         },
