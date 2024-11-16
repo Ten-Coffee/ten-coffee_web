@@ -19,5 +19,11 @@ export const labelMapping: Record<string, string> = {
   representativeEmail: 'E-mail',
   phone: 'Telefone',
   cpf: 'CPF',
-  birthDate: 'Data de Nascimento'
+  birthDate: 'Data de Nascimento',
+
+  userName: 'Nome',
+  coffeeShop: 'Cafeteria',
+  permission: 'Permissão',
+  login: 'Login',
+  password: 'Senha'
 };

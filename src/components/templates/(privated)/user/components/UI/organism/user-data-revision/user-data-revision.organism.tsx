@@ -1,22 +1,20 @@
 'use client';
 
-import { useDataRevisionFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision-section/use-data-revision-section-form.hook';
 import { DataRevisionOrganism } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/data-revision.organism';
+import { useUserDataRevisionHook } from '@/components/templates/(privated)/user/components/UI/organism/user-data-revision/use-user-data-revision.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { DiviserAtom } from '@/components/UI/atoms/diviser/diviser.atom';
 
-export const DataRevisionSectionOrganism = () => {
-  const { coffeeShop, address, representative, handleBack, handleCreate } =
-    useDataRevisionFormHook();
+export const UserDataRevisionOrganism = () => {
+  const { handleBack, user, credentials, createUser } =
+    useUserDataRevisionHook();
 
   return (
     <div className={'data-revision-section'}>
       <div className={'data-revision-section__fields-section'}>
-        <DataRevisionOrganism title={'Cafeteria'} data={coffeeShop} />
+        <DataRevisionOrganism title={'Usuário'} data={user} />
         <DiviserAtom />
-        <DataRevisionOrganism title={'Endereço'} data={address} />
-        <DiviserAtom />
-        <DataRevisionOrganism title={'Representante'} data={representative} />
+        <DataRevisionOrganism title={'Credenciais'} data={credentials} />
       </div>
 
       <div className={'data-revision-section__buttons'}>
@@ -30,7 +28,7 @@ export const DataRevisionSectionOrganism = () => {
         <ButtonAtom.Wrapper
           hierarchy={'enabled'}
           type={'button'}
-          onClick={handleCreate}
+          onClick={createUser}
         >
           Cadastrar
         </ButtonAtom.Wrapper>

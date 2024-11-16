@@ -1,9 +1,11 @@
 import { BASE_URL } from '@/constants/base-url.constant';
 import { CoffeeShopPage } from '@/interfaces/coffee-shop/coffee-shop-page.interface';
+import { CoffeeShopSummaryInterface } from '@/interfaces/coffee-shop/coffee-shop-summary.interface';
 import { CoffeeShopInterface } from '@/interfaces/coffee-shop/coffee-shop.interface';
 import { CreateCoffeeShopInterface } from '@/interfaces/coffee-shop/create-coffee-shop.interface';
 import { PageParamsInterface } from '@/interfaces/page-params.interface';
 import { PageableInterface } from '@/interfaces/pageable.interface';
+import { SelectOptionsInterface } from '@/interfaces/select-options.interface';
 
 const resourceUrl = BASE_URL + '/coffeeShops';
 
@@ -54,9 +56,29 @@ const findAll = async ({
   return await response.json();
 };
 
+const findSummaries = async (
+  search: string
+): Promise<SelectOptionsInterface[]> => {
+  const urlParams = new URLSearchParams({
+    search
+  });
+
+  const response = await fetch(
+    resourceUrl + '/summary' + '?' + urlParams.toString()
+  );
+
+  const convertedResponse: CoffeeShopSummaryInterface[] = await response.json();
+
+  return convertedResponse.map(({ id, name }) => ({
+    id,
+    value: name
+  }));
+};
+
 export const CoffeeShopService = {
   createCoffeeShop,
   findById,
   findAll,
-  deleteById
+  deleteById,
+  findSummaries
 };
