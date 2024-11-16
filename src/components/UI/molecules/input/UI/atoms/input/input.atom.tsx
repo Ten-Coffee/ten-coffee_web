@@ -10,14 +10,20 @@ interface MaskedInputProps extends InputProps {
 }
 
 export const InputAtom = forwardRef<HTMLInputElement, MaskedInputProps>(
-  function Input({ position, mask, disabled, ...props }, ref) {
+  function Input({ position, mask, disabled, onChange, ...props }, ref) {
     const className = `input-atom${position === 'left' ? '__icon-left' : ''}`;
     const maskPattern = mask ? MASK_PATTERN[mask] : '';
 
     return (
-      <InputMask mask={maskPattern} disabled={disabled} {...props}>
+      <InputMask
+        mask={maskPattern}
+        disabled={disabled}
+        onChange={onChange}
+        {...props}
+      >
         {(inputProps) => (
           <input
+            onChange={onChange}
             {...inputProps}
             ref={ref}
             className={className}

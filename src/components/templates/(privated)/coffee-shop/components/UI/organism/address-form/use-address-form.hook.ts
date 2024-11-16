@@ -8,7 +8,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 export const useAddressFormHook = () => {
-  const { updateFormData } = useFormStore();
+  const { updateFormData, formData } = useFormStore();
   const router = useRouter();
 
   const {
@@ -19,12 +19,13 @@ export const useAddressFormHook = () => {
     resolver: zodResolver(addressSchema),
     mode: 'all',
     reValidateMode: 'onChange',
-    criteriaMode: 'all'
+    criteriaMode: 'all',
+    defaultValues: formData.address
   });
 
   const handleForm: SubmitHandler<z.infer<typeof addressSchema>> = (data) => {
     updateFormData({ address: data });
-    router.push('/coffee-shop/create/step-3');
+    router.push('/coffee-shops/create/step-3');
   };
 
   const handleBack = () => router.back();

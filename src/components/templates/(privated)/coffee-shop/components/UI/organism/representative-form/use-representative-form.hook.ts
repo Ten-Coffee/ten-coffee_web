@@ -8,7 +8,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 export const useRepresentativeFormHook = () => {
-  const { updateFormData } = useFormStore();
+  const { updateFormData, formData } = useFormStore();
   const router = useRouter();
 
   const {
@@ -19,7 +19,8 @@ export const useRepresentativeFormHook = () => {
     resolver: zodResolver(representativeSchema),
     mode: 'all',
     reValidateMode: 'onChange',
-    criteriaMode: 'all'
+    criteriaMode: 'all',
+    defaultValues: formData.representative
   });
 
   const handleForm: SubmitHandler<z.infer<typeof representativeSchema>> = (

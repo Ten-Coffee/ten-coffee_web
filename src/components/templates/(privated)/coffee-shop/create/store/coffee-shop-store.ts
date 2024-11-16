@@ -27,7 +27,6 @@ type FormStore = {
       name: string;
       login: string;
       userPermissionEnum: string;
-      password: string;
       phone: string;
       cpf: string;
     };
@@ -67,7 +66,6 @@ export const useFormStore = create<FormStore>((set, get) => ({
     representative: {
       name: '',
       login: '',
-      password: '',
       phone: '',
       cpf: ''
     }
@@ -99,7 +97,6 @@ export const useFormStore = create<FormStore>((set, get) => ({
         name: representative.name,
         login: representative.login,
         userPermissionEnum: 'REPRESENTATIVE',
-        password: representative.password,
         phone: representative.phone,
         cpf: representative.cpf
       },

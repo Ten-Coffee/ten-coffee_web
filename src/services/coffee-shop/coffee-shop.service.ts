@@ -9,9 +9,7 @@ import { SelectOptionsInterface } from '@/interfaces/select-options.interface';
 
 const resourceUrl = BASE_URL + '/coffeeShops';
 
-const createCoffeeShop = async (
-  data: CreateCoffeeShopInterface
-): Promise<CreateCoffeeShopInterface> => {
+const create = async (data: CreateCoffeeShopInterface): Promise<void> => {
   const response = await fetch(resourceUrl, {
     method: 'POST',
     headers: {
@@ -19,11 +17,8 @@ const createCoffeeShop = async (
     },
     body: JSON.stringify(data)
   });
-  if (!response.ok) {
-    const errorMessage = await response.text();
-    throw new Error(errorMessage);
-  }
-  return response.status !== 204 ? await response.json() : null;
+
+  return await response.json();
 };
 
 const findById = async (id: string): Promise<CoffeeShopInterface> => {
@@ -76,7 +71,7 @@ const findSummaries = async (
 };
 
 export const CoffeeShopService = {
-  createCoffeeShop,
+  create,
   findById,
   findAll,
   deleteById,
