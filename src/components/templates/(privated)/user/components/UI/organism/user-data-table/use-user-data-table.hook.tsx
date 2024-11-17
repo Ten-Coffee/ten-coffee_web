@@ -2,6 +2,7 @@ import { ColumnInterface } from '@/components/UI/organism/table/interfaces/colum
 import { RowActionsInterface } from '@/components/UI/organism/table/interfaces/row-actions.interface';
 import { TableDataAtom } from '@/components/UI/organism/table/UI/atoms/table-data/table-data.atom';
 import { getPermissionLabel } from '@/enums/user-permission.enum';
+import { useDeleteModalHook } from '@/hooks/use-delete-modal.hook';
 import { usePageSearchHook } from '@/hooks/use-page-search.hook';
 import { useSearchDebounceHook } from '@/hooks/use-search-debounce.hook';
 import { icons } from '@/icons/icons';
@@ -11,6 +12,8 @@ import { PathParamsType } from '@/types/path-params.type';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 
+const USER_TABLE_QUERY = 'user_table';
+
 export const useUserDataTableHook = () => {
   const { id } = useParams<PathParamsType>();
   const [{ page, search }, setPageSearch] = usePageSearchHook();
@@ -19,7 +22,7 @@ export const useUserDataTableHook = () => {
   const router = useRouter();
 
   const { data: usersData } = useQuery({
-    queryKey: ['usersData', page, debouncedSearch],
+    queryKey: [USER_TABLE_QUERY, page, debouncedSearch],
     queryFn: () =>
       UsersService.findAll(
         {
@@ -28,11 +31,19 @@ export const useUserDataTableHook = () => {
           search
         },
         id
-      ).then((data) => {
-        setPageSearch({ page: data.number });
-        return data;
-      })
+      ).then((data) => setPageSearch({ page: data.number }).then(() => data))
   });
+
+  const modal = useDeleteModalHook<UsersInterface>(
+    {
+      title: 'Inativar Usuário',
+      getDescription: (item) =>
+        `Tem certeza que deseja inativar o usuário "${item.name}"?`,
+      mutationFn: UsersService.deleteById,
+      buttonText: 'Inativar'
+    },
+    USER_TABLE_QUERY
+  );
 
   const columns: ColumnInterface<UsersInterface>[] = [
     {
@@ -70,13 +81,15 @@ export const useUserDataTableHook = () => {
   const rowActions: RowActionsInterface<UsersInterface>[] = [
     {
       icon: icons.Edit,
-      onClick: (item: UsersInterface) => {
-        router.push(`adicione aqui o caminho ${item.id}`);
-      }
+      onClick: (item) => router.push(`adicione aqui o caminho ${item.id}`)
+    },
+    {
+      icon: icons.Trash,
+      onClick: (item) => modal.onClickModal(item)
     },
     {
       icon: icons.Chevron.Right,
-      onClick: (item: UsersInterface) => router.push(`/users/read/${item.id}`)
+      onClick: (item) => router.push(`/users/read/${item.id}`)
     }
   ];
 
@@ -85,6 +98,7 @@ export const useUserDataTableHook = () => {
     rowActions,
     usersData,
     setPageSearch,
-    search
+    search,
+    modal
   };
 };

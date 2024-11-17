@@ -1,10 +1,11 @@
 import { useUserDataTableHook } from '@/components/templates/(privated)/user/components/UI/organism/user-data-table/use-user-data-table.hook';
 import { InputMolecule } from '@/components/UI/molecules/input/input.molecule';
+import { ModalOrganism } from '@/components/UI/organism/modal/modal.organism';
 import { TableOrganism } from '@/components/UI/organism/table/table.organism';
 import { icons } from '@/icons/icons';
 
 export const UserDataTableOrganism = () => {
-  const { columns, rowActions, usersData, setPageSearch, search } =
+  const { columns, rowActions, usersData, setPageSearch, search, modal } =
     useUserDataTableHook();
 
   return (
@@ -24,6 +25,8 @@ export const UserDataTableOrganism = () => {
         totalPages={usersData?.totalPages}
         number={usersData?.number ?? 0}
       />
+
+      <ModalOrganism {...modal} />
     </>
   );
 };

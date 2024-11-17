@@ -1,9 +1,9 @@
 'use client';
 
-import { useDeleteModalHook } from '@/components/templates/(privated)/coffee-shop/hooks/use-delete-modal.hook';
 import { ColumnInterface } from '@/components/UI/organism/table/interfaces/column.interface';
 import { RowActionsInterface } from '@/components/UI/organism/table/interfaces/row-actions.interface';
 import { TableDataAtom } from '@/components/UI/organism/table/UI/atoms/table-data/table-data.atom';
+import { useDeleteModalHook } from '@/hooks/use-delete-modal.hook';
 import { usePageSearchHook } from '@/hooks/use-page-search.hook';
 import { useSearchDebounceHook } from '@/hooks/use-search-debounce.hook';
 import { icons } from '@/icons/icons';
@@ -12,26 +12,35 @@ import { CoffeeShopService } from '@/services/coffee-shop/coffee-shop.service';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
+const COFFEE_SHOP_QUERY = 'coffeeShops';
+
 export const useCoffeeShopListHook = () => {
   const [{ page, search }, setPageSearch] = usePageSearchHook();
   const debouncedSearch = useSearchDebounceHook({ value: search, delay: 500 });
 
   const router = useRouter();
-  const modal = useDeleteModalHook();
+
+  const modal = useDeleteModalHook<CoffeeShopPage>(
+    {
+      title: 'Inativar unidades',
+      getDescription: (item) =>
+        `Tem certeza que deseja inativar a unidade "${item.name}" do CNPJ "${item.cnpj}"?`,
+      mutationFn: CoffeeShopService.deleteById,
+      buttonText: 'Inativar'
+    },
+    COFFEE_SHOP_QUERY
+  );
 
   const handleAdicionar = () => router.push('/coffee-shops/create/step-1');
 
   const { data: coffeeShopsData } = useQuery({
-    queryKey: ['coffeeShops', page, debouncedSearch],
+    queryKey: [COFFEE_SHOP_QUERY, page, debouncedSearch],
     queryFn: () =>
       CoffeeShopService.findAll({
         page,
         size: 5,
         search
-      }).then((data) => {
-        setPageSearch({ page: data.number });
-        return data;
-      })
+      }).then((data) => setPageSearch({ page: data.number }).then(() => data))
   });
 
   const columns: ColumnInterface<CoffeeShopPage>[] = [
