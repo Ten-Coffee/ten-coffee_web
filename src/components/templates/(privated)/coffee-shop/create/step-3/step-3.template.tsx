@@ -1,6 +1,5 @@
 'use client';
 
-import '../styles/step-wrapper.styles.scss';
 import { RepresentativeFormOrganism } from '../../components/UI/organism/representative-form/representative-form.organism';
 
 import { coffeeShopStepBoxData } from '@/components/templates/(privated)/coffee-shop/create/data/coffee-shop-step-box.data';

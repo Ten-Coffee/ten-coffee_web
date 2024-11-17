@@ -1,4 +1,3 @@
-import '../styles/user-step.styles.scss';
 import { UserDataRevisionOrganism } from '@/components/templates/(privated)/user/components/UI/organism/user-data-revision/user-data-revision.organism';
 import { userStepBoxData } from '@/components/templates/(privated)/user/create/data/user-step-box.data';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';

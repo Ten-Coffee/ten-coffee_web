@@ -1,5 +1,3 @@
-import '../styles/step-wrapper.styles.scss';
-
 import { AddressFormOrganism } from '../../components/UI/organism/address-form/address-form.organism';
 
 import { coffeeShopStepBoxData } from '@/components/templates/(privated)/coffee-shop/create/data/coffee-shop-step-box.data';

@@ -7,22 +7,31 @@ interface SelectInputMoleculeProps {
   options: SelectOptionsInterface[];
   value: string | number | readonly string[] | undefined;
   onChange?: (value: string | number) => void;
+  disabled?: boolean;
 }
 
 export const SelectInputMolecule = forwardRef<
   HTMLDivElement,
   SelectInputMoleculeProps
->(function Select({ options, onChange, value }, ref) {
+>(function Select({ options, onChange, value, disabled }, ref) {
   const {
     isOpen,
     toggleSelect,
     handleSelect,
     icon: Icon
-  } = useSelectInputHook({ onChange });
+  } = useSelectInputHook({ onChange, disabled });
 
   return (
-    <div className={'select-input'}>
-      <div ref={ref} className="selected-value" onClick={toggleSelect}>
+    <div
+      className={`select-input ${disabled ? 'input-disabled' : ''}`}
+      aria-disabled={disabled}
+    >
+      <div
+        ref={ref}
+        aria-disabled={disabled}
+        className={`selected-value ${disabled ? 'cursor-not-allowed' : ''}`}
+        onClick={toggleSelect}
+      >
         {value || 'Selecione uma opção'}
         <div className="icon">
           <Icon />
