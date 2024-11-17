@@ -1,0 +1,25 @@
+.tables-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tables-header__title {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.title__count {
+  font-size: 1.4rem;
+}
+
+.tables-header__description {
+  font-size: 1.4rem;
+}
+
+.tables-header__form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+}

@@ -7,6 +7,7 @@ import {
   ChevronsLeft,
   ChevronsRight,
   ChevronUp,
+  Clock,
   EllipsisVertical,
   Eye,
   EyeOff,
@@ -15,6 +16,7 @@ import {
   Pencil,
   Plus,
   Search,
+  Table,
   Trash,
   Users,
   X
@@ -47,5 +49,7 @@ export const icons = {
   Users,
   Trash,
   Loading: LoaderCircle,
-  X
+  X,
+  Table,
+  Clock
 };
