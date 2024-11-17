@@ -21,6 +21,11 @@ export const useSidebarHook = () => {
         icon: icons.Users,
         value: 'Usuários',
         path: '/users'
+      },
+      {
+        icon: icons.Table,
+        value: 'Mesas',
+        path: '/tables'
       }
     ]
   };

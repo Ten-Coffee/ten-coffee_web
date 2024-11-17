@@ -4,7 +4,7 @@ import './modal.styles.scss';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { IconButtonAtom } from '@/components/UI/atoms/icon-button/icon-button.atom';
 import { icons } from '@/icons/icons';
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 
 interface ModalOrganismProps {
   title: string;
@@ -15,6 +15,7 @@ interface ModalOrganismProps {
     text: string;
     action: () => void;
   };
+  children?: ReactNode;
 }
 
 export const ModalOrganism = ({
@@ -22,7 +23,8 @@ export const ModalOrganism = ({
   title,
   toggle,
   description,
-  mainButton
+  mainButton,
+  children
 }: ModalOrganismProps) => {
   useEffect(() => {
     if (isOpen) {
@@ -48,7 +50,10 @@ export const ModalOrganism = ({
                 onClick={toggle}
               />
             </div>
-            <p className={'modal-container__description'}>{description}</p>
+            {children && children}
+            {!children && (
+              <p className={'modal-container__description'}>{description}</p>
+            )}
             <div className={'modal-container__buttons'}>
               <ButtonAtom.Wrapper onClick={toggle} hierarchy={'outlined'}>
                 Cancelar
