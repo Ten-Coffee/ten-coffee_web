@@ -3,6 +3,7 @@ import { addressSchema } from '@/components/templates/(privated)/coffee-shop/cre
 import { coffeeShopSchema } from '@/components/templates/(privated)/coffee-shop/create/schemas/coffee-shop.schema';
 import { representativeSchema } from '@/components/templates/(privated)/coffee-shop/create/schemas/representative.schema';
 import { extractData } from '@/utils/extract-data.utils';
+import { removeZipCodeMask } from '@/utils/remove-mask.utils';
 import { z } from 'zod';
 import { create } from 'zustand';
 
@@ -79,11 +80,7 @@ export const useFormStore = create<FormStore>((set, get) => ({
   formatData: () => {
     const { coffeeShop, representative, address } = get().formData;
 
-    const removeMaskFromZipCode = (zipCode: string) => {
-      return zipCode.replace(/\D/g, '');
-    };
-
-    const unmaskedZipCode = removeMaskFromZipCode(address.zipCode);
+    const unmaskedZipCode = removeZipCodeMask(address.zipCode);
 
     return {
       name: coffeeShop.name,
