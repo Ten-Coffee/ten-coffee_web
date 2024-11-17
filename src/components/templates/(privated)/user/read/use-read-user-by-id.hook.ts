@@ -1,18 +1,33 @@
 import { getPermissionLabel } from '@/enums/user-permission.enum';
+import { useDeleteModalHook } from '@/hooks/use-delete-modal.hook';
+import { UsersInterface } from '@/interfaces/users/users.interface';
 import { UsersService } from '@/services/users/users.service';
 import { PathParamsType } from '@/types/path-params.type';
 import { ReadByIdType } from '@/types/read-by-id.type';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 
+const READ_BY_ID_QUERY = 'read-user-by-id';
+
 export const useReadUserByIdHook = () => {
   const { id } = useParams<PathParamsType>();
 
   const { data, isLoading } = useQuery({
-    queryKey: ['read-user-by-id'],
+    queryKey: [READ_BY_ID_QUERY],
     queryFn: () => UsersService.findById(id),
     enabled: !!id
   });
+
+  const modal = useDeleteModalHook<UsersInterface>(
+    {
+      title: 'Inativar Usuário',
+      getDescription: (item) =>
+        `Tem certeza que deseja inativar o usuário "${item.name}"?`,
+      mutationFn: UsersService.deleteById,
+      buttonText: 'Inativar'
+    },
+    READ_BY_ID_QUERY
+  );
 
   const userData: ReadByIdType[] = [
     {
@@ -33,16 +48,23 @@ export const useReadUserByIdHook = () => {
     },
     {
       label: 'Telefone',
-      value: data?.phone
+      value: data?.phone || '-'
     },
     {
       label: 'CPF',
-      value: data?.cpf
+      value: data?.cpf || '-'
+    },
+    {
+      label: 'Status',
+      value: data?.status,
+      isStatus: true
     }
   ];
 
   return {
     data: userData,
-    isLoading
+    isLoading,
+    modal,
+    userData: data
   };
 };

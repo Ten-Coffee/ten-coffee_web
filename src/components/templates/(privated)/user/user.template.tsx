@@ -23,7 +23,7 @@ export const UserTemplate = () => {
           onClick={handleAdicionar}
         >
           <ButtonAtom.Icon icon={icons.Add} />
-          Adicionar usuario
+          Adicionar Usuário
         </ButtonAtom.Wrapper>
       </div>
 

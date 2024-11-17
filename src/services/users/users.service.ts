@@ -43,8 +43,15 @@ const create = async (data: CreateUsersInterface): Promise<void> => {
   return await response.json();
 };
 
+const deleteById = async (id: number): Promise<void> => {
+  await fetch(resourceUrl + `/${id}`, {
+    method: 'DELETE'
+  });
+};
+
 export const UsersService = {
   findAll,
   create,
-  findById
+  findById,
+  deleteById
 };
