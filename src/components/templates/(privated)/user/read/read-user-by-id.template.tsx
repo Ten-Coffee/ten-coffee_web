@@ -6,11 +6,12 @@ import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { IconButtonAtom } from '@/components/UI/atoms/icon-button/icon-button.atom';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { DetailsViewOrganism } from '@/components/UI/organism/details-view/details-view.organism';
+import { ModalOrganism } from '@/components/UI/organism/modal/modal.organism';
 import { icons } from '@/icons/icons';
 
 export const ReadUserByIdTemplate = () => {
   const { goBackPage } = useCoffeeShopReadByIdHook();
-  const { data, isLoading } = useReadUserByIdHook();
+  const { data, isLoading, modal, userData } = useReadUserByIdHook();
 
   return (
     <>
@@ -24,8 +25,12 @@ export const ReadUserByIdTemplate = () => {
           />
           <TitleAtom.Large value={data[0].value ?? 'Carregando...'} />
         </div>
-        <ButtonAtom.Wrapper hierarchy={'outlined'} type={'submit'}>
-          <ButtonAtom.Icon icon={icons.Trash}></ButtonAtom.Icon>
+        <ButtonAtom.Wrapper
+          hierarchy={'outlined'}
+          onClick={() => modal.onClickModal(userData!)}
+          type={'submit'}
+        >
+          <ButtonAtom.Icon icon={icons.Trash} />
           Inativar Usuário
         </ButtonAtom.Wrapper>
       </div>
@@ -35,6 +40,8 @@ export const ReadUserByIdTemplate = () => {
         data={data}
         isLoading={isLoading}
       />
+
+      <ModalOrganism {...modal} />
     </>
   );
 };
