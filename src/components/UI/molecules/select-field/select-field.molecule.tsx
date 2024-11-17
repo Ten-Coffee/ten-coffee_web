@@ -27,19 +27,21 @@ export const SelectFieldMolecule = forwardRef<
     options,
     value,
     onChange,
+    disabled,
     ...rest
   },
   ref
 ) {
   return (
     <div>
-      <LabelAtom value={label} size={labelSize} />
+      <LabelAtom value={label} size={labelSize} disabled={disabled} />
       <InputMolecule.Select
         value={value}
         onChange={onChange}
         options={options}
         ref={ref}
         aria-invalid={error}
+        disabled={disabled}
         {...rest}
       />
       {helperText && (

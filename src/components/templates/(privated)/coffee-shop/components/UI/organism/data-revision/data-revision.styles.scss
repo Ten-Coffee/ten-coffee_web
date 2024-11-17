@@ -4,6 +4,16 @@
   gap: 2.4rem;
 }
 
+.data-revision__edit-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.data-revision__is-loading {
+  height: 25dvh;
+}
+
 .data-revision__fields {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
