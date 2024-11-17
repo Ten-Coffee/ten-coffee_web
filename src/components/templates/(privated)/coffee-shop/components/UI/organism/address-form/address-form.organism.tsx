@@ -2,11 +2,14 @@
 
 import { useAddressFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/address-form/use-address-form.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
+import { SelectFieldMolecule } from '@/components/UI/molecules/select-field/select-field.molecule';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
 import './address-form.styles.scss';
+import { getUFArray } from '@/enums/uf.enum';
+import { Controller } from 'react-hook-form';
 
 export const AddressFormOrganism = () => {
-  const { handleSubmit, register, errors, handleForm, handleBack } =
+  const { handleSubmit, register, errors, handleForm, handleBack, control } =
     useAddressFormHook();
 
   return (
@@ -55,12 +58,22 @@ export const AddressFormOrganism = () => {
           error={!!errors.city}
           helperText={errors.city?.message}
         />
-        <TextFieldMolecule
-          {...register('state')}
-          label={'Estado'}
-          placeholder={'PR'}
-          error={!!errors.state}
-          helperText={errors.state?.message}
+
+        <Controller
+          control={control}
+          name="state"
+          render={({ field }) => (
+            <SelectFieldMolecule
+              {...field}
+              value={field.value}
+              onChange={field.onChange}
+              options={getUFArray}
+              label={'Estado'}
+              placeholder={'PR'}
+              error={!!errors.state}
+              helperText={errors.state?.message}
+            />
+          )}
         />
       </div>
 
