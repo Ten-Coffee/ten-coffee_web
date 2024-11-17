@@ -32,3 +32,11 @@ export const cnpjMask = (value: string | undefined): string => {
     '$1.$2.$3/$4-$5'
   );
 };
+
+export const tableNumberMask = (value: string | undefined): string => {
+  if (!value) return '';
+
+  const formattedNumber = value.toString().padStart(3, '0');
+
+  return `#${formattedNumber}`;
+};
