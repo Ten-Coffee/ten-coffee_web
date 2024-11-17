@@ -32,6 +32,18 @@ export const filteredPermissionLabelsForSelect = filteredPermissionLabels.map(
   })
 );
 
+export const EDIT_USER_ZOD_PERMISSION = getAllPermissionLabels as [
+  string,
+  ...string[]
+];
+
+export const permissionLabelsForSelect = getAllPermissionLabels.map(
+  (label) => ({
+    id: label,
+    value: label
+  })
+);
+
 export const mapPermission: { [key: string]: UserPermissionEnum } = {
   Representante: UserPermissionEnum.REPRESENTATIVE,
   Gerente: UserPermissionEnum.MANAGER,

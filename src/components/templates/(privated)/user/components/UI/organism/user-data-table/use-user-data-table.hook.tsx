@@ -81,7 +81,7 @@ export const useUserDataTableHook = () => {
   const rowActions: RowActionsInterface<UsersInterface>[] = [
     {
       icon: icons.Edit,
-      onClick: (item) => router.push(`adicione aqui o caminho ${item.id}`)
+      onClick: (item) => router.push(`/users/edit/step-1/${item.id}`)
     },
     {
       icon: icons.Trash,

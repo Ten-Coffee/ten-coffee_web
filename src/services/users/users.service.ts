@@ -1,50 +1,46 @@
-import { BASE_URL } from '@/constants/base-url.constant';
 import { PageParamsInterface } from '@/interfaces/page-params.interface';
 import { PageableInterface } from '@/interfaces/pageable.interface';
 import { CreateUsersInterface } from '@/interfaces/users/create-users.interface';
+import { EditUserInterface } from '@/interfaces/users/edit-user.interface';
 import { UsersInterface } from '@/interfaces/users/users.interface';
+import { ApiService } from '@/services/api-base.service';
 
-const resourceUrl = BASE_URL + '/users';
+const userApi = new ApiService('/users');
 
 const findAll = async (
   { page = 0, size = 10, search = '' }: PageParamsInterface,
   coffeeShopId?: string
 ): Promise<PageableInterface<UsersInterface>> => {
-  const urlParams = new URLSearchParams({
-    page: page.toString(),
-    size: size.toString(),
-    search
+  return await userApi.request<PageableInterface<UsersInterface>>('', {
+    queryParams: {
+      page,
+      size,
+      search,
+      ...(coffeeShopId && { coffeeShopId })
+    }
   });
-
-  if (coffeeShopId) {
-    urlParams.append('coffeeShopId', coffeeShopId);
-  }
-
-  const response = await fetch(resourceUrl + '?' + urlParams.toString());
-
-  return await response.json();
 };
 
 const findById = async (id: string): Promise<UsersInterface> => {
-  const response = await fetch(resourceUrl + '/' + id);
-
-  return await response.json();
+  return await userApi.request<UsersInterface>(`/${id}`);
 };
 
 const create = async (data: CreateUsersInterface): Promise<void> => {
-  const response = await fetch(resourceUrl, {
+  await userApi.request<void, CreateUsersInterface>('', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
+    body: data
   });
+};
 
-  return await response.json();
+const editById = async (id: string, data: EditUserInterface): Promise<void> => {
+  await userApi.request<void, EditUserInterface>(`/${id}`, {
+    method: 'PUT',
+    body: data
+  });
 };
 
 const deleteById = async (id: number): Promise<void> => {
-  await fetch(resourceUrl + `/${id}`, {
+  await userApi.request<void>(`/${id}`, {
     method: 'DELETE'
   });
 };
@@ -53,5 +49,6 @@ export const UsersService = {
   findAll,
   create,
   findById,
+  editById,
   deleteById
 };
