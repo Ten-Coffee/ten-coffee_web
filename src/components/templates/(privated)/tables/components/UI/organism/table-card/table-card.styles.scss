@@ -1,0 +1,56 @@
+.table-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  padding: 1.6rem;
+
+  background-color: var(--background-50);
+
+  border-radius: var(--border-radius-md);
+}
+
+.table-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row__title {
+  font-size: 2.2rem;
+  color: var(--grayscale-00);
+}
+
+.row__icon-wrapper {
+  position: relative;
+}
+
+.row__counter-time {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.counter-time__label {
+  font-size: 1.2rem;
+}
+
+.counter-time__clock-span {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.clock-span__clock-icon {
+  height: 1.6rem;
+  width: 1.6rem;
+
+  color: var(--grayscale-100);
+
+  position: relative;
+}
+
+.clock-span__timer {
+  font-size: 1.4rem;
+  color: var(--grayscale-100);
+}

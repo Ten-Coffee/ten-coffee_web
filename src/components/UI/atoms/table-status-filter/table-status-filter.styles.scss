@@ -1,0 +1,48 @@
+.table-status-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+
+  height: 2.4rem;
+
+  border: 0.1rem solid transparent;
+  border-radius: var(--border-radius-xl);
+
+  padding: 0 0.8rem;
+
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--grayscale-50) !important;
+
+  cursor: pointer;
+  background-color: transparent;
+
+  &.free {
+    border-color: var(--green-300);
+    &.active {
+      background-color: var(--green-300);
+    }
+  }
+
+  &.reserved {
+    border-color: var(--grayscale-250);
+    &.active {
+      background-color: var(--grayscale-250);
+    }
+  }
+
+  &.occupied {
+    border-color: var(--orange-250);
+    &.active {
+      background-color: var(--orange-250);
+    }
+  }
+
+  &.no-service {
+    border-color: var(--red-250);
+    &.active {
+      background-color: var(--red-250);
+    }
+  }
+}

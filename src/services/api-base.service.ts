@@ -16,8 +16,11 @@ export class ApiService {
     this.resourceUrl = BASE_URL + resourcePath;
   }
 
-  private buildUrl(queryParams?: Record<string, string | number>): string {
-    const url = new URL(this.resourceUrl);
+  private buildUrl(
+    endpoint: string,
+    queryParams?: Record<string, string | number>
+  ): string {
+    const url = new URL(this.resourceUrl + endpoint);
     if (queryParams) {
       Object.entries(queryParams).forEach(([key, value]) => {
         url.searchParams.append(key, String(value));
@@ -32,8 +35,9 @@ export class ApiService {
   ): Promise<TResponse> {
     const { method = 'GET', headers = {}, body, queryParams } = options;
 
-    const url = this.buildUrl(queryParams);
-    const response = await fetch(`${url}${endpoint}`, {
+    const url = this.buildUrl(endpoint, queryParams);
+
+    const response = await fetch(url, {
       method,
       headers: {
         'Content-Type': 'application/json',

@@ -32,3 +32,25 @@ export const cnpjMask = (value: string | undefined): string => {
     '$1.$2.$3/$4-$5'
   );
 };
+
+export const tableNumberMask = (value: string | undefined): string => {
+  if (!value) return '';
+
+  const formattedNumber = value.toString().padStart(3, '0');
+
+  return `#${formattedNumber}`;
+};
+
+export const formatTime = (input: string | undefined): string => {
+  if (!input) return '0 min e 0s';
+
+  const parts = input.split(':');
+
+  const minutes = parseInt(parts[0]);
+  const seconds = parts.length > 1 ? parseInt(parts[1]) : 0;
+
+  if (seconds === 0) {
+    return `${minutes} min`;
+  }
+  return `${minutes} min e ${seconds} s`;
+};

@@ -2,24 +2,24 @@
 
 import './tables.styles.scss';
 
+import { TableCardOrganism } from '@/components/templates/(privated)/tables/components/UI/organism/table-card/table-card.organism';
 import { tableSchema } from '@/components/templates/(privated)/tables/schemas/table.schema';
 import { useTablesHook } from '@/components/templates/(privated)/tables/use-tables.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
+import { TableStatusFilterAtom } from '@/components/UI/atoms/table-status-filter/table-status-filter.atom';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
 import { ModalOrganism } from '@/components/UI/organism/modal/modal.organism';
 import { MAX_TABLES } from '@/constants/max-tables.constant';
+import { getAllTableStatus } from '@/enums/table-status.enum';
 import { icons } from '@/icons/icons';
 import { Controller } from 'react-hook-form';
 
 export const TablesTemplate = () => {
-  const { modal, form } = useTablesHook();
+  const { modal, form, data, counter } = useTablesHook();
   const {
     formState: { errors }
   } = form;
-
-  console.log(errors);
-  const countMesas = 10;
 
   return (
     <>
@@ -27,7 +27,7 @@ export const TablesTemplate = () => {
         <div className={'tables-header__title'}>
           <TitleAtom.Large value={'Mesas'} />
           <span className={'title__count'}>
-            ({countMesas} / {MAX_TABLES})
+            ({counter} / {MAX_TABLES})
           </span>
         </div>
 
@@ -39,6 +39,28 @@ export const TablesTemplate = () => {
           <ButtonAtom.Icon icon={icons.Add} />
           Adicionar Mesas
         </ButtonAtom.Wrapper>
+      </div>
+
+      <div className={'tables-header__filters'}>
+        <span>Filtros</span>
+        <div className={'filters__filters-wrapper'}>
+          {getAllTableStatus.map((status) => (
+            <TableStatusFilterAtom status={status} key={status} />
+          ))}
+        </div>
+      </div>
+
+      <div className={'tables-header__tables-cards'}>
+        {data &&
+          data.map((table) => (
+            <TableCardOrganism
+              key={table.tableNUmber}
+              id={table.id}
+              number={table.tableNUmber.toString()}
+              status={table.tableStatus}
+              time={table.lastTimeVisited || '0:00'}
+            />
+          ))}
       </div>
 
       <ModalOrganism {...modal}>
