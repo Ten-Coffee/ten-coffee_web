@@ -39,6 +39,7 @@
 .tables-header__tables-cards {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2.4rem;
 }
 
 .tables-header__form {

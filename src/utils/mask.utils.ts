@@ -40,3 +40,17 @@ export const tableNumberMask = (value: string | undefined): string => {
 
   return `#${formattedNumber}`;
 };
+
+export const formatTime = (input: string | undefined): string => {
+  if (!input) return '0 min e 0s';
+
+  const parts = input.split(':');
+
+  const minutes = parseInt(parts[0]);
+  const seconds = parts.length > 1 ? parseInt(parts[1]) : 0;
+
+  if (seconds === 0) {
+    return `${minutes} min`;
+  }
+  return `${minutes} min e ${seconds} s`;
+};

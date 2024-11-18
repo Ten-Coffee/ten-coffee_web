@@ -11,18 +11,15 @@ import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
 import { ModalOrganism } from '@/components/UI/organism/modal/modal.organism';
 import { MAX_TABLES } from '@/constants/max-tables.constant';
-import { getAllTableStatus, TableStatusEnum } from '@/enums/table-status.enum';
+import { getAllTableStatus } from '@/enums/table-status.enum';
 import { icons } from '@/icons/icons';
 import { Controller } from 'react-hook-form';
 
 export const TablesTemplate = () => {
-  const { modal, form } = useTablesHook();
+  const { modal, form, data, counter } = useTablesHook();
   const {
     formState: { errors }
   } = form;
-
-  console.log(errors);
-  const countMesas = 10;
 
   return (
     <>
@@ -30,7 +27,7 @@ export const TablesTemplate = () => {
         <div className={'tables-header__title'}>
           <TitleAtom.Large value={'Mesas'} />
           <span className={'title__count'}>
-            ({countMesas} / {MAX_TABLES})
+            ({counter} / {MAX_TABLES})
           </span>
         </div>
 
@@ -54,11 +51,16 @@ export const TablesTemplate = () => {
       </div>
 
       <div className={'tables-header__tables-cards'}>
-        <TableCardOrganism
-          number={'1'}
-          status={TableStatusEnum.FREE}
-          time={'20'}
-        />
+        {data &&
+          data.map((table) => (
+            <TableCardOrganism
+              key={table.tableNUmber}
+              id={table.id}
+              number={table.tableNUmber.toString()}
+              status={table.tableStatus}
+              time={table.lastTimeVisited || '0:00'}
+            />
+          ))}
       </div>
 
       <ModalOrganism {...modal}>

@@ -27,12 +27,21 @@
 
 .row__counter-time {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.counter-time__label {
+  font-size: 1.2rem;
+}
+
+.counter-time__clock-span {
+  display: flex;
   align-items: center;
   gap: 0.8rem;
 }
 
-.counter-time__icon {
+.clock-span__clock-icon {
   height: 1.6rem;
   width: 1.6rem;
 
@@ -41,7 +50,7 @@
   position: relative;
 }
 
-.counter-time__timer {
+.clock-span__timer {
   font-size: 1.4rem;
   color: var(--grayscale-100);
 }

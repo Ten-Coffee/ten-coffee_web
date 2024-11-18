@@ -1,10 +1,5 @@
+import { DropdownMenuItemType } from '@/types/dropdown-menu-item.type';
 import { useEffect, useRef, useState } from 'react';
-
-type MenuItem = {
-  label: string;
-  onClick?: () => void;
-  submenu?: MenuItem[];
-};
 
 interface UseDropdownMenuHookProps {
   toggle: () => void;
@@ -21,10 +16,18 @@ export const useDropdownMenuHook = ({
     setOpenSubmenu(openSubmenu === index ? null : index);
   };
 
-  const handleOnClick = (item: MenuItem, index: number) => {
-    item.onClick || handleSubmenuToggle(index);
-
-    toggle();
+  const handleOnClick = (
+    item: DropdownMenuItemType,
+    index: number,
+    id: string
+  ) => {
+    if (item.onClick) {
+      item.onClick(id);
+      toggle();
+    }
+    if (item.submenu) {
+      handleSubmenuToggle(index);
+    }
   };
 
   const menuRef = useRef<HTMLUListElement>(null);

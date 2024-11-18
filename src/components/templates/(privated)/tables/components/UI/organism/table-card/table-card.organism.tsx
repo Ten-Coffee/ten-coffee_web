@@ -5,24 +5,31 @@ import { DropdownMenu } from '@/components/UI/molecules/dropdown-menu/dropdown-m
 import { TableStatusEnum } from '@/enums/table-status.enum';
 import { icons } from '@/icons/icons';
 import './table-card.styles.scss';
-import { tableNumberMask } from '@/utils/mask.utils';
+import { formatTime, tableNumberMask } from '@/utils/mask.utils';
 
 interface TableCardOrganismProps {
+  id: string;
   number: string;
   status: TableStatusEnum;
   time: string;
 }
 
 export const TableCardOrganism = ({
+  id,
   number,
   status,
   time
 }: TableCardOrganismProps) => {
   const ClockIcon = icons.Clock;
 
-  const cardHook = useTableCardHook({
+  const { dropdown } = useTableCardHook({
     status
   });
+
+  const dropdownItem = {
+    ...dropdown,
+    id
+  };
 
   return (
     <div className={'table-card'}>
@@ -31,19 +38,22 @@ export const TableCardOrganism = ({
 
         <div className={'row__icon-wrapper'}>
           <IconButtonAtom
-            onClick={cardHook.toggle}
+            onClick={dropdown.toggle}
             icon={icons.Ellipsis.Vertical}
             hierarchy={'ghosted'}
             size={'medium'}
           />
-          <DropdownMenu {...cardHook} />
+          <DropdownMenu {...dropdownItem} />
         </div>
       </div>
       <div className={'table-card__row'}>
         <TableStatusFilterAtom isCard={true} status={status} />
         <div className={'row__counter-time'}>
-          <ClockIcon className={'counter-time__icon'} />
-          <span className={'counter-time__timer'}>{time} min</span>
+          <label className={'counter-time__label'}>Últ. atendimento</label>
+          <div className={'counter-time__clock-span'}>
+            <ClockIcon className={'clock-span__clock-icon'} />
+            <span className={'clock-span__timer'}>{formatTime(time)}</span>
+          </div>
         </div>
       </div>
     </div>

@@ -1,25 +1,20 @@
-'use client';
-
-import './dropdown-menu.styles.scss';
 import { useDropdownMenuHook } from '@/components/UI/molecules/dropdown-menu/use-dropdown-menu.hook';
 import { icons } from '@/icons/icons';
-
-type MenuItem = {
-  label: string;
-  onClick?: () => void;
-  submenu?: MenuItem[];
-};
+import { DropdownMenuItemType } from '@/types/dropdown-menu-item.type';
+import './dropdown-menu.styles.scss';
 
 interface DropdownMenuProps {
-  menuItems: MenuItem[];
+  menuItems: DropdownMenuItemType[];
   isOpen?: boolean;
   toggle: () => void;
+  id: string;
 }
 
 export const DropdownMenu = ({
   menuItems,
   isOpen,
-  toggle
+  toggle,
+  id
 }: DropdownMenuProps) => {
   const { menuRef, setOpenSubmenu, handleOnClick, openSubmenu } =
     useDropdownMenuHook({
@@ -32,7 +27,7 @@ export const DropdownMenu = ({
   return (
     <>
       {isOpen && (
-        <ul className={'dropdown-menu'} ref={menuRef}>
+        <ul className="dropdown-menu" ref={menuRef}>
           {menuItems.map((item, index) => (
             <li
               key={index}
@@ -41,24 +36,28 @@ export const DropdownMenu = ({
               onMouseLeave={() => item.submenu && setOpenSubmenu(null)}
             >
               <button
-                className={'menu-button'}
-                onClick={() => handleOnClick(item, index)}
+                className="menu-button"
+                onClick={() => handleOnClick(item, index, id)}
               >
                 {item.label}
                 {item.submenu && (
-                  <ArrowSubmenuIcon className={'menu-button__icon'} />
+                  <ArrowSubmenuIcon className="menu-button__icon" />
                 )}
               </button>
 
               {item.submenu && openSubmenu === index && (
-                <ul className={'dropdown-menu__submenu'}>
+                <ul className="dropdown-menu__submenu">
                   {item.submenu.map((subItem, subIndex) => (
-                    <li
-                      key={subIndex}
-                      className={'menu-button'}
-                      onClick={subItem.onClick}
-                    >
-                      {subItem.label}
+                    <li key={subIndex}>
+                      <button
+                        className="menu-button"
+                        onClick={() => {
+                          subItem.onClick(id);
+                          toggle();
+                        }}
+                      >
+                        {subItem.label}
+                      </button>
                     </li>
                   ))}
                 </ul>
