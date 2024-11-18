@@ -53,12 +53,13 @@ export const useFormStore = create<FormStore>((set, get) => ({
       email: '',
       phoneNumber: '',
       contractStart: '',
-      contractEnd: ''
+      contractEnd: '',
+      status: 'ACTIVE'
     },
     address: {
       street: '',
       number: '',
-      complement: '',
+      additionalInformation: '',
       neighborhood: '',
       city: '',
       state: '',

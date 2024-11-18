@@ -77,7 +77,7 @@ export const useCoffeeShopListHook = () => {
     {
       icon: icons.Edit,
       onClick: (item: CoffeeShopPage) => {
-        router.push(`/coffee-shops/edit/${item.id}`);
+        router.push(`/coffee-shops/edit/step-1/${item.id}`);
       }
     },
     {

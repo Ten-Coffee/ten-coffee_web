@@ -2,10 +2,12 @@ import { isValidCNPJ } from '@brazilian-utils/brazilian-utils';
 import { z } from 'zod';
 
 export const coffeeShopSchema = z.object({
+  id: z.number().optional(),
+  status: z.enum(['ACTIVE', 'INACTIVE']).optional().default('ACTIVE'),
+  name: z.string().min(2, 'A razão social deve ter pelo menos 2 caracteres'),
   nameFantasy: z
     .string()
     .min(2, 'O nome fantasia deve ter pelo menos 2 caracteres'),
-  name: z.string().min(2, 'A razão social deve ter pelo menos 2 caracteres'),
   cnpj: z
     .string()
     .transform((value) => value.replace(/\D/g, ''))

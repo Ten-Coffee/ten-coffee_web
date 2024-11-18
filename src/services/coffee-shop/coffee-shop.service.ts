@@ -29,6 +29,21 @@ const findById = async (id: string): Promise<CoffeeShopInterface> => {
   return await response.json();
 };
 
+const editById = async (
+  id: string,
+  data: Partial<CoffeeShopInterface>
+): Promise<void> => {
+  const response = await fetch(resourceUrl + `/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  return await response.json();
+};
+
 const deleteById = async (id: number): Promise<void> => {
   await fetch(resourceUrl + `/${id}`, {
     method: 'DELETE'
@@ -74,6 +89,7 @@ export const CoffeeShopService = {
   create,
   findById,
   findAll,
+  editById,
   deleteById,
   findSummaries
 };
