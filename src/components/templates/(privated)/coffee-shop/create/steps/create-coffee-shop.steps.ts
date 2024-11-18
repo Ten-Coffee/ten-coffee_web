@@ -1,4 +1,4 @@
-export const coffeeShopStepBoxData: string[] = [
+export const createCoffeeShopSteps: string[] = [
   'Cadastrar Unidade',
   'Cadastrar Endereço',
   'Cadastrar Representante',

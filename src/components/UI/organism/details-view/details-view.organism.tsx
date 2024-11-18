@@ -10,22 +10,34 @@ interface DetailsViewOrganismProps {
   title: string;
   data: ReadByIdType[];
   isLoading: boolean;
+  editButton?: {
+    text: string;
+    onClick: () => void;
+  };
 }
 
 export const DetailsViewOrganism = ({
   title,
   data,
-  isLoading
+  isLoading,
+  editButton
 }: DetailsViewOrganismProps) => {
   return (
     <div className={'details-view'}>
-      <div className={'details-view__title'}>
+      {editButton ? (
+        <div className={'details-view__title'}>
+          <TitleAtom.Large value={title} />
+          <ButtonAtom.Wrapper
+            hierarchy={'outlined'}
+            onClick={editButton.onClick}
+          >
+            <ButtonAtom.Icon icon={icons.Edit} />
+            {editButton.text}
+          </ButtonAtom.Wrapper>
+        </div>
+      ) : (
         <TitleAtom.Large value={title} />
-        <ButtonAtom.Wrapper hierarchy={'outlined'}>
-          <ButtonAtom.Icon icon={icons.Edit} />
-          Editar
-        </ButtonAtom.Wrapper>
-      </div>
+      )}
       {isLoading ? (
         <div className={'details-view__loading'}>
           <LoadingAtom />

@@ -1,6 +1,6 @@
 import { AddressFormOrganism } from '../../components/UI/organism/address-form/address-form.organism';
 
-import { coffeeShopStepBoxData } from '@/components/templates/(privated)/coffee-shop/create/data/coffee-shop-step-box.data';
+import { createCoffeeShopSteps } from '@/components/templates/(privated)/coffee-shop/create/steps/create-coffee-shop.steps';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { StepBoxOrganism } from '@/components/UI/organism/step-box/step-box.organism';
 
@@ -9,7 +9,7 @@ export default function Step2Template() {
     <>
       <TitleAtom.Large value={'Cadastrar Endereço'} />
       <div className={'step-wrapper'}>
-        <StepBoxOrganism steps={coffeeShopStepBoxData} />
+        <StepBoxOrganism steps={createCoffeeShopSteps} />
         <AddressFormOrganism />
       </div>
     </>

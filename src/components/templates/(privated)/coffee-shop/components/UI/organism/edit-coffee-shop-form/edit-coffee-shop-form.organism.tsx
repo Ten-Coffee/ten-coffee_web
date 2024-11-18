@@ -2,7 +2,7 @@
 
 import './edit-coffee-shop-form.styles.scss';
 
-import { useEditCoffeeShopFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/edit-coffee-shop-form/edit-coffee-shop-form.hook';
+import { useEditCoffeeShopFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/edit-coffee-shop-form/use-edit-coffee-shop-form.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
 

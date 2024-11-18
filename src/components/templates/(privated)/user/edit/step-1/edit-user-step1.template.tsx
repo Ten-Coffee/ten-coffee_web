@@ -6,7 +6,7 @@ import { StepBoxOrganism } from '@/components/UI/organism/step-box/step-box.orga
 export const EditUserStep1Template = () => {
   return (
     <>
-      <TitleAtom.Large value={'Cadastrar Credenciais'} />
+      <TitleAtom.Large value={'Editar Credenciais'} />
       <div className={'step-wrapper'}>
         <StepBoxOrganism steps={editUserSteps} />
         <UserOverviewOrganism />
