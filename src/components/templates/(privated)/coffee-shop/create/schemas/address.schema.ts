@@ -1,13 +1,13 @@
 import { z } from 'zod';
 
 export const addressSchema = z.object({
+  id: z.number().optional(),
   zipCode: z
     .string()
     .min(9, 'O CEP deve ter pelo menos 9 caracteres')
     .regex(/^\d{5}-\d{3}$/, 'Formato de CEP inválido'),
   street: z.string().min(1, 'A rua é obrigatória'),
   number: z.string().min(1, 'O número é obrigatório'),
-  complement: z.string().optional(),
   additionalInformation: z.string().optional(),
   neighborhood: z.string().min(1, 'O bairro é obrigatório'),
   city: z.string().min(1, 'A cidade é obrigatória'),
