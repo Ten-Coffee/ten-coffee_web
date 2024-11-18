@@ -42,7 +42,7 @@ export const tableNumberMask = (value: string | undefined): string => {
 };
 
 export const formatTime = (input: string | undefined): string => {
-  if (!input) return '0 min e 0s';
+  if (!input) return '0 min e 0 s';
 
   const parts = input.split(':');
 

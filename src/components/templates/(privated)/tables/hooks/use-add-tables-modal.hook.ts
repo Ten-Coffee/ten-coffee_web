@@ -1,5 +1,5 @@
 import { tableSchema } from '@/components/templates/(privated)/tables/schemas/table.schema';
-import { TableInterface } from '@/interfaces/tables/table.interface';
+import { CreateTableInterface } from '@/interfaces/tables/create-table.interface';
 import { TablesService } from '@/services/tables/tables.service';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
@@ -19,10 +19,10 @@ export const UseAddTablesModalHook = () => {
   });
 
   const mutation = useMutation({
-    mutationFn: (data: Omit<TableInterface, 'coffeeShopId'>) =>
+    mutationFn: (data: Omit<CreateTableInterface, 'coffeeShopId'>) =>
       TablesService.create({
         coffeeShopId: '1',
-        tablesNumber: data.tablesNumber,
+        number: data.number,
         counter: data.counter
       })
   });
@@ -30,7 +30,12 @@ export const UseAddTablesModalHook = () => {
   const submitForm: SubmitHandler<z.infer<typeof tableSchema>> = async (
     data
   ) => {
-    await mutation.mutateAsync(data).then(() => toggle());
+    await mutation
+      .mutateAsync({
+        ...data,
+        number: data.tablesNumber
+      })
+      .then(() => toggle());
   };
 
   return {

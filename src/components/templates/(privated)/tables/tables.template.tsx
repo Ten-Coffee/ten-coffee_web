@@ -54,9 +54,9 @@ export const TablesTemplate = () => {
         {data &&
           data.map((table) => (
             <TableCardOrganism
-              key={table.tableNUmber}
+              key={table.number}
               id={table.id}
-              number={table.tableNUmber.toString()}
+              number={table.number.toString()}
               status={table.tableStatus}
               time={table.lastTimeVisited || '0:00'}
             />
