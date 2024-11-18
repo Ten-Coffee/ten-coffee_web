@@ -18,6 +18,30 @@
   font-size: 1.4rem;
 }
 
+.tables-header__filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  span {
+    font-size: 1.4rem;
+  }
+}
+
+.filters__filters-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+
+  width: 100%;
+}
+
+.tables-header__tables-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2.4rem;
+}
+
 .tables-header__form {
   display: grid;
   grid-template-columns: 1fr 1fr;
