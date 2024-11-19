@@ -19,7 +19,8 @@ import {
   Table,
   Trash,
   Users,
-  X
+  X,
+  CookingPot
 } from 'lucide-react';
 
 export const icons = {
@@ -51,5 +52,6 @@ export const icons = {
   Loading: LoaderCircle,
   X,
   Table,
-  Clock
+  Clock,
+  CookingPot
 };

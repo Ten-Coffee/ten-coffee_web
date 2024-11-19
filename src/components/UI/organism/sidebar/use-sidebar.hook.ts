@@ -26,6 +26,11 @@ export const useSidebarHook = () => {
         icon: icons.Table,
         value: 'Mesas',
         path: '/tables'
+      },
+      {
+        icon: icons.CookingPot,
+        value: 'Cozinha',
+        path: '/kitchen'
       }
     ]
   };
