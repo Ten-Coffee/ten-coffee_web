@@ -21,6 +21,7 @@ export const EditCoffeeShopFormOrganism = () => {
         <TextFieldMolecule
           label={'Razão Social'}
           {...form.register('name')}
+          disabled={true}
           error={!!errors.name}
           helperText={errors.name?.message}
         />

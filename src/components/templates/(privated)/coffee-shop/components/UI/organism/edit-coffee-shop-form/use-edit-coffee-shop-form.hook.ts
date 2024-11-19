@@ -43,7 +43,7 @@ export const useEditCoffeeShopFormHook = () => {
     await mutation.mutateAsync(payload);
   };
 
-  const handleCancel = () => router.push(`/coffee-shops/${id}`);
+  const handleCancel = () => router.push(`/coffee-shops/edit/step-1/${id}`);
 
   useEffect(() => {
     if (data) {

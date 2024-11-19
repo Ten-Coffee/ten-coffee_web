@@ -3,6 +3,7 @@ import { CoffeeShopPage } from '@/interfaces/coffee-shop/coffee-shop-page.interf
 import { CoffeeShopSummaryInterface } from '@/interfaces/coffee-shop/coffee-shop-summary.interface';
 import { CoffeeShopInterface } from '@/interfaces/coffee-shop/coffee-shop.interface';
 import { CreateCoffeeShopInterface } from '@/interfaces/coffee-shop/create-coffee-shop.interface';
+import { EditCoffeeShopInterface } from '@/interfaces/coffee-shop/edit-coffee-shop.interface';
 import { PageParamsInterface } from '@/interfaces/page-params.interface';
 import { PageableInterface } from '@/interfaces/pageable.interface';
 import { SelectOptionsInterface } from '@/interfaces/select-options.interface';
@@ -31,9 +32,9 @@ const findById = async (id: string): Promise<CoffeeShopInterface> => {
 
 const editById = async (
   id: string,
-  data: Partial<CoffeeShopInterface>
+  data: Partial<EditCoffeeShopInterface>
 ): Promise<void> => {
-  const response = await fetch(resourceUrl + `/${id}`, {
+  const response = await fetch(`${resourceUrl}/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -41,7 +42,12 @@ const editById = async (
     body: JSON.stringify(data)
   });
 
-  return await response.json();
+  if (response.status === 204) {
+    return;
+  }
+  
+  const error = await response.json();
+  throw new Error(error.message || 'Failed to update CoffeeShop');
 };
 
 const deleteById = async (id: number): Promise<void> => {
