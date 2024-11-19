@@ -5,6 +5,7 @@ import './edit-coffee-shop-form.styles.scss';
 import { useEditCoffeeShopFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/edit-coffee-shop-form/use-edit-coffee-shop-form.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
+import { Controller } from 'react-hook-form';
 
 export const EditCoffeeShopFormOrganism = () => {
   const { form, submitForm, handleCancel } = useEditCoffeeShopFormHook();
@@ -31,13 +32,19 @@ export const EditCoffeeShopFormOrganism = () => {
           error={!!errors.nameFantasy}
           helperText={errors.nameFantasy?.message}
         />
-        <TextFieldMolecule
-          label={'CNPJ'}
-          {...form.register('cnpj')}
-          mask={'cnpj'}
-          disabled={true}
-          error={!!errors.cnpj}
-          helperText={errors.cnpj?.message}
+        <Controller
+          name="cnpj"
+          control={form.control}
+          render={({ field }) => (
+            <TextFieldMolecule
+              label={'CNPJ'}
+              {...field}
+              mask={'cnpj'}
+              disabled={true}
+              error={!!errors.cnpj}
+              helperText={errors.cnpj?.message}
+            />
+          )}
         />
         <TextFieldMolecule
           label={'E-mail'}
@@ -45,12 +52,18 @@ export const EditCoffeeShopFormOrganism = () => {
           error={!!errors.email}
           helperText={errors.email?.message}
         />
-        <TextFieldMolecule
-          label={'Número de Telefone'}
-          {...form.register('phoneNumber')}
-          mask={'phone'}
-          error={!!errors.phoneNumber}
-          helperText={errors.phoneNumber?.message}
+        <Controller
+          name="phoneNumber"
+          control={form.control}
+          render={({ field }) => (
+            <TextFieldMolecule
+              label={'Número de Telefone'}
+              {...field}
+              mask={'phone'}
+              error={!!errors.phoneNumber}
+              helperText={errors.phoneNumber?.message}
+            />
+          )}
         />
         <TextFieldMolecule
           label={'Data de Início do Contrato'}
