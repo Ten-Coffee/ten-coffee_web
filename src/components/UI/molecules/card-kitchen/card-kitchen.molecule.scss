@@ -1,0 +1,51 @@
+.card-kitchen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-color: #1e2a38;
+  border-radius: 10px;
+  padding: 16px;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  width: 100%;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+
+    &__order {
+      color: #ffffff;
+    }
+
+    &__table {
+      color: #c1c1c1;
+    }
+  }
+
+  &__body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+
+    &__details {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #c1c1c1;
+
+      &__time,
+      &__items {
+        font-size: 14px;
+      }
+
+      &__icon {
+        margin-right: 4px;
+      }
+    }
+  }
+}
