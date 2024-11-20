@@ -4,11 +4,13 @@ import { useInventoryHook } from '@/components/templates/(privated)/inventory/us
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { InputMolecule } from '@/components/UI/molecules/input/input.molecule';
-import { icons } from '@/icons/icons';
 import './inventory.styles.scss';
+import { ModalOrganism } from '@/components/UI/organism/modal/modal.organism';
+import { TableOrganism } from '@/components/UI/organism/table/table.organism';
+import { icons } from '@/icons/icons';
 
 export const InventoryTemplate = () => {
-  const { onAdd } = useInventoryHook();
+  const { onAdd, setPageSearch, inventory, search, modal } = useInventoryHook();
 
   return (
     <>
@@ -24,19 +26,19 @@ export const InventoryTemplate = () => {
         icon={icons.Search}
         position={'left'}
         placeholder={'Pesquisar item do estoque por nome'}
-        // onChange={(e) => setPageSearch({ search: e.target.value })}
-        // value={search}
+        onChange={(e) => setPageSearch({ search: e.target.value })}
+        value={search}
       />
 
-      {/*<TableOrganism*/}
-      {/*  columns={columns}*/}
-      {/*  data={usersData?.content}*/}
-      {/*  rowActions={rowActions}*/}
-      {/*  totalPages={usersData?.totalPages}*/}
-      {/*  number={usersData?.number ?? 0}*/}
-      {/*/>*/}
+      <TableOrganism
+        columns={inventory.columns}
+        data={inventory.data?.content}
+        rowActions={inventory.rowActions}
+        totalPages={inventory.data?.totalPages}
+        number={inventory.data?.number ?? 0}
+      />
 
-      {/*<ModalOrganism {...modal} />*/}
+      <ModalOrganism {...modal} />
     </>
   );
 };
