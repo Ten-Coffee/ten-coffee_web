@@ -23,7 +23,7 @@ export const useEditInventoryFormHook = () => {
   });
 
   const { data } = useQuery({
-    queryKey: ['edit-inventory', id],
+    queryKey: ['read-inventory', id],
     queryFn: () => IngredientsService.findById(id),
     enabled: !!id
   });

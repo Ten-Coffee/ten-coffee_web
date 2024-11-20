@@ -52,8 +52,20 @@ const findSummaries = async (
   }));
 };
 
+const findById = async (id: string): Promise<IngredientsTypeInterface> => {
+  return await apiService.request<IngredientsTypeInterface>(`/${id}`);
+};
+
+const deleteById = async (id: number): Promise<void> => {
+  return await apiService.request<void>(`/${id}`, {
+    method: 'DELETE'
+  });
+};
+
 export const IngredientsTypeService = {
   create,
   findAll,
-  findSummaries
+  findSummaries,
+  findById,
+  deleteById
 };

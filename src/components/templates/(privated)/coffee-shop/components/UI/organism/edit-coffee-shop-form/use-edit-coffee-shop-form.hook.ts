@@ -15,7 +15,7 @@ export const useEditCoffeeShopFormHook = () => {
   const router = useRouter();
 
   const { data } = useQuery({
-    queryKey: ['edit-coffee-shop', id],
+    queryKey: ['read-coffee-shop', id],
     queryFn: () => CoffeeShopService.findById(id),
     enabled: !!id
   });
