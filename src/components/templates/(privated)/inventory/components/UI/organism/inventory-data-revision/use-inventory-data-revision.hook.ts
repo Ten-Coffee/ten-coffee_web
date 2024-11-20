@@ -14,6 +14,7 @@ export const useInventoryDataRevisionHook = () => {
     dueDateClosed: formData.dueDateClosed,
     dueDateOpen: formData.dueDateOpen,
     ingredientTypeId: formData.ingredientType.id,
+    ingredientTypeName: formData.ingredientType.value,
     lastPurchase: formData.lastPurchase,
     name: formData.name,
     supplier: formData.supplier

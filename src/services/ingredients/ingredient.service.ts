@@ -23,8 +23,19 @@ const deleteById = async (id: number): Promise<void> => {
   });
 };
 
+const editById = async (
+  id: string,
+  data: CreateIngredientsInterface
+): Promise<void> => {
+  return await apiService.request<void>(`/${id}`, {
+    method: 'PUT',
+    body: data
+  });
+};
+
 export const IngredientsService = {
   create,
   findById,
-  deleteById
+  deleteById,
+  editById
 };
