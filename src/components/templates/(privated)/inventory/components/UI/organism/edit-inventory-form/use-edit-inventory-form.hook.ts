@@ -51,7 +51,8 @@ export const useEditInventoryFormHook = () => {
       ingredientTypeId: data.ingredientType.id,
       lastPurchase: data.lastPurchase,
       name: data.name,
-      supplier: data.supplier
+      supplier: data.supplier,
+      ingredientTypeName: data.ingredientType.value
     };
 
     await mutation.mutateAsync(payload);
@@ -63,7 +64,7 @@ export const useEditInventoryFormHook = () => {
         ...data,
         ingredientType: {
           id: data.ingredientTypeId,
-          value: 'Coca Cola'
+          value: data.ingredientTypeName
         }
       });
     }

@@ -10,4 +10,5 @@ export interface IngredientsInterface {
   dueDateOpen: string;
   status: StatusType;
   ingredientTypeId: number;
+  ingredientTypeName: string;
 }
