@@ -36,6 +36,13 @@
   width: 100%;
 }
 
+.tables-header__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35rem;
+}
+
 .tables-header__tables-cards {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

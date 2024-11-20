@@ -6,6 +6,7 @@ import { TableCardOrganism } from '@/components/templates/(privated)/tables/comp
 import { tableSchema } from '@/components/templates/(privated)/tables/schemas/table.schema';
 import { useTablesHook } from '@/components/templates/(privated)/tables/use-tables.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
+import { LoadingAtom } from '@/components/UI/atoms/loading/loading.atom';
 import { TableStatusFilterAtom } from '@/components/UI/atoms/table-status-filter/table-status-filter.atom';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
@@ -16,7 +17,7 @@ import { icons } from '@/icons/icons';
 import { Controller } from 'react-hook-form';
 
 export const TablesTemplate = () => {
-  const { modal, form, data, counter } = useTablesHook();
+  const { modal, form, data, counter, isLoading } = useTablesHook();
   const {
     formState: { errors }
   } = form;
@@ -50,13 +51,19 @@ export const TablesTemplate = () => {
         </div>
       </div>
 
+      {isLoading && (
+        <div className={'tables-header__loading'}>
+          <LoadingAtom />
+        </div>
+      )}
+
       <div className={'tables-header__tables-cards'}>
         {data &&
           data.map((table) => (
             <TableCardOrganism
-              key={table.tableNUmber}
+              key={table.number}
               id={table.id}
-              number={table.tableNUmber.toString()}
+              number={table.number.toString()}
               status={table.tableStatus}
               time={table.lastTimeVisited || '0:00'}
             />
