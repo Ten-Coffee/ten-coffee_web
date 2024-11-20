@@ -24,6 +24,8 @@ export const useDeleteModalHook = <T extends { id: number }>(
     toggle();
     setDescription(config.getDescription(item));
     setId(item);
+
+    console.log(item);
   };
 
   const mutation = useMutation({

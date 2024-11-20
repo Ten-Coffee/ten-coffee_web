@@ -5,12 +5,13 @@ import { UsersService } from '@/services/users/users.service';
 import { PathParamsType } from '@/types/path-params.type';
 import { ReadByIdType } from '@/types/read-by-id.type';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 const READ_BY_ID_QUERY = 'read-user-by-id';
 
 export const useReadUserByIdHook = () => {
   const { id } = useParams<PathParamsType>();
+  const router = useRouter();
 
   const { data, isLoading } = useQuery({
     queryKey: [READ_BY_ID_QUERY],
@@ -65,6 +66,7 @@ export const useReadUserByIdHook = () => {
     data: userData,
     isLoading,
     modal,
-    userData: data
+    userData: data,
+    goBackPage: () => router.back()
   };
 };
