@@ -2,10 +2,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 
 interface UseDeleteModalHookConfig<T> {
-  title: string;
+  title: (item: T) => string;
   getDescription: (item: T) => string;
   mutationFn: (id: number) => Promise<void>;
-  buttonText: string;
+  buttonText: (item: T) => string;
 }
 
 export const useDeleteModalHook = <T extends { id: number }>(
@@ -24,8 +24,6 @@ export const useDeleteModalHook = <T extends { id: number }>(
     toggle();
     setDescription(config.getDescription(item));
     setId(item);
-
-    console.log(item);
   };
 
   const mutation = useMutation({
@@ -43,12 +41,12 @@ export const useDeleteModalHook = <T extends { id: number }>(
   });
 
   return {
-    title: config.title,
+    title: config.title(selectedItem!),
     isOpen,
     toggle,
     description,
     mainButton: {
-      text: config.buttonText,
+      text: config.buttonText(selectedItem!),
       action: () => {
         mutation.mutate();
         toggle();

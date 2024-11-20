@@ -9,6 +9,7 @@ import { useSearchDebounceHook } from '@/hooks/use-search-debounce.hook';
 import { icons } from '@/icons/icons';
 import { CoffeeShopPage } from '@/interfaces/coffee-shop/coffee-shop-page.interface';
 import { CoffeeShopService } from '@/services/coffee-shop/coffee-shop.service';
+import { IngredientsTypeService } from '@/services/ingredients-type/ingredients-type.service';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
@@ -20,13 +21,16 @@ export const useCoffeeShopListHook = () => {
 
   const router = useRouter();
 
+  const getActionVerb = (status: string) =>
+    status === 'ACTIVE' ? 'Inativar' : 'Ativar';
+
   const modal = useDeleteModalHook<CoffeeShopPage>(
     {
-      title: 'Inativar unidades',
+      title: (item) => `${getActionVerb(item?.status)} Unidade`,
       getDescription: (item) =>
-        `Tem certeza que deseja inativar a unidade "${item.name}" do CNPJ "${item.cnpj}"?`,
-      mutationFn: CoffeeShopService.deleteById,
-      buttonText: 'Inativar'
+        `Tem certeza que deseja ${getActionVerb(item?.status).toLowerCase()} a unidade "${item.name} do CNPJ "${item.cnpj}""?`,
+      mutationFn: IngredientsTypeService.deleteById,
+      buttonText: (item) => getActionVerb(item?.status)
     },
     COFFEE_SHOP_QUERY
   );

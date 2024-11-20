@@ -1,5 +1,6 @@
 import { useDeleteModalHook } from '@/hooks/use-delete-modal.hook';
 import { IngredientsInterface } from '@/interfaces/ingredients/ingredients.interface';
+import { IngredientsTypeService } from '@/services/ingredients-type/ingredients-type.service';
 import { IngredientsService } from '@/services/ingredients/ingredient.service';
 import { PathParamsType } from '@/types/path-params.type';
 import { ReadByIdType } from '@/types/read-by-id.type';
@@ -19,13 +20,16 @@ export const useReadInventoryByIdHook = () => {
     enabled: !!id
   });
 
+  const getActionVerb = (status: string) =>
+    status === 'ACTIVE' ? 'Inativar' : 'Ativar';
+
   const modal = useDeleteModalHook<IngredientsInterface>(
     {
-      title: 'Inativar Ingrediente',
+      title: (item) => `${getActionVerb(item?.status)} Ingrediente`,
       getDescription: (item) =>
-        `Tem certeza que deseja inativar o ingrediente "${item.name}"?`,
-      mutationFn: IngredientsService.deleteById,
-      buttonText: 'Inativar'
+        `Tem certeza que deseja ${getActionVerb(item?.status).toLowerCase()} o ingrediente "${item.name}"?`,
+      mutationFn: IngredientsTypeService.deleteById,
+      buttonText: (item) => getActionVerb(item?.status)
     },
     READ_BY_ID_QUERY
   );

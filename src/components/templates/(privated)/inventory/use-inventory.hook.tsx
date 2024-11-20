@@ -28,13 +28,16 @@ export const useInventoryHook = () => {
       }).then((data) => setPageSearch({ page: data.number }).then(() => data))
   });
 
+  const getActionVerb = (status: string) =>
+    status === 'ACTIVE' ? 'Inativar' : 'Ativar';
+
   const modal = useDeleteModalHook<IngredientsInterface>(
     {
-      title: 'Inativar Ingrediente',
+      title: (item) => `${getActionVerb(item?.status)} Ingrediente`,
       getDescription: (item) =>
-        `Tem certeza que deseja inativar o ingrediente "${item.name}"?`,
+        `Tem certeza que deseja ${getActionVerb(item?.status).toLowerCase()} o ingrediente "${item.name}"?`,
       mutationFn: IngredientsService.deleteById,
-      buttonText: 'Inativar'
+      buttonText: (item) => getActionVerb(item?.status)
     },
     INVENTORY_FIND_ALL_QUERY
   );
