@@ -5,7 +5,7 @@ import { DropdownMenu } from '@/components/UI/molecules/dropdown-menu/dropdown-m
 import { TableStatusEnum } from '@/enums/table-status.enum';
 import { icons } from '@/icons/icons';
 import './table-card.styles.scss';
-import { formatTime, tableNumberMask } from '@/utils/mask.utils';
+import { tableNumberMask, timeMask } from '@/utils/mask.utils';
 
 interface TableCardOrganismProps {
   id: string;
@@ -52,7 +52,7 @@ export const TableCardOrganism = ({
           <label className={'counter-time__label'}>Últ. atendimento</label>
           <div className={'counter-time__clock-span'}>
             <ClockIcon className={'clock-span__clock-icon'} />
-            <span className={'clock-span__timer'}>{formatTime(time)}</span>
+            <span className={'clock-span__timer'}>{timeMask(time)}</span>
           </div>
         </div>
       </div>
