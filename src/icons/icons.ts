@@ -14,6 +14,7 @@ import {
   EyeOff,
   Home,
   LoaderCircle,
+  Package,
   Pencil,
   Plus,
   Search,
@@ -53,5 +54,6 @@ export const icons = {
   X,
   Table,
   Clock,
-  Ingredients: Bean
+  Ingredients: Bean,
+  Inventory: Package
 };

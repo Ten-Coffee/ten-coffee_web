@@ -1,11 +1,8 @@
-import { MeasurementEnum } from '@/enums/measurement.enum';
-import { StatusType } from '@/types/status.type';
-
 export interface IngredientsInterface {
-  id: number;
-  productName: string;
-  category: string;
-  description: string;
-  measurement: MeasurementEnum;
-  status: StatusType;
+  name: string;
+  amount: number;
+  supplier: string;
+  lastPurchase: string;
+  dueDateClosed: string;
+  dueDateOpen: string;
 }

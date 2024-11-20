@@ -6,13 +6,13 @@ import { useDeleteModalHook } from '@/hooks/use-delete-modal.hook';
 import { usePageSearchHook } from '@/hooks/use-page-search.hook';
 import { useSearchDebounceHook } from '@/hooks/use-search-debounce.hook';
 import { icons } from '@/icons/icons';
-import { IngredientsInterface } from '@/interfaces/ingredients/ingredients.interface';
-import { IngredientsService } from '@/services/ingredients/ingredients.service';
+import { IngredientsTypeInterface } from '@/interfaces/ingredients-type/ingredients-type.interface';
+import { IngredientsTypeService } from '@/services/ingredients-type/ingredients-type.service';
 import { UsersService } from '@/services/users/users.service';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-const INGREDIENTS_FIND_ALL_KEY = 'ingredients-find-all';
+const INGREDIENTS_FIND_ALL_KEY = 'ingredients-type-type-find-all';
 
 export const useIngredientsHook = () => {
   const [{ page, search }, setPageSearch] = usePageSearchHook();
@@ -23,14 +23,14 @@ export const useIngredientsHook = () => {
   const { data, isLoading } = useQuery({
     queryKey: [INGREDIENTS_FIND_ALL_KEY, page, debouncedSearch],
     queryFn: () =>
-      IngredientsService.findAll({
+      IngredientsTypeService.findAll({
         page,
         size: 10,
         search
       }).then((data) => setPageSearch({ page: data.number }).then(() => data))
   });
 
-  const modal = useDeleteModalHook<IngredientsInterface>(
+  const modal = useDeleteModalHook<IngredientsTypeInterface>(
     {
       title: 'Inativar Ingrediente',
       getDescription: (item) =>
@@ -41,7 +41,7 @@ export const useIngredientsHook = () => {
     INGREDIENTS_FIND_ALL_KEY
   );
 
-  const columns: ColumnInterface<IngredientsInterface>[] = [
+  const columns: ColumnInterface<IngredientsTypeInterface>[] = [
     {
       value: 'ID',
       key: 'id'
@@ -57,7 +57,7 @@ export const useIngredientsHook = () => {
     {
       value: 'Unidade de Medida',
       key: 'measurement',
-      render: ({ measurement }: IngredientsInterface) => (
+      render: ({ measurement }: IngredientsTypeInterface) => (
         <TableDataAtom.Default value={measurementNames[measurement]} />
       )
     },
@@ -68,13 +68,13 @@ export const useIngredientsHook = () => {
     {
       value: 'Status',
       key: 'status',
-      render: ({ status }: IngredientsInterface) => (
+      render: ({ status }: IngredientsTypeInterface) => (
         <TableDataAtom.Status value={status} />
       )
     }
   ];
 
-  const rowActions: RowActionsInterface<IngredientsInterface>[] = [
+  const rowActions: RowActionsInterface<IngredientsTypeInterface>[] = [
     {
       icon: icons.Edit,
       onClick: (item) => router.push(`/ingredients/edit/step-1/${item.id}`)
