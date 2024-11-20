@@ -1,9 +1,9 @@
+import { MeasurementEnum, measurementNames } from '@/enums/measurement.enum';
 import { useDeleteModalHook } from '@/hooks/use-delete-modal.hook';
-import { IngredientsInterface } from '@/interfaces/ingredients/ingredients.interface';
-import { IngredientsService } from '@/services/ingredients/ingredient.service';
+import { IngredientsTypeInterface } from '@/interfaces/ingredients-type/ingredients-type.interface';
+import { IngredientsTypeService } from '@/services/ingredients-type/ingredients-type.service';
 import { PathParamsType } from '@/types/path-params.type';
 import { ReadByIdType } from '@/types/read-by-id.type';
-import { dateMask } from '@/utils/mask.utils';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 
@@ -15,16 +15,16 @@ export const useReadIngredientByIdHook = () => {
 
   const { data, isLoading } = useQuery({
     queryKey: [READ_BY_ID_QUERY],
-    queryFn: () => IngredientsService.findById(id),
+    queryFn: () => IngredientsTypeService.findById(id),
     enabled: !!id
   });
 
-  const modal = useDeleteModalHook<IngredientsInterface>(
+  const modal = useDeleteModalHook<IngredientsTypeInterface>(
     {
       title: 'Inativar Ingrediente',
       getDescription: (item) =>
-        `Tem certeza que deseja inativar o ingrediente "${item.name}"?`,
-      mutationFn: IngredientsService.deleteById,
+        `Tem certeza que deseja inativar o ingrediente "${item.productName}"?`,
+      mutationFn: IngredientsTypeService.deleteById,
       buttonText: 'Inativar'
     },
     READ_BY_ID_QUERY
@@ -33,31 +33,19 @@ export const useReadIngredientByIdHook = () => {
   const ingredientData: ReadByIdType[] = [
     {
       label: 'Nome',
-      value: data?.name
+      value: data?.productName
     },
     {
-      label: 'Quantidade',
-      value: data?.amount.toString()
+      label: 'Categoria',
+      value: data?.category
     },
     {
-      label: 'Tipo Ingrediente',
-      value: ''
+      label: 'Unidade de Medida',
+      value: measurementNames[data?.measurement || MeasurementEnum.CAIXA]
     },
     {
-      label: 'Fornecedor',
-      value: data?.supplier
-    },
-    {
-      label: 'Última Compra',
-      value: dateMask(data?.lastPurchase)
-    },
-    {
-      label: 'Data de Validade (Aberta)',
-      value: dateMask(data?.dueDateOpen)
-    },
-    {
-      label: 'Data de Validade (Fechada)',
-      value: dateMask(data?.dueDateClosed)
+      label: 'Descrição',
+      value: data?.description
     },
     {
       label: 'Status',
@@ -73,7 +61,7 @@ export const useReadIngredientByIdHook = () => {
       isLoading
     },
     data,
-    title: data?.name ?? 'Carregando...',
+    title: data?.productName ?? 'Carregando...',
     modal
   };
 };

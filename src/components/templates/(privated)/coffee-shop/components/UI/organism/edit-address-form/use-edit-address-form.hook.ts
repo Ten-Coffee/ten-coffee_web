@@ -18,7 +18,7 @@ export const useEditAddressFormHook = () => {
   const router = useRouter();
 
   const { data } = useQuery({
-    queryKey: ['edit-address', id],
+    queryKey: ['read-address', id],
     queryFn: () => AddressService.findById(id),
     enabled: !!id
   });

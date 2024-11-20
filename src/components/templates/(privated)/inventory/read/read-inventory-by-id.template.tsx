@@ -1,6 +1,6 @@
 'use client';
 
-import { useReadIngredientByIdHook } from '@/components/templates/(privated)/ingredients/read/use-read-ingredient-by-id.hook';
+import { useReadInventoryByIdHook } from '@/components/templates/(privated)/inventory/read/use-read-inventory-by-id.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { IconButtonAtom } from '@/components/UI/atoms/icon-button/icon-button.atom';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
@@ -8,9 +8,9 @@ import { DetailsViewOrganism } from '@/components/UI/organism/details-view/detai
 import { ModalOrganism } from '@/components/UI/organism/modal/modal.organism';
 import { icons } from '@/icons/icons';
 
-export const ReadIngredientByIdTemplate = () => {
-  const { goBackPage, ingredient, data, title, modal } =
-    useReadIngredientByIdHook();
+export const ReadInventoryByIdTemplate = () => {
+  const { ingredient, title, modal, goBackPage, data } =
+    useReadInventoryByIdHook();
 
   return (
     <>

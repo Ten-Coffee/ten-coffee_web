@@ -1,5 +1,5 @@
-import { ReadIngredientByIdTemplate } from '@/components/templates/(privated)/ingredients/read/read-ingredient-by-id.template';
+import { ReadInventoryByIdTemplate } from '@/components/templates/(privated)/inventory/read/read-inventory-by-id.template';
 
 export default function Page() {
-  return <ReadIngredientByIdTemplate />;
+  return <ReadInventoryByIdTemplate />;
 }
