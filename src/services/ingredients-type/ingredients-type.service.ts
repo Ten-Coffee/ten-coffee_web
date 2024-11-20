@@ -1,4 +1,5 @@
 import { CreateIngredientsTypeInterface } from '@/interfaces/ingredients-type/create-ingredients-type.interface';
+import { EditIngredientsInterface } from '@/interfaces/ingredients-type/edit-ingredients.interface';
 import { IngredientsTypeSummaryInterface } from '@/interfaces/ingredients-type/ingredients-type-summary.interface';
 import { IngredientsTypeInterface } from '@/interfaces/ingredients-type/ingredients-type.interface';
 import { PageParamsInterface } from '@/interfaces/page-params.interface';
@@ -62,10 +63,21 @@ const deleteById = async (id: number): Promise<void> => {
   });
 };
 
+const updateById = async (
+  id: string,
+  data: EditIngredientsInterface
+): Promise<void> => {
+  return await apiService.request<void>(`/${id}`, {
+    method: 'PUT',
+    body: data
+  });
+};
+
 export const IngredientsTypeService = {
   create,
   findAll,
   findSummaries,
   findById,
-  deleteById
+  deleteById,
+  updateById
 };
