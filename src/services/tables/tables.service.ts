@@ -1,3 +1,4 @@
+import { TableStatusEnum } from '@/enums/table-status.enum';
 import {
   FindAllTables,
   TableInterface
@@ -21,7 +22,20 @@ const findAll = async (status: string): Promise<FindAllTables[]> => {
   });
 };
 
+const updateStatus = async (
+  id: string,
+  status: TableStatusEnum
+): Promise<void> => {
+  return await tableApi.request<void>(`/${id}`, {
+    method: 'PUT',
+    queryParams: {
+      status
+    }
+  });
+};
+
 export const TablesService = {
   create,
-  findAll
+  findAll,
+  updateStatus
 };

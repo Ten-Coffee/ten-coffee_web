@@ -8,7 +8,7 @@ export interface TableInterface {
 
 export interface FindAllTables {
   id: string;
-  tableNUmber: number;
+  number: number;
   lastTimeVisited: string;
   counter: string;
   tableStatus: TableStatusEnum;
