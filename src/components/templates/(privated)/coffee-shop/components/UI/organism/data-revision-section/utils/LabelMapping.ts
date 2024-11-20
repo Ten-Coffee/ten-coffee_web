@@ -25,5 +25,10 @@ export const labelMapping: Record<string, string> = {
   coffeeShop: 'Cafeteria',
   permission: 'Permissão',
   login: 'Login',
-  password: 'Senha'
+  password: 'Senha',
+
+  productName: 'Nome',
+  description: 'Descrição',
+  category: 'Categoria',
+  measurement: 'Unidade de Medida'
 };

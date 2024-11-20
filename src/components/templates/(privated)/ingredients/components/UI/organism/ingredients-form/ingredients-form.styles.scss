@@ -1,0 +1,32 @@
+.ingredients-form {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+
+  flex-grow: 1;
+}
+
+.ingredients-form__fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem;
+
+  padding: 2.4rem;
+
+  border-radius: var(--border-radius-md);
+
+  background: var(--background-50);
+
+  & > *:nth-child(3),
+  & > *:nth-child(4) {
+    grid-column: span 2;
+  }
+}
+
+.ingredients-form__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 2.4rem;
+}

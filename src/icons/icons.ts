@@ -1,4 +1,5 @@
 import {
+  Bean,
   Building,
   Check,
   ChevronDown,
@@ -51,5 +52,6 @@ export const icons = {
   Loading: LoaderCircle,
   X,
   Table,
-  Clock
+  Clock,
+  Ingredients: Bean
 };
