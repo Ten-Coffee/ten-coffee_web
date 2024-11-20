@@ -89,7 +89,6 @@ export const EditUserFormOrganism = () => {
           </>
         )}
       </div>
-      {/*<p>{JSON.stringify(errors)}</p>*/}
       <div className={'edit-user-form__buttons'}>
         <ButtonAtom.Wrapper
           hierarchy={'outlined'}
