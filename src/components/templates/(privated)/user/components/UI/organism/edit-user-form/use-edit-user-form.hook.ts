@@ -18,7 +18,7 @@ export const useEditUserFormHook = () => {
   const router = useRouter();
 
   const { data } = useQuery({
-    queryKey: ['edit-user', id],
+    queryKey: ['read-user', id],
     queryFn: () => UsersService.findById(id),
     enabled: !!id
   });

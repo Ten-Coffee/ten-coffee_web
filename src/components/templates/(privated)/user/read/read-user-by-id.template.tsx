@@ -1,6 +1,5 @@
 'use client';
 
-import { useCoffeeShopReadByIdHook } from '@/components/templates/(privated)/coffee-shop/read/use-coffee-shop-read-by-id.hook';
 import { useReadUserByIdHook } from '@/components/templates/(privated)/user/read/use-read-user-by-id.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { IconButtonAtom } from '@/components/UI/atoms/icon-button/icon-button.atom';
@@ -10,8 +9,8 @@ import { ModalOrganism } from '@/components/UI/organism/modal/modal.organism';
 import { icons } from '@/icons/icons';
 
 export const ReadUserByIdTemplate = () => {
-  const { goBackPage } = useCoffeeShopReadByIdHook();
-  const { data, isLoading, modal, userData } = useReadUserByIdHook();
+  const { data, isLoading, modal, userData, goBackPage } =
+    useReadUserByIdHook();
 
   return (
     <>

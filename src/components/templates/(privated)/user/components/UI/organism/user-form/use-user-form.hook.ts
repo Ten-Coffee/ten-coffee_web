@@ -17,8 +17,6 @@ export const useUserFormHook = () => {
   const { update, data: formData } = useUserFormStore();
   const router = useRouter();
 
-  const handleCancel = () => router.push('/users');
-
   const { data } = useQuery({
     queryKey: ['register-user', debouncedSearch],
     queryFn: () => CoffeeShopService.findSummaries(search)
@@ -38,7 +36,7 @@ export const useUserFormHook = () => {
   };
 
   return {
-    handleCancel,
+    handleCancel: () => router.push('/users'),
     form,
     data,
     setSearch,
