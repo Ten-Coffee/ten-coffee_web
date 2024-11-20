@@ -30,5 +30,12 @@ export const labelMapping: Record<string, string> = {
   productName: 'Nome',
   description: 'Descrição',
   category: 'Categoria',
-  measurement: 'Unidade de Medida'
+  measurement: 'Unidade de Medida',
+
+  amount: 'Quantidade',
+  dueDateOpen: 'Data de Validade (Aberta)',
+  dueDateClosed: 'Data de Validade (Fechada)',
+  lastPurchase: 'Última Compra',
+  supplier: 'Fornecedor',
+  ingredientType: 'Tipo de Ingrediente'
 };
