@@ -41,7 +41,7 @@ export const tableNumberMask = (value: string | undefined): string => {
   return `#${formattedNumber}`;
 };
 
-export const formatTime = (input: string | undefined): string => {
+export const timeMask = (input: string | undefined): string => {
   if (!input) return '0 min e 0s';
 
   const parts = input.split(':');
@@ -53,4 +53,11 @@ export const formatTime = (input: string | undefined): string => {
     return `${minutes} min`;
   }
   return `${minutes} min e ${seconds} s`;
+};
+
+export const dateMask = (date: string | undefined): string => {
+  if (!date) return '';
+
+  const [year, month, day] = date.split('-');
+  return `${day}/${month}/${year}`;
 };

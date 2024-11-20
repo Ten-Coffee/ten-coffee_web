@@ -1,13 +1,16 @@
 'use client';
 
 import { useReadIngredientByIdHook } from '@/components/templates/(privated)/ingredients/read/use-read-ingredient-by-id.hook';
+import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { IconButtonAtom } from '@/components/UI/atoms/icon-button/icon-button.atom';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { DetailsViewOrganism } from '@/components/UI/organism/details-view/details-view.organism';
+import { ModalOrganism } from '@/components/UI/organism/modal/modal.organism';
 import { icons } from '@/icons/icons';
 
 export const ReadIngredientByIdTemplate = () => {
-  const { goBackPage, ingredient, editButton } = useReadIngredientByIdHook();
+  const { ingredient, title, modal, goBackPage, data } =
+    useReadIngredientByIdHook();
 
   return (
     <>
@@ -19,31 +22,25 @@ export const ReadIngredientByIdTemplate = () => {
             hierarchy={'ghosted'}
             size={'large'}
           />
-          <TitleAtom.Large
-            value={
-              // ingredient[0].value ??
-              'Carregando...'
-            }
-          />
+          <TitleAtom.Large value={title} />
         </div>
-        {/*<ButtonAtom.Wrapper*/}
-        {/*  hierarchy={'outlined'}*/}
-        {/*  onClick={() => modal.onClickModal(userData!)}*/}
-        {/*  type={'submit'}*/}
-        {/*>*/}
-        {/*  <ButtonAtom.Icon icon={icons.Trash} />*/}
-        {/*  Inativar Usuário*/}
-        {/*</ButtonAtom.Wrapper>*/}
+        <ButtonAtom.Wrapper
+          hierarchy={'outlined'}
+          onClick={() => modal.onClickModal(data!)}
+          type={'submit'}
+        >
+          <ButtonAtom.Icon icon={icons.Trash} />
+          Inativar Item
+        </ButtonAtom.Wrapper>
       </div>
 
       <DetailsViewOrganism
-        editButton={editButton}
         title={'Ingrediente'}
-        data={ingredient.dataToShow}
+        data={ingredient.data}
         isLoading={ingredient.isLoading}
       />
 
-      {/*<ModalOrganism {...modal} />*/}
+      <ModalOrganism {...modal} />
     </>
   );
 };

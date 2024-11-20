@@ -1,49 +1,79 @@
+import { useDeleteModalHook } from '@/hooks/use-delete-modal.hook';
 import { IngredientsInterface } from '@/interfaces/ingredients/ingredients.interface';
+import { IngredientsService } from '@/services/ingredients/ingredient.service';
 import { PathParamsType } from '@/types/path-params.type';
 import { ReadByIdType } from '@/types/read-by-id.type';
+import { dateMask } from '@/utils/mask.utils';
+import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
+
+const READ_BY_ID_QUERY = 'read-ingredient-by-id';
 
 export const useReadIngredientByIdHook = () => {
   const { id } = useParams<PathParamsType>();
-
   const router = useRouter();
 
-  const ingredient: ReadByIdType[] = [
+  const { data, isLoading } = useQuery({
+    queryKey: [READ_BY_ID_QUERY],
+    queryFn: () => IngredientsService.findById(id),
+    enabled: !!id
+  });
+
+  const modal = useDeleteModalHook<IngredientsInterface>(
+    {
+      title: 'Inativar Ingrediente',
+      getDescription: (item) =>
+        `Tem certeza que deseja inativar o ingrediente "${item.name}"?`,
+      mutationFn: IngredientsService.deleteById,
+      buttonText: 'Inativar'
+    },
+    READ_BY_ID_QUERY
+  );
+
+  const ingredientData: ReadByIdType[] = [
     {
       label: 'Nome',
-      value: 'Carregando...'
+      value: data?.name
     },
     {
-      label: 'Unidade de Medida',
-      value: 'Carregando...'
+      label: 'Quantidade',
+      value: data?.amount.toString()
     },
     {
-      label: 'Categoria',
-      value: 'Carregando...'
+      label: 'Tipo Ingrediente',
+      value: ''
     },
     {
-      label: 'Descrição',
-      value: 'Carregando...'
+      label: 'Fornecedor',
+      value: data?.supplier
+    },
+    {
+      label: 'Última Compra',
+      value: dateMask(data?.lastPurchase)
+    },
+    {
+      label: 'Data de Validade (Aberta)',
+      value: dateMask(data?.dueDateOpen)
+    },
+    {
+      label: 'Data de Validade (Fechada)',
+      value: dateMask(data?.dueDateClosed)
     },
     {
       label: 'Status',
-      value: 'ACTIVE',
+      value: data?.status,
       isStatus: true
     }
   ];
 
-  const editButton = {
-    text: 'Editar',
-    onClick: () => router.push(`/ingredients/edit/step-1/${id}`)
-  };
-
   return {
     goBackPage: () => router.back(),
     ingredient: {
-      dataToShow: ingredient,
-      isLoading: false,
-      data: [{}] as IngredientsInterface[]
+      data: ingredientData,
+      isLoading
     },
-    editButton
+    data,
+    title: data?.name ?? 'Carregando...',
+    modal
   };
 };

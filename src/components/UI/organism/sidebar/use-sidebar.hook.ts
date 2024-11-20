@@ -28,9 +28,14 @@ export const useSidebarHook = () => {
         path: '/tables'
       },
       {
+        icon: icons.Inventory,
+        value: 'Estoque',
+        path: '/inventory'
+      },
+      {
         icon: icons.Ingredients,
         value: 'Tipo Insumo',
-        path: '/ingredients'
+        path: '/ingredients-type-type'
       }
     ]
   };
