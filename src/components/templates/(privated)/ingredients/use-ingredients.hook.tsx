@@ -8,7 +8,6 @@ import { useSearchDebounceHook } from '@/hooks/use-search-debounce.hook';
 import { icons } from '@/icons/icons';
 import { IngredientsTypeInterface } from '@/interfaces/ingredients-type/ingredients-type.interface';
 import { IngredientsTypeService } from '@/services/ingredients-type/ingredients-type.service';
-import { UsersService } from '@/services/users/users.service';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
@@ -30,13 +29,16 @@ export const useIngredientsHook = () => {
       }).then((data) => setPageSearch({ page: data.number }).then(() => data))
   });
 
+  const getActionVerb = (status: string) =>
+    status === 'ACTIVE' ? 'Inativar' : 'Ativar';
+
   const modal = useDeleteModalHook<IngredientsTypeInterface>(
     {
-      title: 'Inativar Ingrediente',
+      title: (item) => `${getActionVerb(item?.status)} Ingrediente`,
       getDescription: (item) =>
-        `Tem certeza que deseja inativar o ingredient "${item.productName}"?`,
-      mutationFn: UsersService.deleteById,
-      buttonText: 'Inativar'
+        `Tem certeza que deseja ${getActionVerb(item?.status).toLowerCase()} o ingrediente "${item.productName}"?`,
+      mutationFn: IngredientsTypeService.deleteById,
+      buttonText: (item) => getActionVerb(item?.status)
     },
     INGREDIENTS_FIND_ALL_KEY
   );

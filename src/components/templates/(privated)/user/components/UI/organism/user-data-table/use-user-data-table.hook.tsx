@@ -34,13 +34,16 @@ export const useUserDataTableHook = () => {
       ).then((data) => setPageSearch({ page: data.number }).then(() => data))
   });
 
+  const getActionVerb = (status: string) =>
+    status === 'ACTIVE' ? 'Inativar' : 'Ativar';
+
   const modal = useDeleteModalHook<UsersInterface>(
     {
-      title: 'Inativar Usuário',
+      title: (item) => `${getActionVerb(item?.status)} Usuário`,
       getDescription: (item) =>
-        `Tem certeza que deseja inativar o usuário "${item.name}"?`,
+        `Tem certeza que deseja ${getActionVerb(item?.status).toLowerCase()} o usuário "${item.name}"?`,
       mutationFn: UsersService.deleteById,
-      buttonText: 'Inativar'
+      buttonText: (item) => getActionVerb(item?.status)
     },
     USER_TABLE_QUERY
   );
