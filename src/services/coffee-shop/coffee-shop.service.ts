@@ -1,4 +1,3 @@
-import { BASE_URL } from '@/constants/base-url.constant';
 import { CoffeeShopPage } from '@/interfaces/coffee-shop/coffee-shop-page.interface';
 import { CoffeeShopSummaryInterface } from '@/interfaces/coffee-shop/coffee-shop-summary.interface';
 import { CoffeeShopInterface } from '@/interfaces/coffee-shop/coffee-shop.interface';
@@ -7,51 +6,33 @@ import { EditCoffeeShopInterface } from '@/interfaces/coffee-shop/edit-coffee-sh
 import { PageParamsInterface } from '@/interfaces/page-params.interface';
 import { PageableInterface } from '@/interfaces/pageable.interface';
 import { SelectOptionsInterface } from '@/interfaces/select-options.interface';
+import { ApiService } from '@/services/api-base.service';
 
-const resourceUrl = BASE_URL + '/coffeeShops';
+const apiService = new ApiService('/coffeeShops');
 
 const create = async (data: CreateCoffeeShopInterface): Promise<void> => {
-  const response = await fetch(resourceUrl, {
+  await apiService.request<void>('', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
+    body: data
   });
-
-  return await response.json();
 };
 
 const findById = async (id: string): Promise<CoffeeShopInterface> => {
-  const parsedId = parseInt(id);
-
-  const response = await fetch(resourceUrl + `/${parsedId}`);
-
-  return await response.json();
+  return await apiService.request<CoffeeShopInterface>(`/${id}`);
 };
 
 const editById = async (
   id: string,
   data: Partial<EditCoffeeShopInterface>
 ): Promise<void> => {
-  const response = await fetch(`${resourceUrl}/${id}`, {
+  await apiService.request<void>(`/${id}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
+    body: data
   });
-
-  if (response.status === 204) {
-    return;
-  }
-  
-  const error = await response.json();
-  throw new Error(error.message || 'Failed to update CoffeeShop');
 };
 
 const deleteById = async (id: number): Promise<void> => {
-  await fetch(resourceUrl + `/${id}`, {
+  await apiService.request<void>(`/${id}`, {
     method: 'DELETE'
   });
 };
@@ -61,31 +42,22 @@ const findAll = async ({
   size = 10,
   search = ''
 }: PageParamsInterface): Promise<PageableInterface<CoffeeShopPage>> => {
-  const urlParams = new URLSearchParams({
-    page: page.toString(),
-    size: size.toString(),
-    search
+  return await apiService.request<PageableInterface<CoffeeShopPage>>('', {
+    queryParams: { page, size, search }
   });
-
-  const response = await fetch(resourceUrl + '?' + urlParams.toString());
-
-  return await response.json();
 };
 
 const findSummaries = async (
   search: string
 ): Promise<SelectOptionsInterface[]> => {
-  const urlParams = new URLSearchParams({
-    search
-  });
-
-  const response = await fetch(
-    resourceUrl + '/summary' + '?' + urlParams.toString()
+  const response = await apiService.request<CoffeeShopSummaryInterface[]>(
+    '/summary',
+    {
+      queryParams: { search }
+    }
   );
 
-  const convertedResponse: CoffeeShopSummaryInterface[] = await response.json();
-
-  return convertedResponse.map(({ id, name }) => ({
+  return response.map(({ id, name }) => ({
     id,
     value: name
   }));

@@ -13,7 +13,7 @@ export class ApiService {
   private readonly resourceUrl: string;
 
   constructor(resourcePath: string) {
-    this.resourceUrl = BASE_URL + resourcePath;
+    this.resourceUrl = `${BASE_URL}${resourcePath}`;
   }
 
   private buildUrl(
