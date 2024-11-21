@@ -25,7 +25,7 @@ const findAll = async ({
       page,
       size,
       search,
-      coffeeShopId: 1
+      coffeeShopId: 2
     }
   });
 };
@@ -33,7 +33,7 @@ const findIngredients = async (
   search = ''
 ): Promise<SelectOptionsInterface[]> => {
   const response = await apiService.request<IngredientsTypeSummaryInterface[]>(
-    '/summary/1',
+    '/summary/2',
     {
       queryParams: {
         search
