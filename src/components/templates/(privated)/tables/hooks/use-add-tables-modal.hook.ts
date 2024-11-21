@@ -21,7 +21,7 @@ export const UseAddTablesModalHook = () => {
   const mutation = useMutation({
     mutationFn: (data: Omit<TableInterface, 'coffeeShopId'>) =>
       TablesService.create({
-        coffeeShopId: '1',
+        coffeeShopId: '2',
         tablesNumber: data.tablesNumber,
         counter: data.counter
       })
