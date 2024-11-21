@@ -16,7 +16,7 @@ export const IngredientsTemplate = () => {
   return (
     <>
       <div className={'ingredients-header'}>
-        <TitleAtom.Large value={'Ingredients'} />
+        <TitleAtom.Large value={'Ingredientes'} />
 
         <ButtonAtom.Wrapper
           hierarchy={'outlined'}
@@ -24,7 +24,7 @@ export const IngredientsTemplate = () => {
           onClick={handleAdd}
         >
           <ButtonAtom.Icon icon={icons.Add} />
-          Adicionar Usuário
+          Adicionar Ingrediente
         </ButtonAtom.Wrapper>
       </div>
 
