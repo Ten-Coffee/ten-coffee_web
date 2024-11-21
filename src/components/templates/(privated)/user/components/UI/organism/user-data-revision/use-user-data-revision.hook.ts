@@ -5,7 +5,6 @@ import { UsersService } from '@/services/users/users.service';
 import { extractData } from '@/utils/extract-data.utils';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
 
 export const useUserDataRevisionHook = () => {
   const router = useRouter();
@@ -24,25 +23,7 @@ export const useUserDataRevisionHook = () => {
   const mutation = useMutation({
     mutationFn: () => UsersService.create(transformToCreateUsersInterface),
     onSuccess: () => {
-      toast.success('Usuário cadastrado com sucesso', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true
-      });
       router.push('/users');
-    },
-    onError: (error) => {
-      toast.error(`Erro ao cadastrar usuário: ${error.message}`, {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true
-      });
     }
   });
 

@@ -6,7 +6,6 @@ import { CreateMenuItemInterface } from '@/interfaces/menu-item/create-menu-item
 import { MenuItemService } from '@/services/menu-item/menu-item.service';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
 
 export const useItemMenuDataRevisionFormHook = () => {
   const router = useRouter();
@@ -15,12 +14,9 @@ export const useItemMenuDataRevisionFormHook = () => {
   const mutation = useMutation({
     mutationFn: (data: CreateMenuItemInterface) => MenuItemService.create(data), // Aceita dados no formato correto
     onSuccess: () => {
-      toast.success('Item de cardápio cadastrado com sucesso!');
       resetItem();
       router.push('/menu-items');
-    },
-    onError: (error) =>
-      toast.error('Erro ao cadastrar item de cardápio: ' + error.message)
+    }
   });
 
   const menuItemData = {

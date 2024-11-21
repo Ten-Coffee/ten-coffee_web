@@ -4,7 +4,6 @@ import { useFormStore } from '@/components/templates/(privated)/coffee-shop/crea
 import { CoffeeShopService } from '@/services/coffee-shop/coffee-shop.service';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
 
 export const useDataRevisionFormHook = () => {
   const router = useRouter();
@@ -15,11 +14,8 @@ export const useDataRevisionFormHook = () => {
   const mutation = useMutation({
     mutationFn: () => CoffeeShopService.create(requestData),
     onSuccess: () => {
-      toast.success('Cafeteria cadastrada com sucesso!');
       router.push('/coffee-shops');
-    },
-    onError: (error) =>
-      toast.error('Erro ao cadastrar cafeteria: ' + error.message)
+    }
   });
 
   const handleBack = () => {
