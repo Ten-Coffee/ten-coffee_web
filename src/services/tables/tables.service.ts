@@ -15,7 +15,7 @@ const create = async (data: TableInterface): Promise<void> => {
 };
 
 const findAll = async (status: string): Promise<FindAllTables[]> => {
-  return await tableApi.request<FindAllTables[]>('/1', {
+  return await tableApi.request<FindAllTables[]>('/2', {
     queryParams: {
       status
     }
