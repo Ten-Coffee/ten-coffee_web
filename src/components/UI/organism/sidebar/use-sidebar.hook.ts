@@ -40,7 +40,7 @@ export const useSidebarHook = () => {
       {
         icon: icons.Menu,
         value: 'Cardápio',
-        path: '/menu-item'
+        path: '/menu-items'
       }
     ]
   };
