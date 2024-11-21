@@ -36,6 +36,11 @@ export const useSidebarHook = () => {
         icon: icons.Ingredients,
         value: 'Tipo Insumo',
         path: '/ingredients'
+      },
+      {
+        icon: icons.Menu,
+        value: 'Cardápio',
+        path: '/menu-item'
       }
     ]
   };

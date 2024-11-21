@@ -1,0 +1,27 @@
+.item-menu-form {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+
+  flex-grow: 1;
+}
+
+.item-menu-form__fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem;
+
+  padding: 2.4rem;
+
+  border-radius: var(--border-radius-md);
+
+  background: var(--background-50);
+}
+
+.item-menu-form__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 2.4rem;
+}

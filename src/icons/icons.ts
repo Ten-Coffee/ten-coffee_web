@@ -18,6 +18,7 @@ import {
   Pencil,
   Plus,
   Search,
+  SquareMenu,
   Table,
   Trash,
   Users,
@@ -55,5 +56,6 @@ export const icons = {
   Table,
   Clock,
   Ingredients: Bean,
-  Inventory: Package
+  Inventory: Package,
+  Menu: SquareMenu
 };

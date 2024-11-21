@@ -1,7 +1,9 @@
+import { IngredientsTypeSummaryInterface } from '@/interfaces/ingredients-type/ingredients-type-summary.interface';
 import { CreateIngredientsInterface } from '@/interfaces/ingredients/create-ingredients.interface';
 import { IngredientsInterface } from '@/interfaces/ingredients/ingredients.interface';
 import { PageParamsInterface } from '@/interfaces/page-params.interface';
 import { PageableInterface } from '@/interfaces/pageable.interface';
+import { SelectOptionsInterface } from '@/interfaces/select-options.interface';
 import { ApiService } from '@/services/api-base.service';
 
 const apiService = new ApiService('/ingredients');
@@ -27,7 +29,23 @@ const findAll = async ({
     }
   });
 };
+const findIngredients = async (
+  search = ''
+): Promise<SelectOptionsInterface[]> => {
+  const response = await apiService.request<IngredientsTypeSummaryInterface[]>(
+    '/summary/1',
+    {
+      queryParams: {
+        search
+      }
+    }
+  );
 
+  return response.map(({ id, name }) => ({
+    id,
+    value: name // Mapeia o campo `name` para `value`
+  }));
+};
 const findById = async (id: string): Promise<IngredientsInterface> => {
   return await apiService.request<IngredientsInterface>(`/${id}`);
 };
@@ -53,6 +71,7 @@ const editById = async (
 export const IngredientsService = {
   create,
   findById,
+  findIngredients,
   deleteById,
   editById,
   findAll
