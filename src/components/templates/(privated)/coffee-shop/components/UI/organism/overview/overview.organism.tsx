@@ -4,6 +4,7 @@ import { DetailsViewOrganism } from '@/components/UI/organism/details-view/detai
 import { PathParamsType } from '@/types/path-params.type';
 import { ReadByIdType } from '@/types/read-by-id.type';
 import { useParams, useRouter } from 'next/navigation';
+import './overview.styles.scss';
 
 interface OverviewOrganismProps {
   address: { data: ReadByIdType[]; isLoading: boolean };
@@ -35,7 +36,7 @@ export const OverviewOrganism = ({
   };
 
   return (
-    <>
+    <div className={'overview-organism'}>
       <DetailsViewOrganism
         title={'Unidade'}
         data={coffeeShop?.data}
@@ -54,6 +55,6 @@ export const OverviewOrganism = ({
         isLoading={representative?.isLoading}
         editButton={representativeEdit}
       />
-    </>
+    </div>
   );
 };

@@ -7,6 +7,7 @@ import { useSearchDebounceHook } from '@/hooks/use-search-debounce.hook';
 import { icons } from '@/icons/icons';
 import { IngredientsInterface } from '@/interfaces/ingredients/ingredients.interface';
 import { IngredientsService } from '@/services/ingredients/ingredient.service';
+import { getActionVerb } from '@/utils/get-action-verb.utils';
 import { dateMask } from '@/utils/mask.utils';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
@@ -27,9 +28,6 @@ export const useInventoryHook = () => {
         search
       }).then((data) => setPageSearch({ page: data.number }).then(() => data))
   });
-
-  const getActionVerb = (status: string) =>
-    status === 'ACTIVE' ? 'Inativar' : 'Ativar';
 
   const modal = useDeleteModalHook<IngredientsInterface>(
     {

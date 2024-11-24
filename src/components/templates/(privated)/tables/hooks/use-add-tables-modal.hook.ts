@@ -1,8 +1,9 @@
+import { FIND_ALL_TABLES_KEY } from '@/components/templates/(privated)/tables/keys/all-tables.key';
 import { tableSchema } from '@/components/templates/(privated)/tables/schemas/table.schema';
 import { TableInterface } from '@/interfaces/tables/table.interface';
 import { TablesService } from '@/services/tables/tables.service';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -18,6 +19,8 @@ export const UseAddTablesModalHook = () => {
     criteriaMode: 'all'
   });
 
+  const queryClient = useQueryClient();
+
   const mutation = useMutation({
     mutationFn: (data: Omit<TableInterface, 'coffeeShopId'>) =>
       TablesService.create({
@@ -30,7 +33,14 @@ export const UseAddTablesModalHook = () => {
   const submitForm: SubmitHandler<z.infer<typeof tableSchema>> = async (
     data
   ) => {
-    await mutation.mutateAsync(data).then(() => toggle());
+    await mutation
+      .mutateAsync(data)
+      .then(() => toggle())
+      .then(() =>
+        queryClient.invalidateQueries({
+          queryKey: [FIND_ALL_TABLES_KEY]
+        })
+      );
   };
 
   return {

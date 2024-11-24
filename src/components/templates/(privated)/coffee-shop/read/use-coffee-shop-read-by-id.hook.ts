@@ -7,6 +7,7 @@ import { CoffeeShopService } from '@/services/coffee-shop/coffee-shop.service';
 import { UsersService } from '@/services/users/users.service';
 import { PathParamsType } from '@/types/path-params.type';
 import { ReadByIdType } from '@/types/read-by-id.type';
+import { getActionVerb } from '@/utils/get-action-verb.utils';
 import { cnpjMask, cpfMask, phoneMask, zipCodeMask } from '@/utils/mask.utils';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
@@ -15,9 +16,6 @@ export const useCoffeeShopReadByIdHook = () => {
   const router = useRouter();
   const { id } = useParams<PathParamsType>();
   const [stateTab] = useTabsHook();
-
-  const getActionVerb = (status: string) =>
-    status === 'ACTIVE' ? 'Inativar' : 'Ativar';
 
   const modal = useDeleteModalHook<CoffeeShopInterface>(
     {

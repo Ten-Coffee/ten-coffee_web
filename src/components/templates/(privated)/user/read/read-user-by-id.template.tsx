@@ -7,6 +7,7 @@ import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { DetailsViewOrganism } from '@/components/UI/organism/details-view/details-view.organism';
 import { ModalOrganism } from '@/components/UI/organism/modal/modal.organism';
 import { icons } from '@/icons/icons';
+import { getActionVerb } from '@/utils/get-action-verb.utils';
 
 export const ReadUserByIdTemplate = () => {
   const { data, isLoading, modal, userData, goBackPage } =
@@ -30,7 +31,7 @@ export const ReadUserByIdTemplate = () => {
           type={'submit'}
         >
           <ButtonAtom.Icon icon={icons.Trash} />
-          Inativar Usuário
+          {getActionVerb(userData?.status)} Usuário
         </ButtonAtom.Wrapper>
       </div>
 

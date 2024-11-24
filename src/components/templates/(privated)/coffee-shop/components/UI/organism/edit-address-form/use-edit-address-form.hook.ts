@@ -50,9 +50,6 @@ export const useEditAddressFormHook = () => {
       zipCode: removeZipCodeMask(formData.zipCode)
     };
 
-    console.log('Form Data:', formData);
-    console.log('Payload being sent:', payload);
-
     await mutation.mutateAsync(payload);
   };
 

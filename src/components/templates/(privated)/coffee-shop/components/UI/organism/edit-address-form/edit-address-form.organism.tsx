@@ -86,7 +86,7 @@ export const EditAddressFormOrganism = () => {
         </ButtonAtom.Wrapper>
 
         <ButtonAtom.Wrapper hierarchy={'enabled'} type={'submit'}>
-          Continuar
+          Editar
         </ButtonAtom.Wrapper>
       </div>
     </form>

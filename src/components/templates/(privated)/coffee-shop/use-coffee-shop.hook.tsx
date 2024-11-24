@@ -9,6 +9,7 @@ import { useSearchDebounceHook } from '@/hooks/use-search-debounce.hook';
 import { icons } from '@/icons/icons';
 import { CoffeeShopPage } from '@/interfaces/coffee-shop/coffee-shop-page.interface';
 import { CoffeeShopService } from '@/services/coffee-shop/coffee-shop.service';
+import { getActionVerb } from '@/utils/get-action-verb.utils';
 import { cnpjMask } from '@/utils/mask.utils';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
@@ -20,9 +21,6 @@ export const useCoffeeShopListHook = () => {
   const debouncedSearch = useSearchDebounceHook({ value: search, delay: 500 });
 
   const router = useRouter();
-
-  const getActionVerb = (status: string) =>
-    status === 'ACTIVE' ? 'Inativar' : 'Ativar';
 
   const modal = useDeleteModalHook<CoffeeShopPage>(
     {

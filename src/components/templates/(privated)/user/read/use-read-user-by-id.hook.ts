@@ -4,6 +4,7 @@ import { UsersInterface } from '@/interfaces/users/users.interface';
 import { UsersService } from '@/services/users/users.service';
 import { PathParamsType } from '@/types/path-params.type';
 import { ReadByIdType } from '@/types/read-by-id.type';
+import { getActionVerb } from '@/utils/get-action-verb.utils';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 
@@ -18,9 +19,6 @@ export const useReadUserByIdHook = () => {
     queryFn: () => UsersService.findById(id),
     enabled: !!id
   });
-
-  const getActionVerb = (status: string) =>
-    status === 'ACTIVE' ? 'Inativar' : 'Ativar';
 
   const modal = useDeleteModalHook<UsersInterface>(
     {

@@ -4,6 +4,7 @@ import { IngredientsTypeInterface } from '@/interfaces/ingredients-type/ingredie
 import { IngredientsTypeService } from '@/services/ingredients-type/ingredients-type.service';
 import { PathParamsType } from '@/types/path-params.type';
 import { ReadByIdType } from '@/types/read-by-id.type';
+import { getActionVerb } from '@/utils/get-action-verb.utils';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 
@@ -18,9 +19,6 @@ export const useReadIngredientByIdHook = () => {
     queryFn: () => IngredientsTypeService.findById(id),
     enabled: !!id
   });
-
-  const getActionVerb = (status: string) =>
-    status === 'ACTIVE' ? 'Inativar' : 'Ativar';
 
   const modal = useDeleteModalHook<IngredientsTypeInterface>(
     {

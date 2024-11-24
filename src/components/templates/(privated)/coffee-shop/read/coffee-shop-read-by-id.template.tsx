@@ -9,6 +9,7 @@ import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { TabGroupMolecule } from '@/components/UI/molecules/tab-group/tab-group.molecule';
 import { ModalOrganism } from '@/components/UI/organism/modal/modal.organism';
 import { icons } from '@/icons/icons';
+import { getActionVerb } from '@/utils/get-action-verb.utils';
 
 export default function CoffeeShopReadByIdTemplate() {
   const {
@@ -57,7 +58,7 @@ export default function CoffeeShopReadByIdTemplate() {
           type={'submit'}
         >
           <ButtonAtom.Icon icon={icons.Trash}></ButtonAtom.Icon>
-          Inativar Unidade
+          {getActionVerb(coffeeShopData?.status)} Unidade
         </ButtonAtom.Wrapper>
       </div>
 

@@ -9,6 +9,7 @@ import { icons } from '@/icons/icons';
 import { UsersInterface } from '@/interfaces/users/users.interface';
 import { UsersService } from '@/services/users/users.service';
 import { PathParamsType } from '@/types/path-params.type';
+import { getActionVerb } from '@/utils/get-action-verb.utils';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 
@@ -33,9 +34,6 @@ export const useUserDataTableHook = () => {
         id
       ).then((data) => setPageSearch({ page: data.number }).then(() => data))
   });
-
-  const getActionVerb = (status: string) =>
-    status === 'ACTIVE' ? 'Inativar' : 'Ativar';
 
   const modal = useDeleteModalHook<UsersInterface>(
     {
