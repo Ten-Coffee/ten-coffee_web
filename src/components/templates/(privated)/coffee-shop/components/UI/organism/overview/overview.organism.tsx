@@ -1,15 +1,20 @@
 'use client';
 
-import './overview.styles.scss';
-
-import { useOverviewHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/overview/use-overview.hook';
 import { DetailsViewOrganism } from '@/components/UI/organism/details-view/details-view.organism';
 import { PathParamsType } from '@/types/path-params.type';
+import { ReadByIdType } from '@/types/read-by-id.type';
 import { useParams, useRouter } from 'next/navigation';
 
-export const OverviewOrganism = () => {
+interface OverviewOrganismProps {
+  address: { data: ReadByIdType[]; isLoading: boolean };
+  coffeeShop: { data: ReadByIdType[]; isLoading: boolean };
+}
+
+export const OverviewOrganism = ({
+  address,
+  coffeeShop
+}: OverviewOrganismProps) => {
   const { id } = useParams<PathParamsType>();
-  const { coffeeShop, address } = useOverviewHook();
   const router = useRouter();
 
   const coffeeShopEdit = {
@@ -24,20 +29,18 @@ export const OverviewOrganism = () => {
 
   return (
     <>
-      <div className={'overview-organism'}>
-        <DetailsViewOrganism
-          title={'Unidade'}
-          data={coffeeShop.data}
-          isLoading={coffeeShop.isLoading}
-          editButton={coffeeShopEdit}
-        />
-        <DetailsViewOrganism
-          title={'Endereço'}
-          data={address.data}
-          isLoading={address.isLoading}
-          editButton={addressEdit}
-        />
-      </div>
+      <DetailsViewOrganism
+        title={'Unidade'}
+        data={coffeeShop?.data}
+        isLoading={coffeeShop?.isLoading}
+        editButton={coffeeShopEdit}
+      />
+      <DetailsViewOrganism
+        title={'Endereço'}
+        data={address?.data}
+        isLoading={address?.isLoading}
+        editButton={addressEdit}
+      />
     </>
   );
 };

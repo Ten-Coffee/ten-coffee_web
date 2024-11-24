@@ -44,7 +44,7 @@ export const DetailsViewOrganism = ({
         </div>
       ) : (
         <div className={'details-view__fields'}>
-          {data.map((data, index) => (
+          {data?.map((data, index) => (
             <DetailLabelValueMolecule {...data} key={index} />
           ))}
         </div>

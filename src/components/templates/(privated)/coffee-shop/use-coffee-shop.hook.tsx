@@ -9,6 +9,7 @@ import { useSearchDebounceHook } from '@/hooks/use-search-debounce.hook';
 import { icons } from '@/icons/icons';
 import { CoffeeShopPage } from '@/interfaces/coffee-shop/coffee-shop-page.interface';
 import { CoffeeShopService } from '@/services/coffee-shop/coffee-shop.service';
+import { cnpjMask } from '@/utils/mask.utils';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
@@ -27,7 +28,7 @@ export const useCoffeeShopListHook = () => {
     {
       title: (item) => `${getActionVerb(item?.status)} Unidade`,
       getDescription: (item) =>
-        `Tem certeza que deseja ${getActionVerb(item?.status).toLowerCase()} a unidade "${item.name} do CNPJ "${item.cnpj}""?`,
+        `Tem certeza que deseja ${getActionVerb(item?.status).toLowerCase()} a unidade "${item.name}" do CNPJ "${cnpjMask(item.cnpj)}"?`,
       mutationFn: CoffeeShopService.deleteById,
       buttonText: (item) => getActionVerb(item?.status)
     },
@@ -57,7 +58,10 @@ export const useCoffeeShopListHook = () => {
     },
     {
       value: 'CNPJ',
-      key: 'cnpj'
+      key: 'cnpj',
+      render: ({ cnpj }: CoffeeShopPage) => (
+        <TableDataAtom.Default value={cnpjMask(cnpj)} />
+      )
     },
     {
       value: 'Email',

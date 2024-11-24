@@ -16,12 +16,14 @@ export const TableBodyMolecule = <T,>({
   columns,
   rowActions
 }: TableBodyMoleculeProps<T>) => {
+  const totalColumns = columns.length + (rowActions?.length || 0);
+
   return (
     <tbody>
       {data?.length === 0 ||
         (!data && (
           <tr className={'row-without-data'}>
-            <td colSpan={columns.length + 2}>Nenhum registro encontrado</td>
+            <td colSpan={totalColumns}>Nenhum registro encontrado</td>
           </tr>
         ))}
       {data &&

@@ -7,16 +7,18 @@ import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { IconButtonAtom } from '@/components/UI/atoms/icon-button/icon-button.atom';
 import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { TabGroupMolecule } from '@/components/UI/molecules/tab-group/tab-group.molecule';
+import { ModalOrganism } from '@/components/UI/organism/modal/modal.organism';
 import { icons } from '@/icons/icons';
 
 export default function CoffeeShopReadByIdTemplate() {
-  const { goBackPage } = useCoffeeShopReadByIdHook();
+  const { goBackPage, modal, address, coffeeShop, coffeeShopData } =
+    useCoffeeShopReadByIdHook();
 
   const tabs = [
     {
       name: 'Visão Geral',
       value: 'overview',
-      children: <OverviewOrganism />
+      children: <OverviewOrganism address={address} coffeeShop={coffeeShop} />
     },
     {
       name: 'Usuários',
@@ -37,13 +39,19 @@ export default function CoffeeShopReadByIdTemplate() {
           />
           <TitleAtom.Large value={'Cafeteria'} />
         </div>
-        <ButtonAtom.Wrapper hierarchy={'outlined'} type={'submit'}>
+        <ButtonAtom.Wrapper
+          hierarchy={'outlined'}
+          onClick={() => coffeeShopData && modal.onClickModal(coffeeShopData)}
+          type={'submit'}
+        >
           <ButtonAtom.Icon icon={icons.Trash}></ButtonAtom.Icon>
           Inativar Unidade
         </ButtonAtom.Wrapper>
       </div>
 
       <TabGroupMolecule tabs={tabs} />
+
+      <ModalOrganism {...modal} />
     </>
   );
 }

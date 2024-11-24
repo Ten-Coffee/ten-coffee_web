@@ -1,21 +1,27 @@
 .sidebar {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 2.4rem;
-
-  background-color: var(--background-50);
-
-  padding: 4rem 1.2rem 1.2rem;
-
-  width: fit-content;
-  height: 100dvh;
-
-  position: fixed;
+  display: none;
 }
 
 .sidebar__building-blocks {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+}
+
+@media (min-width: 1280px) {
+  .sidebar {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2.4rem;
+
+    background-color: var(--background-50);
+
+    padding: 4rem 1.2rem 1.2rem;
+
+    width: fit-content;
+    height: 100dvh;
+
+    position: fixed;
+  }
 }
