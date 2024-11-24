@@ -7,14 +7,18 @@ import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { StepBoxOrganism } from '@/components/UI/organism/step-box/step-box.organism';
 
 export const EditCoffeeShopStep1Template = () => {
-  const { address, coffeeShop } = useEditCoffeeShopStep1Hook();
+  const { address, coffeeShop, representative } = useEditCoffeeShopStep1Hook();
 
   return (
     <>
       <TitleAtom.Large value={'Editar Credenciais'} />
       <div className={'step-wrapper'}>
         <StepBoxOrganism steps={editCoffeeShopSteps} />
-        <OverviewOrganism address={address} coffeeShop={coffeeShop} />
+        <OverviewOrganism
+          address={address}
+          coffeeShop={coffeeShop}
+          representative={representative}
+        />
       </div>
     </>
   );
