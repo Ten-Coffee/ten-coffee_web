@@ -11,14 +11,26 @@ import { ModalOrganism } from '@/components/UI/organism/modal/modal.organism';
 import { icons } from '@/icons/icons';
 
 export default function CoffeeShopReadByIdTemplate() {
-  const { goBackPage, modal, address, coffeeShop, coffeeShopData } =
-    useCoffeeShopReadByIdHook();
+  const {
+    goBackPage,
+    modal,
+    address,
+    coffeeShop,
+    coffeeShopData,
+    representative
+  } = useCoffeeShopReadByIdHook();
 
   const tabs = [
     {
       name: 'Visão Geral',
       value: 'overview',
-      children: <OverviewOrganism address={address} coffeeShop={coffeeShop} />
+      children: (
+        <OverviewOrganism
+          address={address}
+          coffeeShop={coffeeShop}
+          representative={representative}
+        />
+      )
     },
     {
       name: 'Usuários',
@@ -37,7 +49,7 @@ export default function CoffeeShopReadByIdTemplate() {
             hierarchy={'ghosted'}
             size={'large'}
           />
-          <TitleAtom.Large value={'Cafeteria'} />
+          <TitleAtom.Large value={coffeeShopData?.name || 'Cafeteria'} />
         </div>
         <ButtonAtom.Wrapper
           hierarchy={'outlined'}

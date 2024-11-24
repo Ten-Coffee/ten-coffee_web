@@ -4,9 +4,10 @@ import { useTabsHook } from '@/hooks/use-tabs.hook';
 import { CoffeeShopInterface } from '@/interfaces/coffee-shop/coffee-shop.interface';
 import { AddressService } from '@/services/address.service';
 import { CoffeeShopService } from '@/services/coffee-shop/coffee-shop.service';
+import { UsersService } from '@/services/users/users.service';
 import { PathParamsType } from '@/types/path-params.type';
 import { ReadByIdType } from '@/types/read-by-id.type';
-import { cnpjMask, phoneMask, zipCodeMask } from '@/utils/mask.utils';
+import { cnpjMask, cpfMask, phoneMask, zipCodeMask } from '@/utils/mask.utils';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 
@@ -40,6 +41,13 @@ export const useCoffeeShopReadByIdHook = () => {
     queryFn: () => CoffeeShopService.findById(id),
     enabled: stateTab !== 'users'
   });
+
+  const { data: representativeData, isLoading: representativeIsLoading } =
+    useQuery({
+      queryKey: ['find-one-representative'],
+      queryFn: () => UsersService.findRepresentative(id),
+      enabled: stateTab !== 'users'
+    });
 
   const address: ReadByIdType[] = [
     { label: 'CEP', value: zipCodeMask(addressData?.zipCode) },
@@ -83,6 +91,25 @@ export const useCoffeeShopReadByIdHook = () => {
     }
   ];
 
+  const representative: ReadByIdType[] = [
+    {
+      label: 'Nome',
+      value: representativeData?.name
+    },
+    {
+      label: 'E-mail',
+      value: representativeData?.login
+    },
+    {
+      label: 'Telefone',
+      value: phoneMask(representativeData?.phone)
+    },
+    {
+      label: 'CPF',
+      value: cpfMask(representativeData?.cpf)
+    }
+  ];
+
   return {
     goBackPage: () => router.back(),
     modal,
@@ -93,6 +120,10 @@ export const useCoffeeShopReadByIdHook = () => {
     coffeeShop: {
       data: coffeeShop,
       isLoading: coffeeShopIsLoading
+    },
+    representative: {
+      data: representative,
+      isLoading: representativeIsLoading
     },
     coffeeShopData
   };

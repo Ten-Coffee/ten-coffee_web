@@ -45,10 +45,19 @@ const deleteById = async (id: number): Promise<void> => {
   });
 };
 
+const findRepresentative = async (
+  coffeeShopId: string
+): Promise<UsersInterface> => {
+  return await userApi.request<UsersInterface>(
+    `/representative/${coffeeShopId}`
+  );
+};
+
 export const UsersService = {
   findAll,
   create,
   findById,
   editById,
-  deleteById
+  deleteById,
+  findRepresentative
 };

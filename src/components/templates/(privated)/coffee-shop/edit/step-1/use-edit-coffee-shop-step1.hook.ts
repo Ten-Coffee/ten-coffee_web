@@ -1,9 +1,10 @@
 import { FIND_ONE_COFFEE_SHOP_KEY } from '@/components/templates/(privated)/coffee-shop/keys/find-one-coffee-shop.key';
 import { AddressService } from '@/services/address.service';
 import { CoffeeShopService } from '@/services/coffee-shop/coffee-shop.service';
+import { UsersService } from '@/services/users/users.service';
 import { PathParamsType } from '@/types/path-params.type';
 import { ReadByIdType } from '@/types/read-by-id.type';
-import { cnpjMask, phoneMask, zipCodeMask } from '@/utils/mask.utils';
+import { cnpjMask, cpfMask, phoneMask, zipCodeMask } from '@/utils/mask.utils';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 
@@ -19,6 +20,31 @@ export const useEditCoffeeShopStep1Hook = () => {
     queryKey: [FIND_ONE_COFFEE_SHOP_KEY],
     queryFn: () => CoffeeShopService.findById(id)
   });
+
+  const { data: representativeData, isLoading: representativeIsLoading } =
+    useQuery({
+      queryKey: ['find-one-representative'],
+      queryFn: () => UsersService.findRepresentative(id)
+    });
+
+  const representative: ReadByIdType[] = [
+    {
+      label: 'Nome',
+      value: representativeData?.name
+    },
+    {
+      label: 'E-mail',
+      value: representativeData?.login
+    },
+    {
+      label: 'Telefone',
+      value: phoneMask(representativeData?.phone)
+    },
+    {
+      label: 'CPF',
+      value: cpfMask(representativeData?.cpf)
+    }
+  ];
 
   const address: ReadByIdType[] = [
     { label: 'CEP', value: zipCodeMask(addressData?.zipCode) },
@@ -70,6 +96,10 @@ export const useEditCoffeeShopStep1Hook = () => {
     coffeeShop: {
       data: coffeeShop,
       isLoading: coffeeShopIsLoading
+    },
+    representative: {
+      data: representative,
+      isLoading: representativeIsLoading
     }
   };
 };

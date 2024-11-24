@@ -8,11 +8,13 @@ import { useParams, useRouter } from 'next/navigation';
 interface OverviewOrganismProps {
   address: { data: ReadByIdType[]; isLoading: boolean };
   coffeeShop: { data: ReadByIdType[]; isLoading: boolean };
+  representative: { data: ReadByIdType[]; isLoading: boolean };
 }
 
 export const OverviewOrganism = ({
   address,
-  coffeeShop
+  coffeeShop,
+  representative
 }: OverviewOrganismProps) => {
   const { id } = useParams<PathParamsType>();
   const router = useRouter();
@@ -25,6 +27,11 @@ export const OverviewOrganism = ({
   const addressEdit = {
     text: 'Editar',
     onClick: () => router.push(`/coffee-shops/edit/step-3/${id}`)
+  };
+
+  const representativeEdit = {
+    text: 'Editar',
+    onClick: () => router.push(`/coffee-shops/edit/step-4/${id}`)
   };
 
   return (
@@ -40,6 +47,12 @@ export const OverviewOrganism = ({
         data={address?.data}
         isLoading={address?.isLoading}
         editButton={addressEdit}
+      />
+      <DetailsViewOrganism
+        title={'Representante'}
+        data={representative?.data}
+        isLoading={representative?.isLoading}
+        editButton={representativeEdit}
       />
     </>
   );
