@@ -10,6 +10,10 @@
   transition: var(--transition-default);
 
   z-index: 1;
+
+  label:not(.label__medium) {
+    display: none;
+  }
 }
 
 .step__default {
@@ -26,5 +30,13 @@
 
   * {
     color: var(--grayscale-00) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .step {
+    label:not(.label__medium) {
+      display: flex;
+    }
   }
 }

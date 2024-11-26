@@ -19,6 +19,24 @@
   padding: 3.2rem 8.8rem 3.2rem (8rem + 18.4rem) !important;
 }
 
+@media (min-width: 640px) {
+  .wrapper__children {
+    padding: 3.2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .wrapper__children {
+    padding: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wrapper__children {
+    padding: 3.2rem 6.4rem 3.2rem (8rem + 8.8rem);
+  }
+}
+
 @media (min-width: 1280px) {
   .wrapper__children {
     padding: 3.2rem 8.8rem 3.2rem (8rem + 8.8rem);
