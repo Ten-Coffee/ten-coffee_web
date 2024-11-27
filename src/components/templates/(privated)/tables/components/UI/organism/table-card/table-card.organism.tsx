@@ -1,7 +1,6 @@
 import { useTableCardHook } from '@/components/templates/(privated)/tables/components/UI/organism/table-card/use-table-card.hook';
-import { IconButtonAtom } from '@/components/UI/atoms/icon-button/icon-button.atom';
 import { TableStatusFilterAtom } from '@/components/UI/atoms/table-status-filter/table-status-filter.atom';
-import { DropdownMenu } from '@/components/UI/molecules/dropdown-menu/dropdown-menu.molecule';
+import { DropdownMenuMolecule } from '@/components/UI/molecules/dropdown-menu/dropdown-menu.molecule';
 import { TableStatusEnum } from '@/enums/table-status.enum';
 import { icons } from '@/icons/icons';
 import './table-card.styles.scss';
@@ -37,13 +36,7 @@ export const TableCardOrganism = ({
         <span className={'row__title'}>{tableNumberMask(number)}</span>
 
         <div className={'row__icon-wrapper'}>
-          <IconButtonAtom
-            onClick={dropdown.toggle}
-            icon={icons.Ellipsis.Vertical}
-            hierarchy={'ghosted'}
-            size={'medium'}
-          />
-          <DropdownMenu {...dropdownItem} />
+          <DropdownMenuMolecule {...dropdownItem} />
         </div>
       </div>
       <div className={'table-card__row'}>

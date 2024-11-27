@@ -1,71 +1,58 @@
-import { useDropdownMenuHook } from '@/components/UI/molecules/dropdown-menu/use-dropdown-menu.hook';
 import { icons } from '@/icons/icons';
 import { DropdownMenuItemType } from '@/types/dropdown-menu-item.type';
 import './dropdown-menu.styles.scss';
+import { DropdownMenu } from '@radix-ui/themes';
 
 interface DropdownMenuProps {
   menuItems: DropdownMenuItemType[];
-  isOpen?: boolean;
-  toggle: () => void;
   id: string;
 }
 
-export const DropdownMenu = ({
-  menuItems,
-  isOpen,
-  toggle,
-  id
-}: DropdownMenuProps) => {
-  const { menuRef, setOpenSubmenu, handleOnClick, openSubmenu } =
-    useDropdownMenuHook({
-      toggle,
-      isOpen
-    });
-
-  const ArrowSubmenuIcon = icons.Chevron.Right;
+export const DropdownMenuMolecule = ({ menuItems, id }: DropdownMenuProps) => {
+  const EllipsisIcon = icons.Ellipsis.Vertical;
 
   return (
     <>
-      {isOpen && (
-        <ul className="dropdown-menu" ref={menuRef}>
+      <DropdownMenu.Root>
+        <DropdownMenu.Trigger>
+          <button className={'dropdown-menu__ellipsis-button'}>
+            <EllipsisIcon />
+          </button>
+        </DropdownMenu.Trigger>
+        <DropdownMenu.Content className={'dropdown-menu'}>
           {menuItems.map((item, index) => (
-            <li
-              key={index}
-              className={`${item.submenu ? 'has-submenu' : ''}`}
-              onMouseEnter={() => item.submenu && setOpenSubmenu(index)}
-              onMouseLeave={() => item.submenu && setOpenSubmenu(null)}
-            >
-              <button
-                className="menu-button"
-                onClick={() => handleOnClick(item, index, id)}
-              >
-                {item.label}
-                {item.submenu && (
-                  <ArrowSubmenuIcon className="menu-button__icon" />
-                )}
-              </button>
-
-              {item.submenu && openSubmenu === index && (
-                <ul className="dropdown-menu__submenu">
-                  {item.submenu.map((subItem, subIndex) => (
-                    <li key={subIndex}>
-                      <button
-                        className="menu-button"
-                        onClick={() => {
-                          subItem.onClick(id);
-                          toggle();
-                        }}
+            <>
+              {!item?.submenu && (
+                <DropdownMenu.Item
+                  className={'dropdown-menu__item'}
+                  key={index}
+                  onClick={() => item.onClick(id)}
+                >
+                  {item.label}
+                </DropdownMenu.Item>
+              )}
+              {item?.submenu && (
+                <DropdownMenu.Sub>
+                  <DropdownMenu.SubTrigger className={'dropdown-menu__item'}>
+                    {item.label}
+                  </DropdownMenu.SubTrigger>
+                  <DropdownMenu.SubContent className={'dropdown-menu'}>
+                    {item.submenu.map((subItem, subIndex) => (
+                      <DropdownMenu.Item
+                        className={'dropdown-menu__item'}
+                        key={subIndex}
+                        onClick={() => subItem.onClick(id)}
                       >
                         {subItem.label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+                      </DropdownMenu.Item>
+                    ))}
+                  </DropdownMenu.SubContent>
+                </DropdownMenu.Sub>
               )}
-            </li>
+            </>
           ))}
-        </ul>
-      )}
+        </DropdownMenu.Content>
+      </DropdownMenu.Root>
     </>
   );
 };

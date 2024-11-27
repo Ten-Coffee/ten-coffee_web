@@ -10,7 +10,7 @@ interface ModalOrganismProps {
   title: string;
   isOpen: boolean;
   toggle: () => void;
-  description: string;
+  description?: string;
   mainButton: {
     text: string;
     action: () => void;
@@ -51,7 +51,7 @@ export const ModalOrganism = ({
               />
             </div>
             {children && children}
-            {!children && (
+            {description && (
               <p className={'modal-container__description'}>{description}</p>
             )}
             <div className={'modal-container__buttons'}>
