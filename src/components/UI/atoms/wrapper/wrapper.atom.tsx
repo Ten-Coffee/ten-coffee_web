@@ -1,7 +1,7 @@
 'use client';
 
 import { useWrapperHook } from '@/components/UI/atoms/wrapper/use-wrapper.hook';
-import { SidebarOrganism } from '@/components/UI/organism/sidebar/sidebar.organism';
+import { SidebarWrapperOrganism } from '@/components/UI/organism/sidebar-wrapper/sidebar-wrapper.organism';
 import { ReactNode, Suspense } from 'react';
 import './wrapper.style.scss';
 
@@ -15,7 +15,7 @@ export const WrapperAtom = ({ children }: WrapperAtomProps) => {
   return (
     <Suspense>
       <main className={'wrapper'}>
-        <SidebarOrganism />
+        <SidebarWrapperOrganism />
         <section className={wrapperChildrenClass}>{children}</section>
       </main>
     </Suspense>

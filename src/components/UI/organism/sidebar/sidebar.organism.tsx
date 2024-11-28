@@ -2,11 +2,13 @@ import './sidebar.styles.scss';
 import { LogoAtom } from '@/components/UI/atoms/logo/logo.atom';
 import { SidebarIconAtom } from '@/components/UI/organism/sidebar/UI/atoms/sidebar-icon/sidebar-icon.atom';
 import { BuildingBlockMolecule } from '@/components/UI/organism/sidebar/UI/molecules/building-block/building-block.molecule';
-import { useSidebarHook } from '@/components/UI/organism/sidebar/use-sidebar.hook';
+import { BuildingBlocksInterface } from '@/interfaces/sidebar/building-blocks.interface';
 
-export const SidebarOrganism = () => {
-  const { buildingBlocks } = useSidebarHook();
+interface SidebarOrganismProps {
+  buildingBlocks: BuildingBlocksInterface[0];
+}
 
+export const SidebarOrganism = ({ buildingBlocks }: SidebarOrganismProps) => {
   return (
     <aside className={'sidebar'}>
       <LogoAtom />
@@ -14,7 +16,7 @@ export const SidebarOrganism = () => {
       <SidebarIconAtom />
 
       <div className={'sidebar__building-blocks'}>
-        {buildingBlocks.map((block) => (
+        {buildingBlocks?.map((block) => (
           <BuildingBlockMolecule key={block.path} {...block} />
         ))}
       </div>

@@ -22,14 +22,16 @@ export const TableOrganism = <T,>({
 }: TableOrganismProps<T>) => {
   return (
     <div className={'table-wrapper'}>
-      <table className={'table-wrapper__table'}>
-        <TableHeaderMolecule columns={columns} rowActions={rowActions} />
-        <TableBodyMolecule
-          data={data}
-          columns={columns}
-          rowActions={rowActions}
-        />
-      </table>
+      <div className={'table-wrapper__table'}>
+        <table className={'table'}>
+          <TableHeaderMolecule columns={columns} rowActions={rowActions} />
+          <TableBodyMolecule
+            data={data}
+            columns={columns}
+            rowActions={rowActions}
+          />
+        </table>
+      </div>
       <TablePageButtonsMolecule totalPages={totalPages} currentPage={number} />
     </div>
   );

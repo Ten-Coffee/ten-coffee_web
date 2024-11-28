@@ -1,0 +1,51 @@
+.sidebar-mobile__header {
+  background-color: var(--background-50);
+
+  width: 100%;
+  height: 6.4rem;
+
+  position: fixed;
+
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+
+  padding: 0 1.6rem;
+}
+
+.sidebar-mobile__building-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  padding: 1.6rem;
+
+  background-color: var(--background-50);
+
+  z-index: 1000;
+
+  position: fixed;
+
+  height: 100%;
+
+  border-radius: var(--border-radius-md);
+}
+
+.building-blocks__close-sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  height: calc(6.4rem - 1.6rem);
+}
+
+.sidebar-mobile__overlay {
+  position: fixed;
+
+  min-height: 100vh;
+  min-width: 100vw;
+
+  background-color: rgba(0, 0, 0, 0.8);
+
+  z-index: 999;
+}

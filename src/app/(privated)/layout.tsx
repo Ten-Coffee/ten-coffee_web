@@ -1,9 +1,11 @@
 import '../../styles/global.styles.scss';
 import { WrapperAtom } from '@/components/UI/atoms/wrapper/wrapper.atom';
 import { ReactQueryProvider } from '@/providers/react-query.provider';
+import { Theme } from '@radix-ui/themes';
 import { ThemeProvider } from 'next-themes';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { ReactNode } from 'react';
+import '@radix-ui/themes/styles.css';
 
 export default function RootLayout({
   children
@@ -16,7 +18,9 @@ export default function RootLayout({
         <NuqsAdapter>
           <ThemeProvider attribute={'class'}>
             <ReactQueryProvider>
-              <WrapperAtom>{children}</WrapperAtom>
+              <Theme>
+                <WrapperAtom>{children}</WrapperAtom>
+              </Theme>
             </ReactQueryProvider>
           </ThemeProvider>
         </NuqsAdapter>

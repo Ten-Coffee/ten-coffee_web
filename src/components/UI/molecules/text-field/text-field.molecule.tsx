@@ -4,6 +4,7 @@ import { MaskType } from '@/types/input-mask.type';
 import { Position } from '@/types/position.type';
 import { Size } from '@/types/size.type';
 import { ComponentProps, ElementType, forwardRef } from 'react';
+import './text-field.styles.scss';
 
 interface TextFieldProps extends ComponentProps<'input'> {
   label: string;
@@ -31,7 +32,7 @@ export const TextFieldMolecule = forwardRef<HTMLInputElement, TextFieldProps>(
     ref
   ) {
     return (
-      <div>
+      <div className={'text-field'}>
         <LabelAtom value={label} disabled={disabled} size={labelSize} />
         <InputMolecule.Text
           icon={Icon}

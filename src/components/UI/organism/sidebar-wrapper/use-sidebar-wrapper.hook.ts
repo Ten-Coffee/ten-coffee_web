@@ -1,11 +1,13 @@
-'use client';
-
+import { useScreenWidthHook } from '@/hooks/use-screen-width.hook';
 import { icons } from '@/icons/icons';
+import { BuildingBlocksInterface } from '@/interfaces/sidebar/building-blocks.interface';
 
-export const useSidebarHook = () => {
+export const useSidebarWrapperHook = () => {
+  const { isDesktop } = useScreenWidthHook();
+
   const userAccess = 'admin';
 
-  const buildingBlocksAvailable = {
+  const buildingBlocksAvailable: BuildingBlocksInterface = {
     admin: [
       {
         icon: icons.Home,
@@ -45,5 +47,8 @@ export const useSidebarHook = () => {
     ]
   };
 
-  return { buildingBlocks: buildingBlocksAvailable[userAccess] || null };
+  return {
+    isDesktop,
+    buildingBlocks: buildingBlocksAvailable[userAccess] || null
+  };
 };
