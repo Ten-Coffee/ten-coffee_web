@@ -1,0 +1,53 @@
+.toast {
+  position: fixed;
+
+  bottom: 4.8rem;
+  right: 4.8rem;
+
+  min-width: 30rem;
+
+  padding: 1.2rem;
+
+  border-radius: var(--border-radius-md);
+
+  z-index: 10000;
+
+  background-color: var(--background-100);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.success {
+  border-left: 1.2rem solid var(--green-250);
+}
+
+.error {
+  border-left: 1.2rem solid var(--red-250);
+}
+
+.info {
+  border: 0.1rem solid var(--background-150);
+}
+
+.toast__title-close {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.title-close__title {
+  color: var(--grayscale-00);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.title-close__close {
+  background-color: transparent;
+  border: none;
+}
+
+.toast__description {
+  font-size: 1.4rem;
+}
