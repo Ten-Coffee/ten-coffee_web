@@ -1,6 +1,7 @@
 import '../../styles/global.styles.scss';
 import { WrapperAtom } from '@/components/UI/atoms/wrapper/wrapper.atom';
 import { ReactQueryProvider } from '@/providers/react-query.provider';
+import { ToastProvider } from '@/providers/toast.provider';
 import { Theme } from '@radix-ui/themes';
 import { ThemeProvider } from 'next-themes';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
@@ -19,7 +20,9 @@ export default function RootLayout({
           <ThemeProvider attribute={'class'}>
             <ReactQueryProvider>
               <Theme>
-                <WrapperAtom>{children}</WrapperAtom>
+                <ToastProvider>
+                  <WrapperAtom>{children}</WrapperAtom>
+                </ToastProvider>
               </Theme>
             </ReactQueryProvider>
           </ThemeProvider>
