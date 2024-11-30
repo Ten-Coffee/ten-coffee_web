@@ -5,12 +5,12 @@ import { useSidebarWrapperHook } from '@/components/UI/organism/sidebar-wrapper/
 import { SidebarOrganism } from '@/components/UI/organism/sidebar/sidebar.organism';
 
 export const SidebarWrapperOrganism = () => {
-  const { buildingBlocks, isDesktop } = useSidebarWrapperHook();
+  const { buildingBlocks } = useSidebarWrapperHook();
 
   return (
     <>
-      {isDesktop && <SidebarOrganism buildingBlocks={buildingBlocks} />}
-      {!isDesktop && <SidebarMobileOrganism buildingBlocks={buildingBlocks} />}
+      <SidebarOrganism buildingBlocks={buildingBlocks} />
+      <SidebarMobileOrganism buildingBlocks={buildingBlocks} />
     </>
   );
 };

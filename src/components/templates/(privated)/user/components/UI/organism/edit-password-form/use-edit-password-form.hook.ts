@@ -1,9 +1,5 @@
-import { editUserSchema } from '@/components/templates/(privated)/user/schemas/edit-user.schema';
-import {
-  getPermissionLabel,
-  mapPermission
-} from '@/enums/user-permission.enum';
-import { EditUserInterface } from '@/interfaces/users/edit-user.interface';
+import { editCredentialsSchema } from '@/components/templates/(privated)/user/schemas/edit-credentials.schema';
+import { UpdatePasswordInterface } from '@/interfaces/users/update-password.interface';
 import { useToastContext } from '@/providers/toast.provider';
 import { UsersService } from '@/services/users/users.service';
 import { PathParamsType } from '@/types/path-params.type';
@@ -14,7 +10,7 @@ import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-export const useEditUserFormHook = () => {
+export const useEditPasswordFormHook = () => {
   const { id } = useParams<PathParamsType>();
   const router = useRouter();
   const { toast } = useToastContext();
@@ -25,55 +21,52 @@ export const useEditUserFormHook = () => {
     enabled: !!id
   });
 
-  const form = useForm<z.infer<typeof editUserSchema>>({
-    resolver: zodResolver(editUserSchema),
-    mode: 'all',
-    reValidateMode: 'onChange',
-    criteriaMode: 'all'
-  });
-
   const mutation = useMutation({
-    mutationFn: (data: EditUserInterface) => UsersService.editById(id, data),
+    mutationFn: (data: UpdatePasswordInterface) =>
+      UsersService.updatePassword(id, data),
     onSuccess: () => {
       toast({
-        title: 'Usuário editado com sucesso',
+        title: 'Senha alterada com sucesso',
         status: 'success'
       });
       router.push(`/users/edit/step-1/${id}`);
     },
     onError: (error) =>
       toast({
-        title: 'Erro ao editar usuário',
+        title: 'Erro ao alterar a senha',
         description: error,
         status: 'error'
       })
   });
 
-  const submitForm: SubmitHandler<z.infer<typeof editUserSchema>> = async (
-    data
-  ) => {
-    const payload: EditUserInterface = {
-      ...data,
-      permission: mapPermission[data.permission || 'REPRESENTANTE']
+  const submitForm: SubmitHandler<
+    z.infer<typeof editCredentialsSchema>
+  > = async (data) => {
+    const payload: UpdatePasswordInterface = {
+      newPassword: data.password
     };
 
     await mutation.mutateAsync(payload);
   };
 
-  const handleCancel = () => router.push(`/users/edit/step-1/${id}`);
+  const form = useForm<z.infer<typeof editCredentialsSchema>>({
+    resolver: zodResolver(editCredentialsSchema),
+    mode: 'all',
+    reValidateMode: 'onChange',
+    criteriaMode: 'all'
+  });
 
   useEffect(() => {
     if (data) {
       form.reset({
-        ...data,
-        permission: getPermissionLabel[data.permission]
+        ...data
       });
     }
   }, [data, form]);
 
   return {
+    handleCancel: () => router.back(),
     form,
-    submitForm,
-    handleCancel
+    submitForm
   };
 };

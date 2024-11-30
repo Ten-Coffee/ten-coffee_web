@@ -1,9 +1,5 @@
 .sidebar {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 2.4rem;
-
+  display: none;
   background-color: var(--background-50);
 
   padding: 4rem 1.2rem 1.2rem;
@@ -18,4 +14,13 @@
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
 }

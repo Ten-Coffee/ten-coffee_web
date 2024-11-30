@@ -51,9 +51,9 @@ export const EditUserFormOrganism = () => {
         <TextFieldMolecule
           label={'Cafeteria'}
           disabled={true}
-          {...form.register('coffeeShop')}
-          error={!!errors.coffeeShop}
-          helperText={errors.coffeeShop?.message}
+          {...form.register('coffeeShopName')}
+          error={!!errors.coffeeShopName}
+          helperText={errors.coffeeShopName?.message}
         />
         {isRepresentante && (
           <>

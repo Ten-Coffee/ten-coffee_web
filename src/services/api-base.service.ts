@@ -47,7 +47,8 @@ export class ApiService {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorData = await response.json();
+      throw new Error(errorData?.error);
     }
 
     const contentType = response.headers.get('Content-Type');

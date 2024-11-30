@@ -5,7 +5,7 @@ export const editUserSchema = z.object({
   name: z.string().optional(),
   permission: z.enum(EDIT_USER_ZOD_PERMISSION).optional(),
   login: z.string().email().optional(),
-  coffeeShop: z.string().optional(),
+  coffeeShopName: z.string().optional(),
   cpf: z.string().nullable().optional(),
   phone: z
     .string()
