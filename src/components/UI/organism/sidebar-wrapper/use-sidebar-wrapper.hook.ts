@@ -1,10 +1,7 @@
-import { useScreenWidthHook } from '@/hooks/use-screen-width.hook';
 import { icons } from '@/icons/icons';
 import { BuildingBlocksInterface } from '@/interfaces/sidebar/building-blocks.interface';
 
 export const useSidebarWrapperHook = () => {
-  const { isDesktop } = useScreenWidthHook();
-
   const userAccess = 'admin';
 
   const buildingBlocksAvailable: BuildingBlocksInterface = {
@@ -48,7 +45,6 @@ export const useSidebarWrapperHook = () => {
   };
 
   return {
-    isDesktop,
     buildingBlocks: buildingBlocksAvailable[userAccess] || null
   };
 };

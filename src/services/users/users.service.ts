@@ -2,6 +2,7 @@ import { PageParamsInterface } from '@/interfaces/page-params.interface';
 import { PageableInterface } from '@/interfaces/pageable.interface';
 import { CreateUsersInterface } from '@/interfaces/users/create-users.interface';
 import { EditUserInterface } from '@/interfaces/users/edit-user.interface';
+import { UpdatePasswordInterface } from '@/interfaces/users/update-password.interface';
 import { UsersInterface } from '@/interfaces/users/users.interface';
 import { ApiService } from '@/services/api-base.service';
 
@@ -53,11 +54,22 @@ const findRepresentative = async (
   );
 };
 
+const updatePassword = async (
+  id: string,
+  data: UpdatePasswordInterface
+): Promise<void> => {
+  return await userApi.request<void>(`/${id}/password`, {
+    method: 'PUT',
+    body: data
+  });
+};
+
 export const UsersService = {
   findAll,
   create,
   findById,
   editById,
   deleteById,
-  findRepresentative
+  findRepresentative,
+  updatePassword
 };

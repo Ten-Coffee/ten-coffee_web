@@ -11,6 +11,8 @@
   gap: 1.6rem;
 
   padding: 0 1.6rem;
+
+  z-index: 2000;
 }
 
 .sidebar-mobile__building-blocks {
@@ -48,4 +50,10 @@
   background-color: rgba(0, 0, 0, 0.8);
 
   z-index: 999;
+}
+
+@media (min-width: 1024px) {
+  .sidebar-mobile__header {
+    display: none;
+  }
 }
