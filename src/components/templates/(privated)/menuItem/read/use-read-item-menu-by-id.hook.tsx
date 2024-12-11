@@ -1,5 +1,6 @@
 import { useDeleteModalHook } from '@/hooks/use-delete-modal.hook';
 import { MenuItemInterface } from '@/interfaces/menu-item/menu-item.interface';
+import { IngredientsTypeService } from '@/services/ingredients-type/ingredients-type.service';
 import { MenuItemService } from '@/services/menu-item/menu-item.service';
 import { PathParamsType } from '@/types/path-params.type';
 import { ReadByIdType } from '@/types/read-by-id.type';
@@ -8,6 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 
 const READ_BY_ID_QUERY = 'read-item-menu-by-id';
+const INGREDIENTS_QUERY = 'fetch-ingredient-names';
 
 export const useReadItemMenuByIdHook = () => {
   const { id } = useParams<PathParamsType>();
@@ -17,6 +19,27 @@ export const useReadItemMenuByIdHook = () => {
     queryKey: [READ_BY_ID_QUERY],
     queryFn: () => MenuItemService.findById(id),
     enabled: !!id
+  });
+
+  const ingredientQuery = useQuery({
+    queryKey: [INGREDIENTS_QUERY, id],
+    queryFn: async () => {
+      if (data?.ingredients) {
+        return await Promise.all(
+          data.ingredients.map(async (ingredient) => {
+            const productName = await IngredientsTypeService.findById(
+              ingredient.ingredientTypeId.toString()
+            );
+            return {
+              label: productName.productName,
+              value: `Quantidade: ${ingredient.quantity}`
+            };
+          })
+        );
+      }
+      return [];
+    },
+    enabled: !!data?.ingredients
   });
 
   const modal = useDeleteModalHook<MenuItemInterface>(
@@ -54,13 +77,9 @@ export const useReadItemMenuByIdHook = () => {
       isImage: true
     }
   ];
-  const ingredientsItemData: ReadByIdType[] = [
-    {
-      label: 'Nome',
-      value: data?.name
-    }
-  ];
 
+  const ingredientsItemData = ingredientQuery.data || [];
+  console.log(ingredientsItemData);
   return {
     goBackPage: () => router.back(),
     menuItem: {
@@ -69,7 +88,7 @@ export const useReadItemMenuByIdHook = () => {
     },
     ingredientsItem: {
       data: ingredientsItemData,
-      isLoading
+      isLoading: ingredientQuery.isLoading
     },
     data,
     title: data?.name ?? 'Carregando...',
