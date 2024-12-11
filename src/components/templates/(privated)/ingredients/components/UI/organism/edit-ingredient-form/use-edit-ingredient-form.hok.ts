@@ -1,6 +1,7 @@
 import { ingredientsSchema } from '@/components/templates/(privated)/ingredients/schemas/ingredients.schema';
 import { mapMeasurement, measurementNames } from '@/enums/measurement.enum';
 import { EditIngredientsInterface } from '@/interfaces/ingredients-type/edit-ingredients.interface';
+import { useToastContext } from '@/providers/toast.provider';
 import { IngredientsTypeService } from '@/services/ingredients-type/ingredients-type.service';
 import { PathParamsType } from '@/types/path-params.type';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,6 +13,7 @@ import { z } from 'zod';
 
 export const useEditIngredientFormHok = () => {
   const { id } = useParams<PathParamsType>();
+  const { toast } = useToastContext();
   const router = useRouter();
 
   const { data } = useQuery({
@@ -23,7 +25,20 @@ export const useEditIngredientFormHok = () => {
   const mutation = useMutation({
     mutationFn: (data: EditIngredientsInterface) =>
       IngredientsTypeService.updateById(id, data),
-    onSuccess: () => router.push('/ingredients')
+    onSuccess: () => {
+      toast({
+        title: 'Ingrediente editado com sucesso!',
+        status: 'success'
+      });
+      router.push('/ingredients');
+    },
+    onError: (error) => {
+      toast({
+        title: 'Erro ao editar ingrediente!',
+        description: error,
+        status: 'error'
+      });
+    }
   });
 
   const form = useForm<z.infer<typeof ingredientsSchema>>({
