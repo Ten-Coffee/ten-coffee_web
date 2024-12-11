@@ -9,7 +9,7 @@ import { ModalOrganism } from '@/components/UI/organism/modal/modal.organism';
 import { icons } from '@/icons/icons';
 
 export const ReadItemMenuByIdTemplate = () => {
-  const { goBackPage, menuItem, data, title, modal } =
+  const { goBackPage, menuItem, ingredientsItem, data, title, modal } =
     useReadItemMenuByIdHook();
 
   return (
@@ -37,6 +37,11 @@ export const ReadItemMenuByIdTemplate = () => {
       <DetailsViewOrganism
         title={'Item'}
         data={menuItem.data}
+        isLoading={menuItem.isLoading}
+      />
+      <DetailsViewOrganism
+        title={'Ingredientes'}
+        data={ingredientsItem.data}
         isLoading={menuItem.isLoading}
       />
       <ModalOrganism {...modal} />

@@ -38,7 +38,7 @@ export const EditIngredientItemMenuFormOrganism = () => {
               render={({ field }) => (
                 <ComboboxFieldMolecule
                   {...field}
-                  options={options || []} // Lista de opções (id e value)
+                  options={options || []}
                   value={
                     options.find((option) => option.id === field.value) ||
                     undefined

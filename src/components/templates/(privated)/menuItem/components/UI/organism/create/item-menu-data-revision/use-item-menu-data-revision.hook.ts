@@ -3,16 +3,21 @@
 import { useMenuItemStore } from '@/components/templates/(privated)/menuItem/store/item-menu.store';
 import { getItemCategoryLabel } from '@/enums/item-category.enum';
 import { CreateMenuItemInterface } from '@/interfaces/menu-item/create-menu-item.interface';
+import { IngredientsTypeService } from '@/services/ingredients-type/ingredients-type.service';
 import { MenuItemService } from '@/services/menu-item/menu-item.service';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
 
 export const useItemMenuDataRevisionFormHook = () => {
   const router = useRouter();
   const { formData, resetItem } = useMenuItemStore();
+  const [ingredientsData, setIngredientsData] = useState<
+    { label: string; value: string }[]
+  >([]);
 
   const mutation = useMutation({
-    mutationFn: (data: CreateMenuItemInterface) => MenuItemService.create(data), // Aceita dados no formato correto
+    mutationFn: (data: CreateMenuItemInterface) => MenuItemService.create(data),
     onSuccess: () => {
       resetItem();
       router.push('/menu-items');
@@ -63,10 +68,36 @@ export const useItemMenuDataRevisionFormHook = () => {
     ]
   };
 
-  const ingredientsData = formData.ingredients.map((ingredient, index) => ({
-    label: `${index + 1}º`,
-    value: `Id: ${ingredient.ingredientTypeId} (${ingredient.quantity})`
-  }));
+  const fetchIngredientDetails = async (ingredientTypeId: string) => {
+    try {
+      const ingredientType =
+        await IngredientsTypeService.findById(ingredientTypeId);
+      return ingredientType.productName;
+    } catch (error) {
+      console.error('Erro ao buscar detalhes do ingrediente:', error);
+      return 'Desconhecido';
+    }
+  };
+
+  useEffect(() => {
+    const fetchIngredientsData = async () => {
+      const data = await Promise.all(
+        formData.ingredients.map(async (ingredient, index) => {
+          const productName = await fetchIngredientDetails(
+            ingredient.ingredientTypeId
+          );
+          return {
+            label: `${index + 1}º`,
+            value: `${productName} (${ingredient.quantity})`
+          };
+        })
+      );
+
+      setIngredientsData(data);
+    };
+
+    fetchIngredientsData();
+  }, [formData.ingredients]);
 
   const handleBack = () => {
     router.back();
@@ -74,7 +105,7 @@ export const useItemMenuDataRevisionFormHook = () => {
 
   return {
     menuItemData,
-    ingredientsData,
+    ingredientsData, // Agora é um array síncrono
     handleBack,
     handleCreate,
     mutation
