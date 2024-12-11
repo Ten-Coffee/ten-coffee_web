@@ -25,7 +25,7 @@ const findAll = async ({
       page,
       size,
       search,
-      coffeeShopId: 2
+      coffeeShopId: 1
     }
   });
 };
@@ -33,7 +33,7 @@ const findIngredients = async (
   search = ''
 ): Promise<SelectOptionsInterface[]> => {
   const response = await apiService.request<IngredientsTypeSummaryInterface[]>(
-    '/summary/2',
+    '/summary/4',
     {
       queryParams: {
         search
@@ -43,7 +43,7 @@ const findIngredients = async (
 
   return response.map(({ id, name }) => ({
     id,
-    value: name // Mapeia o campo `name` para `value`
+    value: name
   }));
 };
 const findById = async (id: string): Promise<IngredientsInterface> => {

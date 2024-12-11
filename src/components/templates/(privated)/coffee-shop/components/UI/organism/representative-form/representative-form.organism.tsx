@@ -1,5 +1,6 @@
 import { useRepresentativeFormHook } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/representative-form/use-representative-form.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
+import { PasswordFieldMolecule } from '@/components/UI/molecules/password-field/password-field.molecule';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
 import './representative-form.styles.scss';
 
@@ -38,6 +39,12 @@ export const RepresentativeFormOrganism = () => {
           error={!!errors.cpf}
           helperText={errors.cpf?.message}
           mask={'cpf'}
+        />
+        <PasswordFieldMolecule
+          {...register('password')}
+          label={'Password'}
+          error={!!errors.password}
+          helperText={errors.password?.message}
         />
       </div>
 

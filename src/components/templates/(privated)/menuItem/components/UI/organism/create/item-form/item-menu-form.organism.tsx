@@ -1,7 +1,8 @@
 'use client';
 
-import { useMenuItemForm } from '@/components/templates/(privated)/menuItem/components/UI/organism/item-form/use-item-form.hook';
+import { useMenuItemForm } from '@/components/templates/(privated)/menuItem/components/UI/organism/create/item-form/use-item-form.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
+import { FileFieldMolecule } from '@/components/UI/molecules/file-field/file-field.molecule';
 import { SelectFieldMolecule } from '@/components/UI/molecules/select-field/select-field.molecule';
 import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
 import {
@@ -9,7 +10,6 @@ import {
   mapItemCategory
 } from '@/enums/item-category.enum';
 import { Controller } from 'react-hook-form';
-
 import './item-menu-form.styles.scss';
 
 export const ItemMenuFormOrganism = () => {
@@ -36,7 +36,6 @@ export const ItemMenuFormOrganism = () => {
           error={!!formState.errors.description}
           helperText={formState.errors.description?.message}
         />
-
         <Controller
           control={control}
           name="category"
@@ -54,12 +53,17 @@ export const ItemMenuFormOrganism = () => {
             />
           )}
         />
-
         <TextFieldMolecule
           label="Preço"
           {...register('price')}
           error={!!formState.errors.price}
           helperText={formState.errors.price?.message}
+        />
+
+        <FileFieldMolecule
+          label="Imagem"
+          {...register('image')}
+          error={!!formState.errors.image}
         />
       </div>
 

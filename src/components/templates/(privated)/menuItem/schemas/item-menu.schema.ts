@@ -7,10 +7,14 @@ export const menuItemSchema = z.object({
   price: z
     .string()
     .regex(/^\d+([,.]\d{1,2})?$/, 'O preço deve ser um número válido'),
-  ingredientsName: z.array(
-    z.string().min(1, 'O nome do ingrediente é obrigatório')
+  ingredients: z.array(
+    z.object({
+      ingredientTypeId: z.string().min(1, 'O ID do ingrediente é obrigatório'), // Agora usa ID
+      quantity: z.number().min(1, 'A quantidade do ingrediente é obrigatória')
+    })
   ),
-  coffeeShopId: z.string().optional()
+  coffeeShopId: z.string().optional(),
+  image: z.any()
 });
 
 export type MenuItem = z.infer<typeof menuItemSchema>;

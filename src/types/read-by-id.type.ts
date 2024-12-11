@@ -1,5 +1,6 @@
 export type ReadByIdType = {
   label: string;
-  value: string | undefined;
+  value: string | number | undefined;
   isStatus?: boolean;
+  isImage?: boolean;
 };

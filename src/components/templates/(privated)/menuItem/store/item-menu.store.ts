@@ -1,12 +1,18 @@
 import { DataItem } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/interfaces/data-item.interface';
-import { MenuItem } from '@/components/templates/(privated)/menuItem/create/schemas/item-menu.schema';
+import { MenuItem } from '@/components/templates/(privated)/menuItem/schemas/item-menu.schema';
 import { create } from 'zustand';
 
+type Ingredient = {
+  ingredientTypeId: string;
+  quantity: number;
+};
+
 type MenuStore = {
-  formData: MenuItem;
-  setItem: (item: Partial<MenuItem>) => void;
+  formData: MenuItem & { ingredients: Ingredient[] };
+  setItem: (item: Partial<MenuItem & { ingredients: Ingredient[] }>) => void;
   resetItem: () => void;
-  updateIngredients: (ingredientsName: string[]) => void;
+  updateIngredients: (ingredients: Ingredient[]) => void;
+  updateImage: (imageBase64: string) => void;
   getMenuItemDataForRevision: () => DataItem[];
 };
 
@@ -16,8 +22,9 @@ export const useMenuItemStore = create<MenuStore>((set, get) => ({
     description: '',
     category: 'FOOD',
     price: '0',
-    ingredientsName: [],
-    coffeeShopId: ''
+    ingredients: [],
+    coffeeShopId: '',
+    image: undefined
   },
   setItem: (item) =>
     set((state) => ({
@@ -30,13 +37,18 @@ export const useMenuItemStore = create<MenuStore>((set, get) => ({
         description: '',
         category: 'FOOD',
         price: '0',
-        ingredientsName: [],
-        coffeeShopId: ''
+        ingredients: [],
+        coffeeShopId: '',
+        image: ''
       }
     }),
-  updateIngredients: (ingredientsName) =>
+  updateIngredients: (ingredients) =>
     set((state) => ({
-      formData: { ...state.formData, ingredientsName }
+      formData: { ...state.formData, ingredients }
+    })),
+  updateImage: (imageBase64) =>
+    set((state) => ({
+      formData: { ...state.formData, image: imageBase64 }
     })),
   getMenuItemDataForRevision: () => {
     const { formData } = get();
@@ -47,7 +59,10 @@ export const useMenuItemStore = create<MenuStore>((set, get) => ({
       { label: 'Preço', value: formData.price },
       {
         label: 'Ingredientes',
-        value: formData.ingredientsName.join(', ') || 'N/A'
+        value:
+          formData.ingredients
+            .map((ing) => `${ing.ingredientTypeId} (${ing.quantity})`)
+            .join(', ') || 'N/A'
       }
     ];
   }

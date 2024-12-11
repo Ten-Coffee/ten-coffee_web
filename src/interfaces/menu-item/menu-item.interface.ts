@@ -4,6 +4,9 @@ export interface MenuItemInterface {
   id: number;
   name: string;
   description: string;
-  price: string;
+  category: 'FOOD' | 'DRINK';
+  image: string;
+  price: number;
   status: StatusType;
+  coffeeShopId: number;
 }

@@ -68,6 +68,7 @@ export const useFormStore = create<FormStore>((set, get) => ({
     representative: {
       name: '',
       login: '',
+      password: '',
       phone: '',
       cpf: ''
     }
@@ -94,6 +95,7 @@ export const useFormStore = create<FormStore>((set, get) => ({
       user: {
         name: representative.name,
         login: representative.login,
+        password: representative.password,
         userPermissionEnum: 'REPRESENTATIVE',
         phone: representative.phone,
         cpf: representative.cpf
@@ -111,6 +113,9 @@ export const useFormStore = create<FormStore>((set, get) => ({
   },
 
   extractData: (data: Record<string, unknown>): DataItem[] => {
-    return extractData(data);
+    const filteredData = { ...data };
+    delete filteredData.password;
+
+    return extractData(filteredData);
   }
 }));

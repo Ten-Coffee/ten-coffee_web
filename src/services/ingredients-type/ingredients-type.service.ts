@@ -39,7 +39,7 @@ const findSummaries = async (
   search = ''
 ): Promise<SelectOptionsInterface[]> => {
   const response = await apiService.request<IngredientsTypeSummaryInterface[]>(
-    '/summary/2',
+    '/summary/1',
     {
       queryParams: {
         search
