@@ -12,7 +12,7 @@ import { OrderStatusEnum } from '@/interfaces/orders/orders.interface';
 export const ReadByIdTableTemplate = () => {
   const { goBackPage, table, orders, title } = useReadByIdTableHook();
 
-  const totalPrice = orders.data
+  const totalTablePrice = orders.data
     ?.flatMap((order) => order.orderItems)
     .reduce((acc, item) => acc + (item.details?.price || 0) * item.quantity, 0);
 
@@ -40,11 +40,6 @@ export const ReadByIdTableTemplate = () => {
 
       {!orders.isLoading &&
         orders.data?.map((order) => {
-          const orderTotal = order.orderItems.reduce(
-            (acc, item) => acc + (item.details?.price || 0) * item.quantity,
-            0
-          );
-
           return (
             <div key={order.id} className="order-list">
               {order.orderItems.map((item) => (
@@ -56,17 +51,17 @@ export const ReadByIdTableTemplate = () => {
                   price={item.details?.price || 0}
                   orderNumber={order.id}
                   status={order.orderStatus as OrderStatusEnum}
-                  total={orderTotal}
                 />
               ))}
             </div>
           );
         })}
 
+      {}
       {!orders.isLoading && (
         <div className="table-total">
           <LabelAtom
-            value={`Total da Mesa: R$ ${totalPrice?.toFixed(2)}`}
+            value={`Total da Mesa: R$ ${totalTablePrice?.toFixed(2)}`}
             size="large"
           />
         </div>
