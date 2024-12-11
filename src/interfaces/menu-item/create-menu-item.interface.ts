@@ -3,6 +3,10 @@ export interface CreateMenuItemInterface {
   description?: string;
   category: 'FOOD' | 'DRINK';
   price: number;
-  ingredientsName: string[];
-  coffeeShopId: number; // Adiciona o ID da cafeteria
+  image?: string;
+  ingredients: {
+    ingredientTypeId: string;
+    quantity: number;
+  }[];
+  coffeeShopId: number;
 }

@@ -14,5 +14,6 @@ export const representativeSchema = z.object({
   cpf: z
     .string()
     .transform((value) => value.replace(/\D/g, ''))
-    .refine(isValidCPF, 'CPF inválido')
+    .refine(isValidCPF, 'CPF inválido'),
+  password: z.string()
 });

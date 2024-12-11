@@ -1,8 +1,9 @@
 'use client';
 
-import { useItemMenuIngredientsFormHook } from '@/components/templates/(privated)/menuItem/components/UI/organism/item-menu-ingredients-form/use-item-menu-ingredients-form.hook';
+import { useItemMenuIngredientsFormHook } from '@/components/templates/(privated)/menuItem/components/UI/organism/create/item-menu-ingredients-form/use-item-menu-ingredients-form.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { ComboboxFieldMolecule } from '@/components/UI/molecules/combobox-field/combobox-field.molecule';
+import { TextFieldMolecule } from '@/components/UI/molecules/text-field/text-field.molecule';
 import { icons } from '@/icons/icons';
 import { Controller } from 'react-hook-form';
 import './item-menu-ingredients.styles.scss';
@@ -33,15 +34,39 @@ export const ItemMenuIngredientsFormOrganism = () => {
               render={({ field }) => (
                 <ComboboxFieldMolecule
                   {...field}
-                  options={options || []}
-                  value={field.value}
-                  onChange={field.onChange}
+                  options={options || []} // Lista de opções carregadas
+                  value={
+                    options.find(
+                      (option) => option.id === field.value.ingredientTypeId
+                    ) || undefined
+                  }
+                  onChange={(selected) =>
+                    field.onChange({ ingredientTypeId: selected.id })
+                  }
                   label="Ingrediente"
                   setSearch={setSearch}
                   search={search}
                 />
               )}
             />
+
+            <Controller
+              control={form.control}
+              name={`ingredients.${index}.quantity`}
+              render={({ field }) => (
+                <TextFieldMolecule
+                  {...field}
+                  type="number"
+                  value={field.value}
+                  onChange={(e) =>
+                    field.onChange(parseFloat(e.target.value) || 0)
+                  }
+                  label="Quantidade"
+                  placeholder="Digite a quantidade"
+                />
+              )}
+            />
+
             <ButtonAtom.Wrapper
               hierarchy="ghosted"
               type="button"
@@ -55,7 +80,12 @@ export const ItemMenuIngredientsFormOrganism = () => {
         <ButtonAtom.Wrapper
           hierarchy="outlined"
           type="button"
-          onClick={() => append({ ingredient: { id: '', value: '' } })}
+          onClick={() =>
+            append({
+              ingredient: { ingredientTypeId: '' },
+              quantity: 0
+            })
+          }
         >
           + Adicionar Ingrediente
         </ButtonAtom.Wrapper>

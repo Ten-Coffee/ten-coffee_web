@@ -1,7 +1,7 @@
 'use client';
 
 import { DataRevisionOrganism } from '@/components/templates/(privated)/coffee-shop/components/UI/organism/data-revision/data-revision.organism';
-import { useItemMenuDataRevisionFormHook } from '@/components/templates/(privated)/menuItem/components/UI/organism/item-menu-data-revision/use-item-menu-data-revision.hook';
+import { useItemMenuDataRevisionFormHook } from '@/components/templates/(privated)/menuItem/components/UI/organism/create/item-menu-data-revision/use-item-menu-data-revision.hook';
 import { ButtonAtom } from '@/components/UI/atoms/button/button.atom';
 import { DiviserAtom } from '@/components/UI/atoms/diviser/diviser.atom';
 

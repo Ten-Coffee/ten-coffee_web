@@ -1,8 +1,8 @@
 import {
   MenuItem,
   menuItemSchema
-} from '@/components/templates/(privated)/menuItem/create/schemas/item-menu.schema';
-import { useMenuItemStore } from '@/components/templates/(privated)/menuItem/create/store/item-menu.store';
+} from '@/components/templates/(privated)/menuItem/schemas/item-menu.schema';
+import { useMenuItemStore } from '@/components/templates/(privated)/menuItem/store/item-menu.store';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -19,9 +19,7 @@ export const useMenuItemForm = () => {
   });
 
   const saveItem = (data: MenuItem) => {
-    setItem({
-      ...data
-    });
+    setItem(data);
     router.push('/menu-items/create/step-2');
   };
 
