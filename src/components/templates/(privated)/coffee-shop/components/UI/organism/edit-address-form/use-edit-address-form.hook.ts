@@ -2,6 +2,7 @@
 
 import { addressSchema } from '@/components/templates/(privated)/coffee-shop/create/schemas/address.schema';
 import { AddressInterface } from '@/interfaces/address/address.interface';
+import { useToastContext } from '@/providers/toast.provider';
 import { AddressService } from '@/services/address.service';
 import { ViaCepService } from '@/services/via-cep/via-cep.service';
 import { PathParamsType } from '@/types/path-params.type';
@@ -15,6 +16,7 @@ import { z } from 'zod';
 
 export const useEditAddressFormHook = () => {
   const { id } = useParams<PathParamsType>();
+  const { toast } = useToastContext();
   const router = useRouter();
 
   const { data } = useQuery({
@@ -36,9 +38,19 @@ export const useEditAddressFormHook = () => {
       return AddressService.editById(id, data);
     },
 
-    onSuccess: () => router.push(`/coffee-shops/edit/step-1/${id}`),
+    onSuccess: () => {
+      toast({
+        title: 'Cafeteria editada com sucesso!',
+        status: 'success'
+      });
+      router.push(`/coffee-shops/edit/step-1/${id}`);
+    },
     onError: (error) => {
-      console.error('Error in mutation:', error);
+      toast({
+        title: 'Erro ao editar cafeteria!',
+        description: error,
+        status: 'error'
+      });
     }
   });
 

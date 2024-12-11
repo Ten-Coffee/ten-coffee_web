@@ -1,6 +1,7 @@
 import { inventorySchema } from '@/components/templates/(privated)/inventory/schemas/inventory.schema';
 import { useSearchDebounceHook } from '@/hooks/use-search-debounce.hook';
 import { CreateIngredientsInterface } from '@/interfaces/ingredients/create-ingredients.interface';
+import { useToastContext } from '@/providers/toast.provider';
 import { IngredientsTypeService } from '@/services/ingredients-type/ingredients-type.service';
 import { IngredientsService } from '@/services/ingredients/ingredient.service';
 import { PathParamsType } from '@/types/path-params.type';
@@ -14,6 +15,7 @@ import { z } from 'zod';
 export const useEditInventoryFormHook = () => {
   const { id } = useParams<PathParamsType>();
   const router = useRouter();
+  const { toast } = useToastContext();
   const [search, setSearch] = useState('');
   const debouncedSearch = useSearchDebounceHook({ value: search, delay: 500 });
 
@@ -38,7 +40,20 @@ export const useEditInventoryFormHook = () => {
   const mutation = useMutation({
     mutationFn: (data: CreateIngredientsInterface) =>
       IngredientsService.editById(id, data),
-    onSuccess: () => router.push('/inventory')
+    onSuccess: () => {
+      toast({
+        title: 'Ingrediente editado com sucesso!',
+        status: 'success'
+      });
+      router.push('/inventory');
+    },
+    onError: (error) => {
+      toast({
+        title: 'Erro ao editar ingrediente!',
+        description: error,
+        status: 'error'
+      });
+    }
   });
 
   const submitForm: SubmitHandler<z.infer<typeof inventorySchema>> = async (

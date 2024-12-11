@@ -3,6 +3,7 @@
 import { useMenuItemStore } from '@/components/templates/(privated)/menuItem/store/item-menu.store';
 import { getItemCategoryLabel } from '@/enums/item-category.enum';
 import { CreateMenuItemInterface } from '@/interfaces/menu-item/create-menu-item.interface';
+import { useToastContext } from '@/providers/toast.provider';
 import { IngredientsTypeService } from '@/services/ingredients-type/ingredients-type.service';
 import { MenuItemService } from '@/services/menu-item/menu-item.service';
 import { useMutation } from '@tanstack/react-query';
@@ -11,6 +12,7 @@ import { useState, useEffect } from 'react';
 
 export const useItemMenuDataRevisionFormHook = () => {
   const router = useRouter();
+  const { toast } = useToastContext();
   const { formData, resetItem } = useMenuItemStore();
   const [ingredientsData, setIngredientsData] = useState<
     { label: string; value: string }[]
@@ -19,8 +21,19 @@ export const useItemMenuDataRevisionFormHook = () => {
   const mutation = useMutation({
     mutationFn: (data: CreateMenuItemInterface) => MenuItemService.create(data),
     onSuccess: () => {
+      toast({
+        title: 'Item adicionado ao cardápio com sucesso!',
+        status: 'success'
+      });
       resetItem();
       router.push('/menu-items');
+    },
+    onError: (error) => {
+      toast({
+        title: 'Erro ao adicionar item no cardápio!',
+        description: error,
+        status: 'error'
+      });
     }
   });
 
