@@ -25,7 +25,7 @@ export const OrderItemMolecule: React.FC<OrderItemProps> = ({
     <div className="order">
       <div></div>
       <div className="order__title">
-        <TitleAtom.Medium value={`Pedido ${orderNumber}`} />
+        <TitleAtom.Medium value={`Item ${orderNumber}`} />
         <div className="order__title__status">
           <LabelAtom value={'Status'} size="small" />
           <LabelAtom value={status} size="medium" />

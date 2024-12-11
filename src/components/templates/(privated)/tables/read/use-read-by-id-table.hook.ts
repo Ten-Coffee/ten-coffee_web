@@ -78,6 +78,7 @@ export const useReadByIdTableHook = () => {
       }))
     })) || [];
 
+  console.log(enrichedOrders);
   return {
     goBackPage: () => router.back(),
     table: {

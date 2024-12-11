@@ -7,14 +7,14 @@ import { TitleAtom } from '@/components/UI/atoms/typography/title/title.atom';
 import { OrderItemMolecule } from '@/components/UI/molecules/order-item/order-item.molecule';
 import { DetailsViewOrganism } from '@/components/UI/organism/details-view/details-view.organism';
 import { icons } from '@/icons/icons';
-import { OrderStatusEnum } from '@/interfaces/orders/orders.interface';
 
 export const ReadByIdTableTemplate = () => {
   const { goBackPage, table, orders, title } = useReadByIdTableHook();
 
-  const totalTablePrice = orders.data
-    ?.flatMap((order) => order.orderItems)
-    .reduce((acc, item) => acc + (item.details?.price || 0) * item.quantity, 0);
+  const totalTablePrice = orders.data?.[0]?.orderItems.reduce(
+    (acc, item) => acc + (item.details?.price || 0) * item.quantity,
+    0
+  );
 
   return (
     <>
@@ -36,32 +36,25 @@ export const ReadByIdTableTemplate = () => {
         isLoading={table.isLoading}
       />
 
-      <TitleAtom.Large value="Pedidos" />
+      <TitleAtom.Large value="Pedido" />
 
       {!orders.isLoading &&
-        orders.data?.map((order) => {
-          return (
-            <div key={order.id} className="order-list">
-              {order.orderItems.map((item) => (
-                <OrderItemMolecule
-                  key={item.menuItemId}
-                  image={item.details?.image || 'default-image.jpg'}
-                  name={item.details?.name || 'Item desconhecido'}
-                  quantity={item.quantity}
-                  price={item.details?.price || 0}
-                  orderNumber={order.id}
-                  status={order.orderStatus as OrderStatusEnum}
-                />
-              ))}
-            </div>
-          );
-        })}
+        orders.data?.[0]?.orderItems.map((item, index) => (
+          <OrderItemMolecule
+            key={item.menuItemId}
+            image={item.details?.image || 'default-image.jpg'}
+            name={item.details?.name || 'Item desconhecido'}
+            quantity={item.quantity}
+            price={item.details?.price || 0}
+            orderNumber={index + 1}
+            status={item.orderItemStatus}
+          />
+        ))}
 
-      {}
-      {!orders.isLoading && (
+      {!orders.isLoading && totalTablePrice !== undefined && (
         <div className="table-total">
           <LabelAtom
-            value={`Total da Mesa: R$ ${totalTablePrice?.toFixed(2)}`}
+            value={`Total do Pedido: R$ ${totalTablePrice.toFixed(2)}`}
             size="large"
           />
         </div>
