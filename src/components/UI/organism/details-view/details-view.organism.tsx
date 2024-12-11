@@ -14,13 +14,15 @@ interface DetailsViewOrganismProps {
     text: string;
     onClick: () => void;
   };
+  create?: boolean;
 }
 
 export const DetailsViewOrganism = ({
   title,
   data,
   isLoading,
-  editButton
+  editButton,
+  create
 }: DetailsViewOrganismProps) => {
   return (
     <div className={'details-view'}>
@@ -31,7 +33,7 @@ export const DetailsViewOrganism = ({
             hierarchy={'outlined'}
             onClick={editButton.onClick}
           >
-            <ButtonAtom.Icon icon={icons.Edit} />
+            <ButtonAtom.Icon icon={create ? icons.Add : icons.Edit} />{' '}
             {editButton.text}
           </ButtonAtom.Wrapper>
         </div>

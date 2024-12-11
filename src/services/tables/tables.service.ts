@@ -21,7 +21,9 @@ const findAll = async (status: string): Promise<FindAllTables[]> => {
     }
   });
 };
-
+const findById = async (id: string): Promise<FindAllTables> => {
+  return await tableApi.request<FindAllTables>(`/find-by-id/${id}`);
+};
 const updateStatus = async (
   id: string,
   status: TableStatusEnum
@@ -37,5 +39,6 @@ const updateStatus = async (
 export const TablesService = {
   create,
   findAll,
-  updateStatus
+  updateStatus,
+  findById
 };
