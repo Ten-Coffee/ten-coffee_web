@@ -11,7 +11,6 @@ interface OrderItemProps {
   price: number;
   orderNumber: number;
   status: string;
-  total: number;
 }
 
 export const OrderItemMolecule: React.FC<OrderItemProps> = ({
@@ -20,8 +19,7 @@ export const OrderItemMolecule: React.FC<OrderItemProps> = ({
   quantity,
   price,
   orderNumber,
-  status,
-  total
+  status
 }) => {
   return (
     <div className="order">
@@ -50,13 +48,6 @@ export const OrderItemMolecule: React.FC<OrderItemProps> = ({
           value={`R$ ${price.toFixed(2)}`}
           size="large"
           disabled={price === 0}
-        />
-      </div>
-      <DiviserAtom />
-      <div className="order__total">
-        <LabelAtom
-          value={`Total do Pedido: R$ ${total.toFixed(2)}`}
-          size="large"
         />
       </div>
     </div>
